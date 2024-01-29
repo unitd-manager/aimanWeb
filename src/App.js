@@ -7,6 +7,7 @@ import Article from './pages/Article';
 // import Home from "../src/screens/pages/home/Home";
 import BlogDetails from './pages/BlogDetails';
 import Gallery from './pages/Gallery';
+import Religious from './pages/Religious';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Article" element={<Article />} />
           <Route path="/Gallery" element={<Gallery />} />
+          <Route path="/services/:title" element={<Religious />} />
           {/* Add other routes as needed */}
           <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
