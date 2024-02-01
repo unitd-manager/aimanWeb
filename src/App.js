@@ -12,11 +12,12 @@ import Events from './pages/Events';
 import NewsEdit from './pages/NewsEdit';
 import EventsEdit from './pages/EventsEdit';
 import Religious from './pages/Religious';
+import Membership from './pages/Membership';
 
 function App() {
   return (
     <div className="App">
-     
+
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
