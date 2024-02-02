@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link} from 'react-router-dom';
-import ReactPlayer from 'react-player';
+//import ReactPlayer from 'react-player';
 import api from '../constants/api';
 import HeroSliderTwo from '../components/HeroSliderTwo';
 import NavMenu from '../components/NavMenu';
@@ -13,7 +13,7 @@ const Home = () => {
     // const [banners, setBanners] = useState([]);
     const [blogItems, setBlogItems] = useState([]);
     const [videoUrls, setVideoUrls] = useState([]);
-
+console.log("fdgdfgd",videoUrls)
     // Function to fetch video URLs from the API
     const getVideoUrls = () => {
       api
@@ -145,7 +145,7 @@ getVideoUrls();
 <HeroSliderTwo />
 
  {/* Video Gallery Panel */}
- <div className="video-gallery">
+ {/* <div className="video-gallery">
         <h2>Video Gallery</h2>
         <div className="container">
           <Slider {...settings}>
@@ -163,10 +163,10 @@ getVideoUrls();
               ))}
           </Slider>
         </div>
-      </div>
+      </div> */}
 
       <div className="blog-2">
-  <h2>News And Update</h2>
+  <h2>News</h2>
   <div className="container">
     <Slider {...settings}>
       {Array.isArray(blogItems) && blogItems.map((item, index) => (
