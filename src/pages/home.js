@@ -165,66 +165,63 @@ getVideoUrls();
         </div>
       </div>
 
-<div className="blog-2">
-<h2>News And Update</h2>
-      <div className="container">
-        <Slider {...settings}>
-          {Array.isArray(blogItems) && blogItems.map((item, index) => (
-            <div key={item.content_id} className="single-blog">
-              <div className="part-img">
-              <img
-    src={`http://43.228.126.245/EMS-API/storage/uploads/${item.news_image}`}
-    alt={`News ${item.content_id}`}
-    style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
-  />
-                <div className="tags">
-                  <span>{item.title}</span>
-                </div>
-              </div>
-              <div className="part-txt">
-                <div className="blog-info">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="flaticon-user"></i>
-                      </span>
-                      By {item.created_by}
-                    </li>
-                    <li>
-                      <span>
-                        <i className="flaticon-clock"></i>
-                      </span>
-                      {item.content_date}
-                    </li>
-                    {/* <li>
-                      <span>
-                        <i className="flaticon-bubble-speak"></i>
-                      </span>
-                      {item.comments}
-                    </li> */}
-                  </ul>
-                </div>
-               {/* Check if item.description is not null before accessing its properties */}
-               {item.description !== null && (
-                <>
-                <h3>{item.description.slice(0, 20).replace(/<p.*?>/g, '')}...</h3>
-                <Link
-                    to={`/blog/${item.content_id}`}
-                   
-                    >
-                    Read More
-                    </Link>
-                        
-                </>
-              )}
-                   
-                       
-              </div>
+      <div className="blog-2">
+  <h2>News And Update</h2>
+  <div className="container">
+    <Slider {...settings}>
+      {Array.isArray(blogItems) && blogItems.map((item, index) => (
+        <div key={item.content_id} className="single-blog">
+          <div className="part-img">
+            <img
+              src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.news_image}`}
+              alt={`News ${item.content_id}`}
+              style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
+            />
+            <div className="tags">
+              {/* <span>{item.title}</span> */}
             </div>
-          ))}
-        </Slider>
-      </div>
-    </div>
+          </div>
+          <div className="part-txt">
+            <div className="blog-info">
+              <ul>
+                <li>
+                  <span>
+                    <i className="flaticon-user"></i>
+                  </span>
+                  By {item.created_by}
+                </li>
+                <li>
+                  <span>
+                    <i className="flaticon-clock"></i>
+                  </span>
+                  {item.content_date}
+                </li>
+                {/* <li>
+                  <span>
+                    <i className="flaticon-bubble-speak"></i>
+                  </span>
+                  {item.comments}
+                </li> */}
+              </ul>
+            </div>
+            {/* Check if item.description is not null before accessing its properties */}
+            {item.description !== null && (
+              <>
+                <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
+                <Link
+                  to={`/NewsEdit/${item.content_id}`}
+                >
+                  Read More
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      ))}
+    </Slider>
+  </div>
+</div>
+
    
     <div class="feature">
         <div class="container">
