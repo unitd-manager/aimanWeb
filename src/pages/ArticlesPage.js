@@ -241,37 +241,7 @@ export default function ArticlesPage(props) {
           </div>
         </div>
       </section>
-      <div class="recent-blog">
-        <h3>Recent Posts</h3>
-        <ul>
-          <li>
-            <div class="img">
-              <img
-                src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
-                className="img-fluid card-img-top"
-                alt="post-thumb"
-              />
-            </div>
-            <div class="txt">
-              <a href="#">
-                There are many variation of our a believable if you
-              </a>
-              <span class="info">
-                <span class="icon">
-                  <i class="flaticon-user"></i>
-                </span>
-                By Admin
-              </span>
-              <span class="info">
-                <span class="icon">
-                  <i class="flaticon-school-calendar"></i>
-                </span>
-                31 July, 2021
-              </span>
-            </div>
-          </li>
-        </ul>
-      </div>
+    
     </>
   );
 }

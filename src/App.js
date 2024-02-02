@@ -6,7 +6,6 @@ import Articles from './pages/Articles';
 // import Home from "../src/screens/pages/home/Home";
 import BlogDetails from './pages/BlogDetails';
 import AimaanBaithulMal from './pages/AimaanBaithulMal';
-import Article from './pages/Article';
 import ArticlesPage from './pages/ArticlesPage';
 import Gallery from './pages/Gallery';
 import News from './pages/News';
@@ -23,13 +22,11 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Article" element={<Article />} />
           <Route path="/AimaanBaithulMal" element={<AimaanBaithulMal />} />
           <Route path="/Gallery" element={<Gallery />} />
-          <Route path="/Article" element={<Article />} />
-          <Route path="/ArticlesPage" element={<ArticlesPage />} />
-          <Route path="/Article/:title" element={<ArticlesPage />} />
           <Route path="/Articles" element={<Articles />} />
+          <Route path="/ArticlesPage" element={<ArticlesPage />} />
+          <Route path="/Articles/:title" element={<ArticlesPage />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/News" element={<News />} />
           <Route path="/Events" element={<Events />} />
