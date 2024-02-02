@@ -117,3 +117,9 @@
 .custom-alert.error {
   background-color: red;
 }
+
+.audio-gallery audio {
+  width: 80%;
+  padding-top: 35px;
+  padding-bottom: 25px;
+}

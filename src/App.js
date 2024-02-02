@@ -10,6 +10,7 @@ import Gallery from './pages/Gallery';
 import News from './pages/News';
 import Religious from './pages/Religious';
 import Membership from './pages/Membership';
+import QuranPlayer from './pages/QuranPlayer';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Article" element={<Article />} />
           <Route path="/Gallery" element={<Gallery />} />
+          <Route path="/Membership" element={<Membership />} />
+          <Route path="/QuranPlayer" element={<QuranPlayer />} />
           <Route path="/News" element={<News />} />
           <Route path="/services/:title" element={<Religious />} />
           {/* Add other routes as needed */}

@@ -8,12 +8,29 @@ import { Button } from "reactstrap";
 const Home = () => {
   const [membershipForms, setMemberShipForms] = useState({
     first_name: "",
+    birth_year: ""
   });
+
+  const [validationError, setValidationError] = useState("");
 
   const handleSectionForms = (e) => {
     setMemberShipForms({ ...membershipForms, [e.target.name]: e.target.value });
   };
+  const validateForm = () => {
+    const { birth_year } = membershipForms;
+
+    // Check if birth year is not exactly 4 digits or contains non-digit characters
+    if (!/^\d{4}$/.test(birth_year)) {
+      setValidationError("Please enter a valid 4-digit year");
+      return false;
+    }
+
+    // Clear any previous validation error
+    setValidationError("");
+    return true;
+  };
   const insertMembership = () => {
+    if (validateForm()) {
     if (membershipForms.first_name.trim() !== "") {
       // Check if first_name is not empty
       api
@@ -37,6 +54,7 @@ const Home = () => {
       // Show error message for required fields
       showMessage("Please fill all required fields", "error");
     }
+  }
   };
   const showMessage = (message, type) => {
     const alertBox = document.createElement("div");
@@ -185,15 +203,16 @@ const Home = () => {
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
-                <input
-                  type="text"
-                  placeholder="Year of birth"
-                  name="birth_year"
-                  style={{ backgroundColor: "#182568" }}
-                  onChange={(e) => {
-                    handleSectionForms(e);
-                  }}
-                />
+              <input
+          type="text"
+          placeholder="Year of birth"
+          name="birth_year"
+          style={{ backgroundColor: "#182568" }}
+          onChange={handleSectionForms}
+        />
+        {validationError && (
+          <p style={{ color: "red" }}>{validationError}</p>
+        )}
               </div>
               <div className="col-xl-10 col-lg-10" style={{backgroundColor:"#183368"}}>
                 <input
