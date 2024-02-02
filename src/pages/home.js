@@ -7,11 +7,12 @@ import { Link} from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import api from '../constants/api';
 import HeroSliderTwo from '../components/HeroSliderTwo';
-import EventSlider from '../components/EventSlider';
+import NavMenu from '../components/NavMenu';
 
 const Home = () => {
     // const [banners, setBanners] = useState([]);
-      const [videoUrls, setVideoUrls] = useState([]);
+    const [blogItems, setBlogItems] = useState([]);
+    const [videoUrls, setVideoUrls] = useState([]);
 
     // Function to fetch video URLs from the API
     const getVideoUrls = () => {
@@ -49,6 +50,16 @@ const Home = () => {
 //     // message('Product Data Not Found', 'info');
 //   });
 // };
+const getblogItems = () => {
+    api
+      .post('/media/getNewsFileName')
+      .then((res) => {
+        setBlogItems(res.data.data);
+      })
+      .catch(() => {
+        // message('Product Data Not Found', 'info');
+      });
+    };
 
   const settings = {
     dots: false,
@@ -62,6 +73,7 @@ const Home = () => {
 
 useEffect(() => {
 // getBannerImages();
+getblogItems();
 getVideoUrls(); 
 }, []);
   return (
@@ -121,89 +133,16 @@ getVideoUrls();
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xl-8 col-lg-8 next">
-                            <nav class="navbar navbar-expand-lg navbar-light">
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <ul class="navbar-nav m-rauto">
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="homeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                HOME
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="homeDropdown">
-                                                <li><a class="dropdown-item" href="index.html">Home One</a></li>
-                                                <li><a class="dropdown-item" href="index-2.html">Home Two</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="about.html" class="nav-link">ABOUT US</a>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="serviceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                SERVICES
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="serviceDropdown">
-                                                <li><a class="dropdown-item" href="service.html">Service</a></li>
-                                                <li><a class="dropdown-item" href="service-details.html">Service Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="pageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                PAGES
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="pageDropdown">
-                                                <li><a class="dropdown-item" href="team.html">Team</a></li>
-                                                <li><a class="dropdown-item" href="team-details.html">Team Details</a></li>
-                                                <li><a class="dropdown-item" href="testimonial.html">Testimonial</a></li>
-                                                <li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
-                                                <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
-                                                <li><a class="dropdown-item" href="error.html">Error 404</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="projectDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                PORTFOLIO
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="projectDropdown">
-                                                <li><a class="dropdown-item" href="portfolio.html">Portfolio</a></li>
-                                                <li><a class="dropdown-item" href="portfolio-details.html">Portfolio Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="blogDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                NEWS
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="blogDropdown">
-                                                <li><a class="dropdown-item" href="blog-l-bar.html">Blog Left Bar</a></li>
-                                                <li><a class="dropdown-item" href="blog-r-bar.html">Blog Right Bar</a></li>
-                                                <li><a class="dropdown-item" href="blog-details.html">Blog Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="contact.html">CONTACTS</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-4">
-                            <div class="bottom-right">
-                                <form class="nav-form">
-                                    <input type="search" placeholder="Search......" required />
-                                    <button><i class="flaticon-magnifying-glass-search"></i></button>
-                                </form>
-                            </div>
-                        </div>
+                       
+                        <NavMenu></NavMenu>
+                     
                     </div>
                 </div>
             </div>
         </div>
     </div>
    
-  
-
 <HeroSliderTwo />
-<EventSlider></EventSlider>
-       
 
  {/* Video Gallery Panel */}
  <div className="video-gallery">
@@ -226,6 +165,66 @@ getVideoUrls();
         </div>
       </div>
 
+<div className="blog-2">
+<h2>News And Update</h2>
+      <div className="container">
+        <Slider {...settings}>
+          {Array.isArray(blogItems) && blogItems.map((item, index) => (
+            <div key={item.content_id} className="single-blog">
+              <div className="part-img">
+              <img
+    src={`http://43.228.126.245/EMS-API/storage/uploads/${item.news_image}`}
+    alt={`News ${item.content_id}`}
+    style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
+  />
+                <div className="tags">
+                  <span>{item.title}</span>
+                </div>
+              </div>
+              <div className="part-txt">
+                <div className="blog-info">
+                  <ul>
+                    <li>
+                      <span>
+                        <i className="flaticon-user"></i>
+                      </span>
+                      By {item.created_by}
+                    </li>
+                    <li>
+                      <span>
+                        <i className="flaticon-clock"></i>
+                      </span>
+                      {item.content_date}
+                    </li>
+                    {/* <li>
+                      <span>
+                        <i className="flaticon-bubble-speak"></i>
+                      </span>
+                      {item.comments}
+                    </li> */}
+                  </ul>
+                </div>
+               {/* Check if item.description is not null before accessing its properties */}
+               {item.description !== null && (
+                <>
+                <h3>{item.description.slice(0, 20).replace(/<p.*?>/g, '')}...</h3>
+                <Link
+                    to={`/blog/${item.content_id}`}
+                   
+                    >
+                    Read More
+                    </Link>
+                        
+                </>
+              )}
+                   
+                       
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </div>
    
     <div class="feature">
         <div class="container">
