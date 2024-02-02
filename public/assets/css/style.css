@@ -1,4 +1,10 @@
 @charset "UTF-8";
+/**
+ * WEBSITE: https://themefisher.com
+ * TWITTER: https://twitter.com/themefisher
+ * FACEBOOK: https://facebook.com/themefisher
+ * GITHUB: https://github.com/themefisher/
+ */
 /*============================================================
 [Master Stylesheet]
 Theme Name:     Kartuss
@@ -16620,4 +16626,33 @@ span {
 }
 .slick-slide {
   margin-right: 10px; /* Adjust the margin value as needed */
+}
+
+
+/* ArticlesPage.css */
+
+.media {
+  align-items: center;
+}
+
+.single-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.single-box .part-img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.single-box .part-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.media-body {
+  padding-left: 15px;
 }
