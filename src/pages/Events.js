@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 //import moment from 'moment';
 // import imageBase from "../../constants/image.js"
 
-export default function News() {
-  const [News, setNews] = useState([]);
+export default function Events() {
+  const [Events, setEvents] = useState([]);
 
   //    const [filterSortType, setFilterSortType] = useState('');
   //      const [filterSortValue, setFilterSortValue] = useState('');
@@ -21,16 +21,16 @@ export default function News() {
 
   // console.log("search", searchQuery);
   useEffect(() => {
-    getNews();
+    getEvents();
     //getCategory();
   }, []);
 
-  const getNews = () => {
+  const getEvents = () => {
     // var formated = title.split("-").join(" ");
     api
-      .get("/section/getNews")
+      .get("/section/getEvents")
       .then((res) => {
-        setNews(res.data.data);
+        setEvents(res.data.data);
         //setCurrentData(res.data.data);
       })
       .catch(() => {});
@@ -130,11 +130,11 @@ export default function News() {
           <div class="row justify-content-center">
             <div class="col-xl-4 col-lg-4">
               <div class="part-txt">
-                <h1>News</h1>
+                <h1>Events</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>News</li>
+                  <li>Events</li>
                 </ul>
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function News() {
             <div class="row justify-content-center">
         <div class="main-content">
           <div class="row">
-            {News.map((data, index) => (
+            {Events.map((data, index) => (
               <div key={index} class="col-xl-4 col-lg-4 col-md-4">
                 <div class="single-blog">
                   <div class="part-img">
@@ -179,7 +179,7 @@ export default function News() {
                       </ul>
                     </div>
                     <h3>{data.title}</h3>
-                    <Link to={`/NewsEdit/${data.content_id}`}>
+                    <Link to={`/EventsEdit/${data.content_id}`}>
                        Read More
                       </Link>
                   </div>

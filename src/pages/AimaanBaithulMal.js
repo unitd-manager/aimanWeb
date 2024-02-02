@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
-import NavMenu from '../components/NavMenu'
-import { Link } from "react-router-dom";
+
+import NavMenu from "../components/NavMenu";
+import ReactHtmlParser from "react-html-parser";
 //import moment from 'moment';
 // import imageBase from "../../constants/image.js"
 
-export default function News() {
-  const [News, setNews] = useState([]);
+export default function Article() {
+  const [Articles, setArticles] = useState([]);
 
   //    const [filterSortType, setFilterSortType] = useState('');
   //      const [filterSortValue, setFilterSortValue] = useState('');
@@ -21,25 +22,25 @@ export default function News() {
 
   // console.log("search", searchQuery);
   useEffect(() => {
-    getNews();
+    getArticles();
     //getCategory();
   }, []);
 
-  const getNews = () => {
+  const getArticles = () => {
     // var formated = title.split("-").join(" ");
     api
-      .get("/section/getNews")
+      .get("/content/getBaithulmaal")
       .then((res) => {
-        setNews(res.data.data);
+        setArticles(res.data.data);
         //setCurrentData(res.data.data);
       })
       .catch(() => {});
   };
 
-//   const getFormatedText = (title) => {
-//     var formatedd = title.toLowerCase();
-//     return formatedd.split(" ").join("-");
-//   };
+  const getFormatedText = (title) => {
+    var formatedd = title.toLowerCase();
+    return formatedd.split(" ").join("-");
+  };
 
 //   const getFormattedDate = (dateString) => {
 //     const options = {
@@ -125,72 +126,65 @@ export default function News() {
         </div>
       </div>
 
-      <div class="breadcrumb blog-breadcrumb">
+      <div class="breadcrumb portfolio-breadcrumb">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-xl-4 col-lg-4">
+            <div class="col-xl-3 col-lg-3">
               <div class="part-txt">
-                <h1>News</h1>
+                <h1>BaithulMal</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>News</li>
+                  <li>BaithulMal</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-<div>
-      <div class="blog-2 blog-inner">
+<br/><br/>
       <div class="container">
-            <div class="row justify-content-center">
-        <div class="main-content">
-          <div class="row">
-            {News.map((data, index) => (
-              <div key={index} class="col-xl-4 col-lg-4 col-md-4">
-                <div class="single-blog">
-                  <div class="part-img">
-                    <img
-                      src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
-                      alt={data.alt}
-                      width="300px"
-                      height="250px"
-                    />
-                    <div class="tags"> </div>
-                  </div>
+        <div class="row">
+          {Articles &&
+            Articles.map((data, index) => (
+              <div key={index} className="text-center" 
+              >
+                
+                {/* <div class="col-lg-8 rounded-sm pr-5"> */}
+                {/* {data ? data.title : "Go to Home"} */}
+                {/* <h3 class="mb-3 text-dark">{data.title}</h3> */}
+                {/* <p className="text-center" style={{ color: "black" }}>
+                  {getFormattedDate(data.content_date)}
+                </p> */}
 
-                  <div class="part-txt">
-                    <div class="blog-info">
-                      <ul>
-                        <li>
-                          <span>
-                            <i class="flaticon-user"></i>
-                          </span>
-                          {data.modified_by}
-                        </li>
-                        <li>
-                          <span>
-                            <i class="flaticon-clock"></i>
-                          </span>
-                          {data.creation_date}
-                        </li>
-                        
-                      </ul>
-                    </div>
-                    <h3>{data.title}</h3>
-                    <Link to={`/NewsEdit/${data.content_id}`}>
-                       Read More
-                      </Link>
-                  </div>
+                <img
+                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                  
+                  class1="text-center" 
+                  class="col-xl-8 col-lg-8 col-sm-6"
+                  alt="post-thumb"
+                />
+                {/* <img
+                src={`${imageBase}${data.file_name}`}
+                className="irounded-sm img-fluid w-100 mb-5"
+                alt="post-thumb"
+              /> */}
+                {/* <img src="assets/images/men/lg-img-1.jpg" class="rounded-sm img-fluid w-100 mb-5" alt="post-thumb"/> */}
+                {/* <p class="text-color card-date position-relative d-inline-block">
+                {moment(data.date.substring(0, 10), "YYYY-MM-DD").format(
+                  "MMMM Do YYYY"
+                )}
+              </p> */}
+
+                <p></p>
+                <div className="text-left">
+                  <p className="description">
+                    {ReactHtmlParser(data.description)}
+                  </p>
                 </div>
               </div>
             ))}
-          </div>
         </div>
-        </div>
-      </div>
-      </div>
       </div>
     </>
   );
