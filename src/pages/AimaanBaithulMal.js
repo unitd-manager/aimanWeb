@@ -37,10 +37,10 @@ export default function Article() {
       .catch(() => {});
   };
 
-  const getFormatedText = (title) => {
-    var formatedd = title.toLowerCase();
-    return formatedd.split(" ").join("-");
-  };
+  // const getFormatedText = (title) => {
+  //   var formatedd = title.toLowerCase();
+  //   return formatedd.split(" ").join("-");
+  // };
 
 //   const getFormattedDate = (dateString) => {
 //     const options = {
