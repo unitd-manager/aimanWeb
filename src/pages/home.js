@@ -11,6 +11,7 @@ import HeroSliderTwo from '../components/HeroSliderTwo';
 const Home = () => {
     // const [banners, setBanners] = useState([]);
     const [blogItems, setBlogItems] = useState([]);
+    const [Events, setEvents] = useState([]);
     const [videoUrls, setVideoUrls] = useState([]);
 console.log("fdgdfgd",videoUrls)
     // Function to fetch video URLs from the API
@@ -60,6 +61,17 @@ const getblogItems = () => {
       });
     };
 
+    const getEvents = () => {
+        // var formated = title.split("-").join(" ");
+        api
+          .get("/section/getEvents")
+          .then((res) => {
+            setEvents(res.data.data);
+            //setCurrentData(res.data.data);
+          })
+          .catch(() => {});
+      };
+
 
     const settings = {
         dots: false,
@@ -88,6 +100,7 @@ useEffect(() => {
 // getBannerImages();
 getblogItems();
 getVideoUrls(); 
+getEvents();
 }, []);
   return (
     
@@ -133,7 +146,6 @@ getVideoUrls();
           </Slider>
         </div>
       </div> */}
-             <section style={{paddingTop:40}} className="section">
 
 <div className="col-12">
 
@@ -199,8 +211,65 @@ getVideoUrls();
 </Slider>
 </div>
 </div>
+
+<div className="blog-2">
+  <h2>Events</h2>
+  <div className="container">
+    <Slider {...settings}>
+      {Array.isArray(Events) && Events.map((item, index) => (
+        <div key={item.content_id} className="single-blog">
+          <div className="part-img">
+            <img
+              src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+              alt={`Events ${item.content_id}`}
+              style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
+            />
+            <div className="tags">
+              {/* <span>{item.title}</span> */}
+            </div>
+          </div>
+          <div className="part-txt">
+            <div className="blog-info">
+              <ul>
+                <li>
+                  <span>
+                    <i className="flaticon-user"></i>
+                  </span>
+                  By {item.created_by}
+                </li>
+                <li>
+                  <span>
+                    <i className="flaticon-clock"></i>
+                  </span>
+                  {item.content_date}
+                </li>
+                {/* <li>
+                  <span>
+                    <i className="flaticon-bubble-speak"></i>
+                  </span>
+                  {item.comments}
+                </li> */}
+              </ul>
+            </div>
+            {/* Check if item.description is not null before accessing its properties */}
+            {item.description !== null && (
+              <>
+                <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
+                <Link
+                  to={`/EventsEdit/${item.content_id}`}
+                >
+                  Read More
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      ))}
+    </Slider>
+  </div>
 </div>
-</section>
+
+   
     <div class="feature">
         <div class="container">
             <div class="row justify-content-center">
@@ -788,26 +857,7 @@ getVideoUrls();
             </div>
         </div>
     </div>
-  
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-
-    <script src="assets/js/jquery.flagstrap.min.js"></script>
-    
-    <script src="assets/js/jquery.appear.min.js"></script>
-  
-    <script src="assets/js/odometer.min.js"></script>
-    
-    <script src="assets/js/owl.carousel.min.js"></script>
-    
-    <script src="assets/js/slick.min.js"></script>
-    
-    <script src="assets/js/video.popup.js"></script>
-   
-    <script src="assets/js/popper.min.js"></script>
-    
-    <script src="assets/js/bootstrap.min.js"></script>
-   
-    <script src="assets/js/main.js"></script>
+  </div>
     </div>
   );
 }
