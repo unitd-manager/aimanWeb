@@ -61,32 +61,28 @@ const getblogItems = () => {
     };
 
 
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    responsive: [
-      {
-          breakpoint: 1024,
-          settings: {
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3, // Display three slides at a time
+        slidesToScroll: 1, // Scroll one slide at a time
+        autoplay: true,
+        responsive: [
+          {
+            breakpoint: 1140,
+            settings: {
               slidesToShow: 2,
-              slidesToScroll: 5,
-          }
-      },
-      {
-          breakpoint: 600,
-          settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1
-          }
-      },
-      
-    ]
-  };
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+            },
+          },
+        ],
+      };
 
 useEffect(() => {
 // getBannerImages();
@@ -137,122 +133,74 @@ getVideoUrls();
           </Slider>
         </div>
       </div> */}
+             <section style={{paddingTop:40}} className="section">
 
-      <div className="blog-2">
-  <h2>News</h2>
-  <div className="container">
-    <Slider {...settings}>
-      {Array.isArray(blogItems) && blogItems.map((item, index) => (
-        <div key={item.content_id} className="single-blog px-3 mb-5">
-          <div className="part-img">
-            <img
-              src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.news_image}`}
-              alt={`News ${item.content_id}`}
-              style={{ width: '100%', height: '225px' }} // Set width to 100%
-            />
-            <div className="tags">
-              {/* <span>{item.title}</span> */}
+<div className="col-12">
+
+  <div className="blog-2">
+
+<div className="container">
+<div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6">
+                <div class="heading">
+                    <h5>News</h5>
+                    
+                </div>
             </div>
-          </div>
-          <div className="part-txt">
-            <div className="blog-info">
-              <ul>
-                <li>
-                  <span>
-                    <i className="flaticon-user"></i>
-                  </span>
-                  By {item.created_by}
-                </li>
-                <li>
-                  <span>
-                    <i className="flaticon-clock"></i>
-                  </span>
-                  {item.content_date}
-                </li>
-                {/* <li>
-                  <span>
-                    <i className="flaticon-bubble-speak"></i>
-                  </span>
-                  {item.comments}
-                </li> */}
-              </ul>
-            </div>
-            {/* Check if item.description is not null before accessing its properties */}
-            {item.description !== null && (
-              <>
-                <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
-                <Link
-                  to={`/NewsEdit/${item.content_id}`}
-                >
-                  Read More
-                </Link>
-              </>
-            )}
-          </div>
         </div>
-      ))}
-    </Slider>
-  </div>
-</div>
-
-<div className="blog-2">
-  <h2>Events</h2>
-  <div className="container">
-    <Slider {...settings}>
-      {Array.isArray(blogItems) && blogItems.map((item, index) => (
-        <div key={item.content_id} className="single-blog">
-          <div className="part-img">
-            <img
-              src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.events_image}`}
-              alt={`Events ${item.content_id}`}
-              style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
-            />
-            <div className="tags">
-              {/* <span>{item.title}</span> */}
-            </div>
-          </div>
-          <div className="part-txt">
-            <div className="blog-info">
-              <ul>
-                <li>
-                  <span>
-                    <i className="flaticon-user"></i>
-                  </span>
-                  By {item.created_by}
-                </li>
-                <li>
-                  <span>
-                    <i className="flaticon-clock"></i>
-                  </span>
-                  {item.content_date}
-                </li>
-                {/* <li>
-                  <span>
-                    <i className="flaticon-bubble-speak"></i>
-                  </span>
-                  {item.comments}
-                </li> */}
-              </ul>
-            </div>
-            {/* Check if item.description is not null before accessing its properties */}
-            {item.description !== null && (
-              <>
-                <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
-                <Link
-                  to={`/EventsEdit/${item.content_id}`}
-                >
-                  Read More
-                </Link>
-              </>
-            )}
-          </div>
+<Slider {...settings}>
+  {Array.isArray(blogItems) && blogItems.map((item, index) => (
+    <div key={item.content_id} className="single-blog">
+      <div className="part-img">
+        <img
+          src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.news_image}`}
+          alt={`News ${item.content_id}`}
+          style={{ width: '380px', height: '225px' }} // Set width to 100%
+        />
+        
+      </div>
+      <div className="part-txt">
+        <div className="blog-info">
+          <ul>
+            <li>
+              <span>
+                <i className="flaticon-user"></i>
+              </span>
+              By {item.created_by}
+            </li>
+            <li>
+              <span>
+                <i className="flaticon-clock"></i>
+              </span>
+              {item.content_date}
+            </li>
+            {/* <li>
+              <span>
+                <i className="flaticon-bubble-speak"></i>
+              </span>
+              {item.comments}
+            </li> */}
+          </ul>
         </div>
-      ))}
-    </Slider>
-  </div>
+        {/* Check if item.description is not null before accessing its properties */}
+        {item.description !== null && (
+          <>
+            <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
+            <Link
+              to={`/NewsEdit/${item.content_id}`}
+            >
+              Read More
+            </Link>
+          </>
+        )}
+      </div>
+    </div>
+  ))}
+</Slider>
 </div>
-
-   
+</div>
+</div>
+</section>
     <div class="feature">
         <div class="container">
             <div class="row justify-content-center">
