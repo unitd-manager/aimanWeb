@@ -11,6 +11,7 @@ import HeroSliderTwo from '../components/HeroSliderTwo';
 const Home = () => {
     // const [banners, setBanners] = useState([]);
     const [blogItems, setBlogItems] = useState([]);
+    const [Events, setEvents] = useState([]);
     const [videoUrls, setVideoUrls] = useState([]);
 console.log("fdgdfgd",videoUrls)
     // Function to fetch video URLs from the API
@@ -60,6 +61,17 @@ const getblogItems = () => {
       });
     };
 
+    const getEvents = () => {
+        // var formated = title.split("-").join(" ");
+        api
+          .get("/section/getEvents")
+          .then((res) => {
+            setEvents(res.data.data);
+            //setCurrentData(res.data.data);
+          })
+          .catch(() => {});
+      };
+
   const settings = {
     dots: false,
     infinite: true,
@@ -74,6 +86,7 @@ useEffect(() => {
 // getBannerImages();
 getblogItems();
 getVideoUrls(); 
+getEvents();
 }, []);
   return (
     
@@ -181,11 +194,11 @@ getVideoUrls();
   <h2>Events</h2>
   <div className="container">
     <Slider {...settings}>
-      {Array.isArray(blogItems) && blogItems.map((item, index) => (
+      {Array.isArray(Events) && Events.map((item, index) => (
         <div key={item.content_id} className="single-blog">
           <div className="part-img">
             <img
-              src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.events_image}`}
+              src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
               alt={`Events ${item.content_id}`}
               style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
             />
