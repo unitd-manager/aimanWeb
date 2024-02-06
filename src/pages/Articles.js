@@ -52,7 +52,6 @@ export default function Articles() {
 
   return (
     <>
-     
       <div class="breadcrumb portfolio-breadcrumb">
         <div class="container">
           <div class="row justify-content-center">
@@ -126,88 +125,19 @@ export default function Articles() {
         </div>
       </div>
 
-      <section class="section mt-lg-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="row Article-slide px-4">
-                {Articles &&
-                  Articles.map((data, index) => (
-                    <div key={index} class="col-xl-5 col-lg-4 col-sm-6">
-                      <div class="single-box">
-                        <div class="part-img">
-                          <Link
-                            to={getFormatedText(data.title)}
-                            state={{ data: data }}
-                            className="link"
-                          >
-                            <div className="card border-0">
-                              {/* <img
-                                                                src={`${imageBase}${data.file_name}`}
-                                                                className="img-fluid card-img-top"
-                                                                alt="post-thumb"
-                                                            /> */}
-                              <img
-                                src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
-                                className="img-fluid card-img-top"
-                                class="col-xl-10 col-lg-1 col-sm-6"
-                                alt="post-thumb"
-                              />
-                              <div className="card-body">
-                                {/* <p className="card-date">{data.content_dateaa}</p>  */}
-
-                                <h5>{data.title}</h5>
-                                <p
-                                  className="card-date"
-                                  style={{ color: "black" }}
-                                >
-                                  {data.modified_by}-
-                                  {getFormattedDate(data.content_date)}
-                                </p>
-                                <p className="description">
-                                  {data.description
-                                    .replace(/<[^>]*>?/gm, "")
-                                    .slice(0, 110)}
-                                </p>
-                                {data.description.length > 4 && (
-                                  <>
-                                    <p
-                                      className="read-more"
-                                      onClick={() =>
-                                        alert(
-                                          "Implement your Read More logic here"
-                                        )
-                                      }
-                                    >
-                                      Read More
-                                    </p>
-                                  </>
-                                )}
-                                <br />
-                                <br></br>
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-
-            {/* <div class="col-lg-4">
+      {/* <div class="col-lg-4">
                             <div class="rounded-sm shadow bg-white pb-4"> */}
 
-            {/* 
+      {/* 
                                 <div class="widget">
                                     <h4>Latest Article</h4>
                                     <ul class="list-unstyled list-bordered">
                                         {Articles && Articles.slice(0, 3).map(data => (
                                             <li class="media border-bottom py-3"> */}
-            {/* <img src={`${imageBase}${data.file_name}`} class="rounded-sm mr-3" alt="post-thumb" /> */}
-            {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" />  */}
-            {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
-            {/* <div class="media-body">
+      {/* <img src={`${imageBase}${data.file_name}`} class="rounded-sm mr-3" alt="post-thumb" /> */}
+      {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" />  */}
+      {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
+      {/* <div class="media-body">
 
                                                     <h6 class="mt-0"> <Link
                                                         to={getFormatedText(data.title)}
@@ -224,9 +154,6 @@ export default function Articles() {
 
                             </div>
                         </div> */}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
