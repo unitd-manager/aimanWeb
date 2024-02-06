@@ -21,7 +21,7 @@ const Home = () => {
 
     // Check if birth year is not exactly 4 digits or contains non-digit characters
     if (!/^\d{4}$/.test(birth_year)) {
-      setValidationError("Please enter a valid 4-digit year");
+      setValidationError("Please enter a valid year");
       return false;
     }
 
@@ -158,7 +158,7 @@ const Home = () => {
               <div className="col-xl-10 col-lg-10">
                 <input
                   type="text"
-                  placeholder="Native Place Details*"
+                  placeholder="Native Place Details"
                   name="address2"
                   style={{ backgroundColor: "#182568" }}
                   onChange={(e) => {
@@ -226,13 +226,14 @@ const Home = () => {
                 />
               </div>
 
-              <div className="col-xl-10 col-lg-10">
+              <div className="col-xl-12 col-lg-12">
                 <Button
                   className="def-btn def-btn-2"
                   onClick={() => {
                     insertMembership();
                   }}
                   type="button"
+                  style={{textAlign:"center", marginLeft:"500px"}}
                 >
                   Submit
                 </Button>
