@@ -4,16 +4,16 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link} from 'react-router-dom';
-import ReactPlayer from 'react-player';
+//import ReactPlayer from 'react-player';
 import api from '../constants/api';
 import HeroSliderTwo from '../components/HeroSliderTwo';
-import NavMenu from '../components/NavMenu';
 
 const Home = () => {
     // const [banners, setBanners] = useState([]);
     const [blogItems, setBlogItems] = useState([]);
+    const [Events, setEvents] = useState([]);
     const [videoUrls, setVideoUrls] = useState([]);
-
+console.log("fdgdfgd",videoUrls)
     // Function to fetch video URLs from the API
     const getVideoUrls = () => {
       api
@@ -61,91 +61,73 @@ const getblogItems = () => {
       });
     };
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000, // Adjust the speed as needed
-  };
+    const getEvents = () => {
+        // var formated = title.split("-").join(" ");
+        api
+          .get("/section/getEvents")
+          .then((res) => {
+            setEvents(res.data.data);
+            //setCurrentData(res.data.data);
+          })
+          .catch(() => {});
+      };
+
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3, // Display three slides at a time
+        slidesToScroll: 1, // Scroll one slide at a time
+        autoplay: true,
+        responsive: [
+          {
+            breakpoint: 1140,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+            },
+          },
+        ],
+      };
 
 useEffect(() => {
 // getBannerImages();
 getblogItems();
 getVideoUrls(); 
+getEvents();
 }, []);
   return (
     
     <div>
     
-    <div class="preloader">
+    {/* <div class="preloader">
         <div class="loader"><img src="assets/images/spinner.gif" alt="imagess" /></div>
     </div>
-    
+     */}
     <div class="header-2">
         <div class="top-header">
             <div class="container">
                 <div class="bg">
                     <div class="row justify-content-between align-items-center">
-                        <div class="col-xl-6 col-lg-6 col-md-7">
-                            <div class="top-left">
-                                <ul>
-                                    <li><i class="flaticon-message"></i><span>youremailhere@gmail.com</span></li>
-                                    <li><i class="flaticon-phone-call"></i><span>+008 1234 56789</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-5">
-                            <div class="top-right">
-                                <div class="language">
-                                    <div class="select-lang">
-                                        <div id="demo"
-                                            data-input-name="country"
-                                            data-selected-country="US"
-                                            data-scrollable-height="250px">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="try-btn">
-                                    <a href="/">FREE TRY</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bottom-header">
-            <div class="container">
-                <div class="bg">
-                    <div class="row align-items-center">
-                        <div class="d-xl-none d-lg-none d-flex col-4">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <i class="flaticon-menu-button-of-three-horizontal-lines"></i>
-                            </button>
-                        </div>
-                        <div class="col-xl-1 col-lg-1 col-4">
-                            <div class="logo">
-                                <a href="/">
-                                    <img src="assets/images/United Logo.png" alt="LOGO" />
-                                </a>
-                            </div>
-                        </div>
                        
-                        <NavMenu></NavMenu>
-                     
+                      
                     </div>
                 </div>
             </div>
         </div>
+       
     </div>
    
 <HeroSliderTwo />
 
  {/* Video Gallery Panel */}
- <div className="video-gallery">
+ {/* <div className="video-gallery">
         <h2>Video Gallery</h2>
         <div className="container">
           <Slider {...settings}>
@@ -163,18 +145,83 @@ getVideoUrls();
               ))}
           </Slider>
         </div>
-      </div>
+      </div> */}
 
-      <div className="blog-2">
-  <h2>News And Update</h2>
+<div className="col-12">
+
+  <div className="blog-2">
+
+<div className="container">
+<div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6">
+                <div class="heading">
+                    <h5>News</h5>
+                    
+                </div>
+            </div>
+        </div>
+<Slider {...settings}>
+  {Array.isArray(blogItems) && blogItems.map((item, index) => (
+    <div key={item.content_id} className="single-blog">
+      <div className="part-img">
+        <img
+          src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.news_image}`}
+          alt={`News ${item.content_id}`}
+          style={{ width: '380px', height: '225px' }} // Set width to 100%
+        />
+        
+      </div>
+      <div className="part-txt">
+        <div className="blog-info">
+          <ul>
+            <li>
+              <span>
+                <i className="flaticon-user"></i>
+              </span>
+              By {item.created_by}
+            </li>
+            <li>
+              <span>
+                <i className="flaticon-clock"></i>
+              </span>
+              {item.content_date}
+            </li>
+            {/* <li>
+              <span>
+                <i className="flaticon-bubble-speak"></i>
+              </span>
+              {item.comments}
+            </li> */}
+          </ul>
+        </div>
+        {/* Check if item.description is not null before accessing its properties */}
+        {item.description !== null && (
+          <>
+            <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
+            <Link
+              to={`/NewsEdit/${item.content_id}`}
+            >
+              Read More
+            </Link>
+          </>
+        )}
+      </div>
+    </div>
+  ))}
+</Slider>
+</div>
+</div>
+
+<div className="blog-2">
+  <h2>Events</h2>
   <div className="container">
     <Slider {...settings}>
-      {Array.isArray(blogItems) && blogItems.map((item, index) => (
+      {Array.isArray(Events) && Events.map((item, index) => (
         <div key={item.content_id} className="single-blog">
           <div className="part-img">
             <img
-              src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.news_image}`}
-              alt={`News ${item.content_id}`}
+              src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+              alt={`Events ${item.content_id}`}
               style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
             />
             <div className="tags">
@@ -209,7 +256,7 @@ getVideoUrls();
               <>
                 <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
                 <Link
-                  to={`/NewsEdit/${item.content_id}`}
+                  to={`/EventsEdit/${item.content_id}`}
                 >
                   Read More
                 </Link>
@@ -810,105 +857,7 @@ getVideoUrls();
             </div>
         </div>
     </div>
-  
-    <div class="footer">
-        <div class="container">
-            <div class="main-footer">
-                <div class="row justify-content-between">
-                    <div class="col-xl-3 col-lg-4 col-sm-6">
-                        <div class="about-txt">
-                            <h3>About Us Company</h3>
-                            <p>There are many variations of passage of Lorem Ipsum available, but the maj ority have suffered alteration</p>
-                            <ul>
-                                <li><span><i class="flaticon-pin"></i></span>Demo Address #8901 Marmora Road Chi Minh City, Vietnam</li>
-                                <li><span><i class="flaticon-phone-call"></i></span>0800-123456 (24/7 Support Line)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-sm-6">
-                        <div class="link">
-                            <h3>Our Services</h3>
-                            <ul>
-                                <li><a href="service-details.html">Business</a></li>
-                                <li><a href="service-details.html">Marketing</a></li>
-                                <li><a href="service-details.html">Management</a></li>
-                                <li><a href="service-details.html">Accounting</a></li>
-                                <li><a href="service-details.html">Training</a></li>
-                                <li><a href="service-details.html">Consultation</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-sm-6">
-                        <div class="link">
-                            <h3>Useful Links</h3>
-                            <ul>
-                                <li><a href="blog-l-bar.html">Blog</a></li>
-                                <li><a href="/">Client Area</a></li>
-                                <li><a href="/">Support</a></li>
-                                <li><a href="faq.html">FAQ's</a></li>
-                                <li><a href="/">Newsletter</a></li>
-                                <li><a href="/">Events</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-sm-6">
-                        <div class="newsletter">
-                            <h3>Newsletter</h3>
-                            <p>Subscribe our newsletter to get our latest update all blog & news</p>
-                            <form>
-                                <input type="email" placeholder="Your Email Address" required />
-                                <button><i class="flaticon-send"></i></button>
-                            </form>
-                            <div class="social">
-                                <a href="/" class="fb"><i class="flaticon-facebook"></i></a>
-                                <a href="/" class="tw"><i class="flaticon-twitter"></i></a>
-                                <a href="/" class="ggl"><i class="flaticon-google-plus-logo"></i></a>
-                                <a href="/" class="ld"><i class="flaticon-linkedin"></i></a>
-                                <a href="/" class="yt"><i class="flaticon-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6">
-                        <p>Copyright &copy; 2021 Theme All Rights Reserved</p>
-                    </div>
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="link">
-                            <a href="about.html">About</a>
-                            <a href="/">Privacy Policy</a>
-                            <a href="faq.html">FAQs</a>
-                            <a href="/">Support</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-
-    <script src="assets/js/jquery.flagstrap.min.js"></script>
-    
-    <script src="assets/js/jquery.appear.min.js"></script>
-  
-    <script src="assets/js/odometer.min.js"></script>
-    
-    <script src="assets/js/owl.carousel.min.js"></script>
-    
-    <script src="assets/js/slick.min.js"></script>
-    
-    <script src="assets/js/video.popup.js"></script>
-   
-    <script src="assets/js/popper.min.js"></script>
-    
-    <script src="assets/js/bootstrap.min.js"></script>
-   
-    <script src="assets/js/main.js"></script>
+  </div>
     </div>
   );
 }
