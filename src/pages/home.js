@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link} from 'react-router-dom';
-//import ReactPlayer from 'react-player';
+import bannerImage from '../../src/assets/banner/home.jpg';
 import api from '../constants/api';
 import HeroSliderTwo from '../components/HeroSliderTwo';
 
@@ -110,18 +110,17 @@ getEvents();
         <div class="loader"><img src="assets/images/spinner.gif" alt="imagess" /></div>
     </div>
      */}
-    <div class="header-2">
-        <div class="top-header">
-            <div class="container">
-                <div class="bg">
-                    <div class="row justify-content-between align-items-center">
+     <div class="breadcrumb portfolio-breadcrumb" style={{ backgroundImage: `url(${bannerImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-lg-3">
+                    <div class="part-txt">
+                        <h1>Home</h1>
                        
-                      
                     </div>
                 </div>
             </div>
         </div>
-       
     </div>
    
 <HeroSliderTwo />

@@ -64,7 +64,7 @@ const Home = () => {
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-4 col-lg-4">
-            <div class="heading" style={{ textAlign: "left", marginLeft:"-290px"}}>
+            <div class="heading" style={{ textAlign: "left", marginLeft:"-400px"}}>
     <h1>Quran Player</h1>
 </div>
             </div>
