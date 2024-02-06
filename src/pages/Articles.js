@@ -142,6 +142,62 @@ export default function Articles() {
         </div>
       </div>
 
+      <div>
+        <div class="blog-2 blog-inner">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="main-content">
+                <div class="row">
+                  {Articles.map((data, index) => (
+                    <div key={index} class="col-xl-4 col-lg-4 col-md-4">
+                      <div class="single-blog">
+                        <div class="part-img">
+                          <img
+                            src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                            alt={data.alt}
+                            width="300px"
+                            height="250px"
+                          />
+                          <div class="tags"> </div>
+                        </div>
+
+                        <div class="part-txt">
+                          <div class="blog-info">
+                            <ul>
+                              <li>
+                                <span>
+                                  <i class="flaticon-user"></i>
+                                </span>
+                                {data.modified_by}
+                              </li>
+                              <li>
+                                <span>
+                                  <i class="flaticon-clock"></i>
+                                </span>
+                                {data.creation_date}
+                              </li>
+                            </ul>
+                          </div>
+                          <h3>{data.title}</h3>
+                          <Link
+                            to={getFormatedText(data.title)}
+                            state={{ data: data }}
+                            className="link"
+                          >
+                            {" "}
+                            Read More
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <section class="section mt-lg-5">
         <div class="container">
           <div class="row">
@@ -210,6 +266,7 @@ export default function Articles() {
                   ))}
               </div>
             </div>
+
             {/* <div class="col-lg-4">
                             <div class="rounded-sm shadow bg-white pb-4"> */}
 

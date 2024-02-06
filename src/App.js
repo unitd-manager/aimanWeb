@@ -13,6 +13,7 @@ import Events from './pages/Events';
 import NewsEdit from './pages/NewsEdit';
 import EventsEdit from './pages/EventsEdit';
 import Religious from './pages/Religious';
+import NewArticles from './pages/NewArticles';
 import Membership from './pages/Membership';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/Articles" element={<Articles />} />
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/Articles/:title" element={<ArticlesPage />} />
+          <Route path="/NewArticles/:id" element={<NewArticles />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/News" element={<News />} />
           <Route path="/Events" element={<Events />} />
