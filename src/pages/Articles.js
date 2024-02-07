@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { Link } from "react-router-dom";
+import bannerImage from '../../src/assets/banner/home.jpg';
 //import moment from 'moment';
 // import imageBase from "../../constants/image.js"
 
@@ -52,16 +53,17 @@ export default function Articles() {
 
   return (
     <>
-      <div class="breadcrumb portfolio-breadcrumb">
+     
+      <div class="breadcrumb portfolio-breadcrumb" style={{ backgroundImage: `url(${bannerImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-3">
               <div class="part-txt">
-                <h1>portfolio</h1>
+                <h1>Article</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>Portfolio</li>
+                  <li>Article</li>
                 </ul>
               </div>
             </div>
@@ -114,6 +116,11 @@ export default function Articles() {
                             {" "}
                             Read More
                           </Link>
+                          <p className="description">
+                                  {data.description
+                                    .replace(/<[^>]*>?/gm, "")
+                                    .slice(0, 72)}
+                                </p>
                         </div>
                       </div>
                     </div>
@@ -124,20 +131,22 @@ export default function Articles() {
           </div>
         </div>
       </div>
+    
+            
 
-      {/* <div class="col-lg-4">
+            {/* <div class="col-lg-4">
                             <div class="rounded-sm shadow bg-white pb-4"> */}
 
-      {/* 
+            {/* 
                                 <div class="widget">
                                     <h4>Latest Article</h4>
                                     <ul class="list-unstyled list-bordered">
                                         {Articles && Articles.slice(0, 3).map(data => (
                                             <li class="media border-bottom py-3"> */}
-      {/* <img src={`${imageBase}${data.file_name}`} class="rounded-sm mr-3" alt="post-thumb" /> */}
-      {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" />  */}
-      {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
-      {/* <div class="media-body">
+            {/* <img src={`${imageBase}${data.file_name}`} class="rounded-sm mr-3" alt="post-thumb" /> */}
+            {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" />  */}
+            {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
+            {/* <div class="media-body">
 
                                                     <h6 class="mt-0"> <Link
                                                         to={getFormatedText(data.title)}
@@ -154,6 +163,7 @@ export default function Articles() {
 
                             </div>
                         </div> */}
+  
     </>
   );
 }

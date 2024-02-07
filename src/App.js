@@ -5,7 +5,7 @@ import Home from './pages/home';
 import Articles from './pages/Articles';
 // import Home from "../src/screens/pages/home/Home";
 import BlogDetails from './pages/BlogDetails';
-import AimaanBaithulMal from './pages/AimaanBaithulMal';
+import AimaanBaithulMal from './pages/Aiman BaithulMal';
 import ArticlesPage from './pages/ArticlesPage';
 import Gallery from './pages/Gallery';
 import NavMenu from '../src/components/NavMenu'
@@ -97,12 +97,12 @@ function App() {
   
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/AimaanBaithulMal" element={<AimaanBaithulMal />} />
+          <Route path="/Aiman BaithulMal" element={<AimaanBaithulMal />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Articles" element={<Articles />} />
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/Articles/:title" element={<ArticlesPage />} />
-          <Route path="/NewArticles/:id" element={<NewArticles />} />
+          <Route path="/NewArticles/:title" element={<NewArticles />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Membership" element={<Membership />} />
           <Route path="/QuranPlayer" element={<QuranPlayer />} />
