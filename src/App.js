@@ -29,12 +29,12 @@ function App() {
     
     
     }
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState([]);
   useEffect(() => {
     // Fetch sections
     api.get('/content/getEmail')
       .then((res) => {
-        setEmail(res.data.data[0]);
+        setEmail(res.data.data);
       })
       .catch(() => {
         // Handle error
