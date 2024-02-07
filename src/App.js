@@ -17,8 +17,31 @@ import Religious from './pages/Religious';
 import NewArticles from './pages/NewArticles';
 import Membership from './pages/Membership';
 import QuranPlayer from './pages/QuranPlayer';
+import { useEffect, useState } from 'react';
+import api from './constants/api';
+
 
 function App() {
+  const stripHtmlTags = (htmlString) => {
+
+    const doc = new DOMParser().parseFromString(htmlString,'text/html');
+    return doc.body.textContent ||'';
+    
+    
+    }
+  const [email, setEmail] = useState();
+  useEffect(() => {
+    // Fetch sections
+    api.get('/content/getEmail')
+      .then((res) => {
+        setEmail(res.data.data[0]);
+      })
+      .catch(() => {
+        // Handle error
+      });
+
+  
+  }, []); 
   return (
     <HashRouter>
     <div class="header-2">
@@ -31,12 +54,9 @@ function App() {
                     <ul>
                       <li>
                         <i class="flaticon-message"></i>
-                        <span>youremailhere@gmail.com</span>
+                        <span>{stripHtmlTags(email.description)}</span>
                       </li>
-                      <li>
-                        <i class="flaticon-phone-call"></i>
-                        <span>+008 1234 56789</span>
-                      </li>
+                     
                     </ul>
                   </div>
                 </div>
@@ -52,9 +72,7 @@ function App() {
                         ></div>
                       </div>
                     </div>
-                    <div class="try-btn">
-                      <a href="/">FREE TRY</a>
-                    </div>
+                   
                   </div>
                 </div>
               </div>

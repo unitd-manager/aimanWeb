@@ -86,6 +86,7 @@ const Home = () => {
                                   id={`audio-${index}`}
                                   controls
                                   onPlay={() => handleAudioPlay(index)}
+                                  style={{marginTop:"-30px"}}
                                 >
                                   <source
                                     src={`http://43.228.126.245/aimaanAPI/storage/uploads/${audio.file_name}`}
