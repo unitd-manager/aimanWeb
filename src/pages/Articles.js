@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { Link } from "react-router-dom";
+import bannerImage from '../../src/assets/banner/home.jpg';
 //import moment from 'moment';
 // import imageBase from "../../constants/image.js"
 
@@ -53,16 +54,16 @@ export default function Articles() {
   return (
     <>
      
-      <div class="breadcrumb portfolio-breadcrumb">
+      <div class="breadcrumb portfolio-breadcrumb" style={{ backgroundImage: `url(${bannerImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-3">
               <div class="part-txt">
-                <h1>portfolio</h1>
+                <h1>Article</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>Portfolio</li>
+                  <li>Article</li>
                 </ul>
               </div>
             </div>
@@ -70,74 +71,69 @@ export default function Articles() {
         </div>
       </div>
 
-      <section class="section mt-lg-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="row Article-slide px-4">
-                {Articles &&
-                  Articles.map((data, index) => (
-                    <div key={index} class="col-xl-5 col-lg-4 col-sm-6">
-                      <div class="single-box">
+      <div>
+        <div class="blog-2 blog-inner">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="main-content">
+                <div class="row">
+                  {Articles.map((data, index) => (
+                    <div key={index} class="col-xl-4 col-lg-4 col-md-4">
+                      <div class="single-blog">
                         <div class="part-img">
+                          <img
+                            src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                            alt={data.alt}
+                            width="300px"
+                            height="250px"
+                          />
+                          <div class="tags"> </div>
+                        </div>
+
+                        <div class="part-txt">
+                          <div class="blog-info">
+                            <ul>
+                              <li>
+                                <span>
+                                  <i class="flaticon-user"></i>
+                                </span>
+                                {data.modified_by}
+                              </li>
+                              <li>
+                                <span>
+                                  <i class="flaticon-clock"></i>
+                                </span>
+                                {data.creation_date}
+                              </li>
+                            </ul>
+                          </div>
+                          <h3>{data.title}</h3>
                           <Link
                             to={getFormatedText(data.title)}
                             state={{ data: data }}
                             className="link"
                           >
-                            <div className="card border-0">
-                              {/* <img
-                                                                src={`${imageBase}${data.file_name}`}
-                                                                className="img-fluid card-img-top"
-                                                                alt="post-thumb"
-                                                            /> */}
-                              <img
-                                src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
-                                className="img-fluid card-img-top"
-                                class="col-xl-10 col-lg-1 col-sm-6"
-                                alt="post-thumb"
-                              />
-                              <div className="card-body">
-                                {/* <p className="card-date">{data.content_dateaa}</p>  */}
-
-                                <h5>{data.title}</h5>
-                                <p
-                                  className="card-date"
-                                  style={{ color: "black" }}
-                                >
-                                  {data.modified_by}-
-                                  {getFormattedDate(data.content_date)}
-                                </p>
-                                <p className="description">
+                            {" "}
+                            Read More
+                          </Link>
+                          <p className="description">
                                   {data.description
                                     .replace(/<[^>]*>?/gm, "")
-                                    .slice(0, 110)}
+                                    .slice(0, 72)}
                                 </p>
-                                {data.description.length > 4 && (
-                                  <>
-                                    <p
-                                      className="read-more"
-                                      onClick={() =>
-                                        alert(
-                                          "Implement your Read More logic here"
-                                        )
-                                      }
-                                    >
-                                      Read More
-                                    </p>
-                                  </>
-                                )}
-                                <br />
-                                <br></br>
-                              </div>
-                            </div>
-                          </Link>
                         </div>
                       </div>
                     </div>
                   ))}
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    
+            
+
             {/* <div class="col-lg-4">
                             <div class="rounded-sm shadow bg-white pb-4"> */}
 
@@ -167,9 +163,7 @@ export default function Articles() {
 
                             </div>
                         </div> */}
-          </div>
-        </div>
-      </section>
+  
     </>
   );
 }

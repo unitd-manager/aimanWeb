@@ -5,7 +5,7 @@ import Home from './pages/home';
 import Articles from './pages/Articles';
 // import Home from "../src/screens/pages/home/Home";
 import BlogDetails from './pages/BlogDetails';
-import AimaanBaithulMal from './pages/AimaanBaithulMal';
+import AimaanBaithulMal from './pages/Aiman BaithulMal';
 import ArticlesPage from './pages/ArticlesPage';
 import Gallery from './pages/Gallery';
 import NavMenu from '../src/components/NavMenu'
@@ -14,10 +14,34 @@ import Events from './pages/Events';
 import NewsEdit from './pages/NewsEdit';
 import EventsEdit from './pages/EventsEdit';
 import Religious from './pages/Religious';
+import NewArticles from './pages/NewArticles';
 import Membership from './pages/Membership';
 import QuranPlayer from './pages/QuranPlayer';
+import { useEffect, useState } from 'react';
+import api from './constants/api';
+
 
 function App() {
+  const stripHtmlTags = (htmlString) => {
+
+    const doc = new DOMParser().parseFromString(htmlString,'text/html');
+    return doc.body.textContent ||'';
+    
+    
+    }
+  const [email, setEmail] = useState([]);
+  useEffect(() => {
+    // Fetch sections
+    api.get('/content/getEmail')
+      .then((res) => {
+        setEmail(res.data.data);
+      })
+      .catch(() => {
+        // Handle error
+      });
+
+  
+  }, []); 
   return (
     <HashRouter>
     <div class="header-2">
@@ -30,12 +54,9 @@ function App() {
                     <ul>
                       <li>
                         <i class="flaticon-message"></i>
-                        <span>youremailhere@gmail.com</span>
+                        <span>{stripHtmlTags(email.description)}</span>
                       </li>
-                      <li>
-                        <i class="flaticon-phone-call"></i>
-                        <span>+008 1234 56789</span>
-                      </li>
+                     
                     </ul>
                   </div>
                 </div>
@@ -51,9 +72,7 @@ function App() {
                         ></div>
                       </div>
                     </div>
-                    <div class="try-btn">
-                      <a href="/">FREE TRY</a>
-                    </div>
+                   
                   </div>
                 </div>
               </div>
@@ -96,11 +115,12 @@ function App() {
   
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/AimaanBaithulMal" element={<AimaanBaithulMal />} />
+          <Route path="/Aiman BaithulMal" element={<AimaanBaithulMal />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Articles" element={<Articles />} />
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/Articles/:title" element={<ArticlesPage />} />
+          <Route path="/NewArticles/:title" element={<NewArticles />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Membership" element={<Membership />} />
           <Route path="/QuranPlayer" element={<QuranPlayer />} />
