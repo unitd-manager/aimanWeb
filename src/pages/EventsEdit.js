@@ -92,6 +92,7 @@ export default function Events() {
                                     <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${image.file_name}`} alt={image.alt}  width="600px"
                       height="550px" />
                                 </div><br/>
+                                <h3>{image.title}</h3>
                                 <div className="col-xl-12 col-lg-12 col-md-12">
                                     <div className="part-txt" dangerouslySetInnerHTML={{ __html: image.description }} />
                                 </div>

@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from "../constants/api";
-import { Link } from "react-router-dom";
-import NavMenu from "../components/NavMenu";
+// import { Link } from "react-router-dom";
+// import NavMenu from "../components/NavMenu";
 import ReactHtmlParser from "react-html-parser";
 // import imageBase from "../../../constants/image.js";
 

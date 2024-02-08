@@ -15,7 +15,6 @@ const Home = () => {
     const [team, setTeam] = useState([]);
     const [banners, setBanner] = useState([]);
 
-    console.log("fdgdfgd",videoUrls)
     // Function to fetch video URLs from the API
     const stripHtmlTags = (htmlString) => {
         const doc = new DOMParser().parseFromString(htmlString, 'text/html');
@@ -135,6 +134,60 @@ const getblogItems = () => {
         ],
       };
 
+      // const PrevArrow = (props) => {
+      //   const { className, style, onClick } = props;
+      //   return (
+      //     <div
+      //       className={className}
+      //       style={{ ...style, display: "block", background: "black" }}
+      //       onClick={onClick}
+      //     >
+      //       Previous
+      //     </div>
+      //   );
+      // };
+      
+      // const NextArrow = (props) => {
+      //   const { className, style, onClick } = props;
+      //   return (
+      //     <div
+      //       className={className}
+      //       style={{ ...style, display: "block", background: "black" }}
+      //       onClick={onClick}
+      //     >
+      //       Next
+      //     </div>
+      //   );
+      // };
+      
+
+      const settingsteam = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4, // Display one slide at a time
+        slidesToScroll: 1, // Scroll one slide at a time
+  //       prevArrow: <PrevArrow />, // You need to define PrevArrow and NextArrow components
+  // nextArrow: <NextArrow />, // You need to define PrevArrow and NextArrow components
+        autoplay: true,
+        responsive: [
+            {
+                breakpoint: 1140,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+          
+        ],
+    };
+
+
 useEffect(() => {
 // getBannerImages();
 getblogItems();
@@ -205,7 +258,7 @@ getBanners();
 <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6">
                 <div class="heading">
-                    <h5>News</h5>
+                    <h2>News</h2>
                     
                 </div>
             </div>
@@ -228,13 +281,13 @@ getBanners();
               <span>
                 <i className="flaticon-user"></i>
               </span>
-              By {item.created_by}
+              Admin
             </li>
             <li>
               <span>
                 <i className="flaticon-clock"></i>
               </span>
-              {item.content_date}
+              {item.content_date.split(' ')[0]}
             </li>
             {/* <li>
               <span>
@@ -247,7 +300,7 @@ getBanners();
         {/* Check if item.description is not null before accessing its properties */}
         {item.description !== null && (
           <>
-            <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
+            <h3 dangerouslySetInnerHTML={{ __html: `${item.title.slice(0, 50).replace(/<p.*?>/g, '')}...` }}></h3>
             <Link
               to={`/NewsEdit/${item.content_id}`}
             >
@@ -263,7 +316,14 @@ getBanners();
 </div>
 
 <div className="blog-2">
-  <h2>Events</h2>
+<div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6">
+                <div class="heading">
+                    <h2>Events</h2>
+                    
+                </div>
+            </div>
+        </div>
   <div className="container">
     <Slider {...settings}>
       {Array.isArray(Events) && Events.map((item, index) => (
@@ -285,13 +345,13 @@ getBanners();
                   <span>
                     <i className="flaticon-user"></i>
                   </span>
-                  By {item.created_by}
+                  Admin
                 </li>
                 <li>
                   <span>
                     <i className="flaticon-clock"></i>
                   </span>
-                  {item.content_date}
+                  {item.content_date.split(' ')[0]}
                 </li>
                 {/* <li>
                   <span>
@@ -304,7 +364,7 @@ getBanners();
             {/* Check if item.description is not null before accessing its properties */}
             {item.description !== null && (
               <>
-                <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
+                <h3 dangerouslySetInnerHTML={{ __html: `${item.title.slice(0, 50).replace(/<p.*?>/g, '')}...` }}></h3>
                 <Link
                   to={`/EventsEdit/${item.content_id}`}
                 >
@@ -556,8 +616,8 @@ getBanners();
         </div>
     </div>
   
-    <div class="team">
-        <div class="container">
+<div class="team">
+     <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-5">
                     <div class="heading">
@@ -566,36 +626,31 @@ getBanners();
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-            {team.map((content, index) => (
-                <div key={index} class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
-                    <div class="single-box">
-                        <div class="part-img">
-                            <img src="assets/images/team-1.jpg" alt="imagess" />
-                        </div>
-                        <div class="part-txt">
-                            <div class="txt">
-                                <div class="title">
-                                    <a href="team-details.html">{content.title}</a>
-                                   
-                                </div>
-                                <p>{stripHtmlTags(content.description)}</p>
-                                <div class="social">
-                                    <a href="/" class="fb"><i class="flaticon-facebook"></i></a>
-                                    <a href="/" class="tw"><i class="flaticon-twitter"></i></a>
-                                    <a href="/" class="ld"><i class="flaticon-linkedin"></i></a>
-                                    <a href="/" class="ggl"><i class="flaticon-google-plus-logo"></i></a>
+        <div class="justify-content-center">
+              <Slider {...settingsteam}>
+                  {Array.isArray(team) && team.map((item, index) => (
+                    <div key={item.content_id} class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-box">
+                            <div class="part-img">
+                                <img src="assets/images/team-1.jpg" alt="imagess" />
+                            </div>
+                            <div class="part-txt">
+                                <div class="txt">
+                                    <div class="title">
+                                        <a href="team-details.html">{item.title}</a>
+                                      
+                                    </div>
+                                    <p>{stripHtmlTags(item.description)}</p>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            ))}
-              
-          
-            </div>
+                ))}
+            </Slider>
         </div>
     </div>
+</div>
    
     <div class="fun-fact">
         <div class="container">
