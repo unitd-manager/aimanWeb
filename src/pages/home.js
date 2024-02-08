@@ -332,7 +332,7 @@ getBanners();
             <img
               src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
               alt={`Events ${item.content_id}`}
-              style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
+              style={{ width: '380px', height: '225px' }} // Adjust the width and height values as needed
             />
             <div className="tags">
               {/* <span>{item.title}</span> */}
