@@ -17,6 +17,7 @@ import Religious from './pages/Religious';
 import NewArticles from './pages/NewArticles';
 import Membership from './pages/Membership';
 import QuranPlayer from './pages/QuranPlayer';
+import PastOfficeBearers from './pages/PastOfficeBearers';
 import { useEffect, useState } from 'react';
 import api from './constants/api';
 
@@ -129,6 +130,7 @@ function App() {
           <Route path="/NewsEdit/:id" element={<NewsEdit />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
           <Route path="/services/:title" element={<Religious />} />
+          <Route path="/PastOfficeBearers" element={<PastOfficeBearers />} />
           {/* Add other routes as needed */}
           <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
