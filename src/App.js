@@ -6,6 +6,7 @@ import Articles from './pages/Articles';
 // import Home from "../src/screens/pages/home/Home";
 import BlogDetails from './pages/BlogDetails';
 import AimaanBaithulMal from './pages/Aiman BaithulMal';
+import AimaanTeam from './pages/Aiman Team';
 import ArticlesPage from './pages/ArticlesPage';
 import Gallery from './pages/Gallery';
 import NavMenu from '../src/components/NavMenu'
@@ -17,6 +18,8 @@ import Religious from './pages/Religious';
 import NewArticles from './pages/NewArticles';
 import Membership from './pages/Membership';
 import QuranPlayer from './pages/QuranPlayer';
+import AboutUs from './pages/About Us';
+import Footer from './components/Footer';
 import { useEffect, useState } from 'react';
 import api from './constants/api';
 
@@ -107,6 +110,7 @@ function App() {
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/Articles/:title" element={<ArticlesPage />} />
           <Route path="/NewArticles/:title" element={<NewArticles />} />
+          <Route path="/About Us" element={<AboutUs />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Membership" element={<Membership />} />
           <Route path="/QuranPlayer" element={<QuranPlayer />} />
@@ -114,89 +118,14 @@ function App() {
           <Route path="/Events" element={<Events />} />
           <Route path="/NewsEdit/:id" element={<NewsEdit />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
+          <Route path="/Aiman Team" element={<AimaanTeam />} />
           <Route path="/services/:title" element={<Religious />} />
           {/* Add other routes as needed */}
           <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
+        <Footer />
     
-        <div class="footer">
-        <div class="container">
-            <div class="main-footer">
-                <div class="row justify-content-between">
-                    <div class="col-xl-3 col-lg-4 col-sm-6">
-                        <div class="about-txt">
-                            <h3>About Us Company</h3>
-                            <p>There are many variations of passage of Lorem Ipsum available, but the maj ority have suffered alteration</p>
-                            <ul>
-                                <li><span><i class="flaticon-pin"></i></span>Demo Address #8901 Marmora Road Chi Minh City, Vietnam</li>
-                                <li><span><i class="flaticon-phone-call"></i></span>0800-123456 (24/7 Support Line)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-sm-6">
-                        <div class="link">
-                            <h3>Our Services</h3>
-                            <ul>
-                                <li><a href="service-details.html">Business</a></li>
-                                <li><a href="service-details.html">Marketing</a></li>
-                                <li><a href="service-details.html">Management</a></li>
-                                <li><a href="service-details.html">Accounting</a></li>
-                                <li><a href="service-details.html">Training</a></li>
-                                <li><a href="service-details.html">Consultation</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-sm-6">
-                        <div class="link">
-                            <h3>Useful Links</h3>
-                            <ul>
-                                <li><a href="blog-l-bar.html">Blog</a></li>
-                                <li><a href="/">Client Area</a></li>
-                                <li><a href="/">Support</a></li>
-                                <li><a href="faq.html">FAQ's</a></li>
-                                <li><a href="/">Newsletter</a></li>
-                                <li><a href="/">Events</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-sm-6">
-                        <div class="newsletter">
-                            <h3>Newsletter</h3>
-                            <p>Subscribe our newsletter to get our latest update all blog & news</p>
-                            <form>
-                                <input type="email" placeholder="Your Email Address" required />
-                                <button><i class="flaticon-send"></i></button>
-                            </form>
-                            <div class="social">
-                                <a href="/" class="fb"><i class="flaticon-facebook"></i></a>
-                                <a href="/" class="tw"><i class="flaticon-twitter"></i></a>
-                                <a href="/" class="ggl"><i class="flaticon-google-plus-logo"></i></a>
-                                <a href="/" class="ld"><i class="flaticon-linkedin"></i></a>
-                                <a href="/" class="yt"><i class="flaticon-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6">
-                        <p>Copyright &copy; 2021 Theme All Rights Reserved</p>
-                    </div>
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="link">
-                            <a href="about.html">About</a>
-                            <a href="/">Privacy Policy</a>
-                            <a href="faq.html">FAQs</a>
-                            <a href="/">Support</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+       
    
       </HashRouter>
   );
