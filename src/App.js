@@ -37,7 +37,7 @@ function App() {
     // Fetch sections
     api.get('/content/getEmail')
       .then((res) => {
-        setEmail(res.data.data);
+        setEmail(res.data.data[0]);
       })
       .catch(() => {
         // Handle error
@@ -63,21 +63,7 @@ function App() {
                     </ul>
                   </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-5">
-                  <div class="top-right">
-                    <div class="language">
-                      <div class="select-lang">
-                        <div
-                          id="demo"
-                          data-input-name="country"
-                          data-selected-country="US"
-                          data-scrollable-height="250px"
-                        ></div>
-                      </div>
-                    </div>
-                   
-                  </div>
-                </div>
+               
               </div>
             </div>
           </div>
