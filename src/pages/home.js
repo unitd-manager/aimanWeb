@@ -15,6 +15,8 @@ const Home = () => {
     const [videoUrls, setVideoUrls] = useState([]);
     const [aboutUs, setAboutus] = useState([]);
     const [team, setTeam] = useState([]);
+    const [homeServices, setHomeServices] = useState([]);
+    const [homeResources, setHomeResources] = useState([]);
     const [banners, setBanner] = useState([]);
 
     // Function to fetch video URLs from the API
@@ -56,6 +58,27 @@ const Home = () => {
             })
             .catch(() => { });
     };
+
+    const getHomeServices = () => {
+      api
+          .get("/content/getAimanHomeServices")
+          .then((res) => {
+              setHomeServices(res.data.data);
+            
+          })
+          .catch(() => { });
+     };
+
+     const getHomeResources = () => {
+      api
+          .get("/content/getAimanHomeResources")
+          .then((res) => {
+              setHomeResources(res.data.data);
+            
+          })
+          .catch(() => { });
+     };
+
     const getVideoUrls = () => {
       api
         .post('/media/getVideoUrls')
@@ -210,6 +233,8 @@ getVideoUrls();
 getEvents();
 getAboutUs();
 getTeam();
+getHomeServices();
+getHomeResources();
 getBanners();
 
 }, []);
@@ -398,6 +423,7 @@ getBanners();
     <div class="feature">
         <div class="container">
             <div class="row justify-content-center">
+            {Array.isArray(homeServices) && homeServices.map((item, index) => (
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single-box">
                         <div class="part-icon">
@@ -406,37 +432,12 @@ getBanners();
                             </span>
                         </div>
                         <div class="part-txt">
-                            <h3>Simplicity And Choice</h3>
-                            <p>There are many varations of passages of as Lorem Ipsum available but the majorit have suffered alteration in some form</p>
+                            <h3>{item.title}</h3>
+                            <p>{stripHtmlTags(item.description)}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single-box">
-                        <div class="part-icon">
-                            <span>
-                                <i class="flaticon-gear"></i>
-                            </span>
-                        </div>
-                        <div class="part-txt">
-                            <h3>Worry Free Experience</h3>
-                            <p>There are many varations of passages of as Lorem Ipsum available but the majorit have suffered alteration in some form</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single-box">
-                        <div class="part-icon">
-                            <span>
-                                <i class="flaticon-bar-chart"></i>
-                            </span>
-                        </div>
-                        <div class="part-txt">
-                            <h3>Performance Scale</h3>
-                            <p>There are many varations of passages of as Lorem Ipsum available but the majorit have suffered alteration in some form</p>
-                        </div>
-                    </div>
-                </div>
+              ))}
             </div>
         </div>
     </div>
@@ -476,150 +477,38 @@ getBanners();
                 </div>
             </div>
         </div>
-    </div>
-   
-    <div class="partner partner-2">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-9 col-lg-9">
-                    <div class="heading heading-2">
-                        <h5>Our Partner</h5>
-                        <h2>Processed Payments 252,854 Customers<br/> 1.5M Users and Growing</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg">
-                <div class="brand-slider owl-carousel">
-                    <div class="single-img">
-                        <img src="assets/images/brand-1.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-2.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-3.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-4.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-5.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-6.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-3.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-4.png" alt="logo" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  
-   
+    </div>   
+     
     <div class="project">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-6">
                     <div class="heading heading-2">
-                        <h5>RECENT PROJECTS</h5>
-                        <h2>Our Best Recent Projects</h2>
+                        <h5>RESOURCES</h5>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12">
-                    <div class="all-projects">
-                        <div class="project-slider owl-carousel">
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-1.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
+            <div className="row">
+                <div className="col-xl-12 col-lg-12">
+                    <div className="all-projects">
+                        <div className="project-slider owl-carousel">
+                            {Array.isArray(homeResources) && homeResources.map((item, index) => (
+                                <div key={item.content_id} className="single-box">
+                                    <div className="part-img">
+                                        <img
+                                            src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                                            alt={`Resources ${item.content_id}`}
+                                            style={{ width: '380px', height: '225px' }} // Set width to 100%
+                                        />        
+                                    </div>
+                                    <div className="part-txt">
+                                        <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
+                                        <div className="title">
+                                            <h3>{item.title}</h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-2.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-3.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-4.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-5.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-6.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-7.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
+                                        ))}
                         </div>
                     </div>
                 </div>
