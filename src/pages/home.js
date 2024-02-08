@@ -4,6 +4,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link} from 'react-router-dom';
 // import bannerImage from '../../src/assets/banner/home.jpg';
+import aboutusicon from "../../src/assets/banner/abudhabimosque.jpg";
+import getTouch from "../../src/assets/banner/gettouch.jpg";
 import api from '../constants/api';
 
 const Home = () => {
@@ -22,6 +24,19 @@ const Home = () => {
         return doc.body.textContent || '';
       };
      
+
+      const extractFirstParagraph = (html) => {
+        const strippedContent = stripHtmlTags(html);
+        const paragraphs = strippedContent.split('\n');
+        if (paragraphs.length > 0) {
+            return paragraphs[0]; // Return the first paragraph
+        } else {
+            return ''; // Return empty string if there are no paragraphs
+        }
+    };
+
+
+
       const getBanners = () => {
         api.get("/content/getBanners")
           .then((res) => {
@@ -373,33 +388,29 @@ getBanners();
             <div class="row align-items-center justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-8">
                     <div class="part-img">
-                        <img src="assets/images/about-img.png" alt="imagess" />
+                        <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${aboutUs.file_name}`}alt="imagess" width="600px" height="550px"/>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-8">
                     <div class="part-txt">
-                        <div class="heading">
+                        <div class="heading" style={{textAlign:"center"}}>
                             <h5>{aboutUs && aboutUs.title}</h5>
                         
                         </div>
-                        <p>{stripHtmlTags(aboutUs.description)}</p>                        <a href="about.html" class="def-btn">Read More</a>
+                        <p>{extractFirstParagraph(aboutUs.description)}</p>           
+                        <a href="/aboutus" class="def-btn">Read More</a>
                         <div class="boxes-2">
                             <div class="single-box">
                                 <div class="img">
-                                    <img src="assets/images/signature.png" alt="signature" />
+                                <img src={aboutusicon} alt="signature" width="50px" height="60px"/>
                                 </div>
                                 <div class="txt">
-                                    <h3>Jhon Martin</h3>
-                                    <span>Chairnan & founder</span>
+                                    <h3>AIMAN SANGAM was started on </h3>
+                                    <span>18th of Rabiul Awwal 1401 (23rd Jan, 1981)</span>
                                 </div>
                             </div>
-                            <div class="devider"></div>
-                            <div class="single-box">
-                                <div class="txt">
-                                    <h3>123-456-7890</h3>
-                                    <span>Call to ask any question</span>
-                                </div>
-                            </div>
+                          
+                         
                         </div>
                     </div>
                 </div>
@@ -661,15 +672,13 @@ getBanners();
         </div>
     </div>
    
-    <div class="cta-2">
+    <div class="cta-2"style={{ backgroundImage: `url(${getTouch})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-8">
                     <div class="part-txt">
-                        <h2>Let’s Start Working Together</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in by injected humour, or randomised words which don't look even slightly believable. If you are going</p>
-                        <a href="contact.html" class="def-btn def-btn-2">Get Started for Free</a>
-                    </div>
+                        <h2>Let’s Start with Free Membership</h2>
+                        <Link to="/Membership" className="def-btn def-btn-2">Get Started for Free</Link>                    </div>
                 </div>
             </div>
         </div>
@@ -681,17 +690,20 @@ getBanners();
         <div class="container">
             <div class="bg">
                 <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="col-xl-8 col-lg-8 col-md-8">
                         <div class="part-txt">
-                            <h5>Get Started Instantly!</h5>
-                            <h2>Request a Call Back Now</h2>
+                           
+                            <h2 style={{fontSize:"50px", marginLeft:"80px"}}>Get in Touch</h2>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class=" col-lg-2">
                         <div class="form">
                             <form>
-                                <input type="email" placeholder="Your email address here" required />
-                                <button>Request Now</button>
+                            <Link to="/contact-page">
+                            <button style={{marginLeft:"8px"}}>Request</button>
+
+</Link>
+
                             </form>
                         </div>
                     </div>

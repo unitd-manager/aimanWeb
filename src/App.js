@@ -17,6 +17,7 @@ import Religious from './pages/Religious';
 import NewArticles from './pages/NewArticles';
 import Membership from './pages/Membership';
 import QuranPlayer from './pages/QuranPlayer';
+import logo from "../src/assets/banner/aimanlogo.png";
 import { useEffect, useState } from 'react';
 import api from './constants/api';
 
@@ -82,10 +83,10 @@ function App() {
                     <i class="flaticon-menu-button-of-three-horizontal-lines"></i>
                   </button>
                 </div>
-                <div class="col-xl-1 col-lg-1 col-4">
+                <div class="col-xl-2 col-lg-2 " style={{marginLeft:"-75px"}}>
                   <div class="logo">
                     <a href="/">
-                      <img src="assets/images/United Logo.png" alt="LOGO" />
+                    <img src={logo} alt="signature" width="800px" height="30px"/>
                     </a>
                   </div>
                 </div>
