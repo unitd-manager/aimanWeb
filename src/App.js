@@ -18,7 +18,7 @@ import Religious from './pages/Religious';
 import NewArticles from './pages/NewArticles';
 import Membership from './pages/Membership';
 import QuranPlayer from './pages/QuranPlayer';
-import AboutUs from './pages/AboutUs';
+import AboutUs from './pages/About Us';
 import Footer from './components/Footer';
 import { useEffect, useState } from 'react';
 import api from './constants/api';
@@ -110,7 +110,7 @@ function App() {
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/Articles/:title" element={<ArticlesPage />} />
           <Route path="/NewArticles/:title" element={<NewArticles />} />
-          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/About Us" element={<AboutUs />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Membership" element={<Membership />} />
           <Route path="/QuranPlayer" element={<QuranPlayer />} />
