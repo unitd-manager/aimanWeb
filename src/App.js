@@ -18,12 +18,9 @@ import Religious from './pages/Religious';
 import NewArticles from './pages/NewArticles';
 import Membership from './pages/Membership';
 import QuranPlayer from './pages/QuranPlayer';
-<<<<<<< HEAD
 import logo from "../src/assets/banner/aimanlogo.png";
-=======
 import AboutUs from './pages/About Us';
 import Footer from './components/Footer';
->>>>>>> df372287128c6ca978dc2ace28469ed6c815b809
 import { useEffect, useState } from 'react';
 import api from './constants/api';
 
