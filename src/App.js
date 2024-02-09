@@ -86,10 +86,10 @@ function App() {
                     <i class="flaticon-menu-button-of-three-horizontal-lines"></i>
                   </button>
                 </div>
-                <div class="col-xl-2 col-lg-2 " style={{marginLeft:"-75px"}}>
+                <div class="col-xl-12 col-lg-12 col-12 d-flex align-items-center">
                   <div class="logo">
                     <a href="/">
-                    <img src={logo} alt="signature" width="800px" height="30px"/>
+                    <img src={logo} alt="signature" width="800px" height="30px" style={{paddingLeft:"300px"}}/>
                     </a>
                   </div>
                 </div>
