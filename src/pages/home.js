@@ -4,6 +4,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link} from 'react-router-dom';
 // import bannerImage from '../../src/assets/banner/home.jpg';
+import aboutusicon from "../../src/assets/banner/abudhabimosque.jpg";
+import getTouch from "../../src/assets/banner/gettouch.jpg";
 import api from '../constants/api';
 
 const Home = () => {
@@ -13,6 +15,8 @@ const Home = () => {
     const [videoUrls, setVideoUrls] = useState([]);
     const [aboutUs, setAboutus] = useState([]);
     const [team, setTeam] = useState([]);
+    const [homeServices, setHomeServices] = useState([]);
+    const [homeResources, setHomeResources] = useState([]);
     const [banners, setBanner] = useState([]);
 
     // Function to fetch video URLs from the API
@@ -21,6 +25,19 @@ const Home = () => {
         return doc.body.textContent || '';
       };
      
+
+      const extractFirstParagraph = (html) => {
+        const strippedContent = stripHtmlTags(html);
+        const paragraphs = strippedContent.split('\n');
+        if (paragraphs.length > 0) {
+            return paragraphs[0]; // Return the first paragraph
+        } else {
+            return ''; // Return empty string if there are no paragraphs
+        }
+    };
+
+
+
       const getBanners = () => {
         api.get("/content/getBanners")
           .then((res) => {
@@ -41,6 +58,27 @@ const Home = () => {
             })
             .catch(() => { });
     };
+
+    const getHomeServices = () => {
+      api
+          .get("/content/getAimanHomeServices")
+          .then((res) => {
+              setHomeServices(res.data.data);
+            
+          })
+          .catch(() => { });
+     };
+
+     const getHomeResources = () => {
+      api
+          .get("/content/getAimanHomeResources")
+          .then((res) => {
+              setHomeResources(res.data.data);
+            
+          })
+          .catch(() => { });
+     };
+
     const getVideoUrls = () => {
       api
         .post('/media/getVideoUrls')
@@ -195,6 +233,8 @@ getVideoUrls();
 getEvents();
 getAboutUs();
 getTeam();
+getHomeServices();
+getHomeResources();
 getBanners();
 
 }, []);
@@ -383,6 +423,7 @@ getBanners();
     <div class="feature">
         <div class="container">
             <div class="row justify-content-center">
+            {Array.isArray(homeServices) && homeServices.map((item, index) => (
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single-box">
                         <div class="part-icon">
@@ -391,37 +432,12 @@ getBanners();
                             </span>
                         </div>
                         <div class="part-txt">
-                            <h3>Simplicity And Choice</h3>
-                            <p>There are many varations of passages of as Lorem Ipsum available but the majorit have suffered alteration in some form</p>
+                            <h3>{item.title}</h3>
+                            <p>{stripHtmlTags(item.description)}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single-box">
-                        <div class="part-icon">
-                            <span>
-                                <i class="flaticon-gear"></i>
-                            </span>
-                        </div>
-                        <div class="part-txt">
-                            <h3>Worry Free Experience</h3>
-                            <p>There are many varations of passages of as Lorem Ipsum available but the majorit have suffered alteration in some form</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single-box">
-                        <div class="part-icon">
-                            <span>
-                                <i class="flaticon-bar-chart"></i>
-                            </span>
-                        </div>
-                        <div class="part-txt">
-                            <h3>Performance Scale</h3>
-                            <p>There are many varations of passages of as Lorem Ipsum available but the majorit have suffered alteration in some form</p>
-                        </div>
-                    </div>
-                </div>
+              ))}
             </div>
         </div>
     </div>
@@ -433,182 +449,66 @@ getBanners();
             <div class="row align-items-center justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-8">
                     <div class="part-img">
-                        <img src="assets/images/about-img.png" alt="imagess" />
+                        <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${aboutUs.file_name}`}alt="imagess" width="600px" height="550px"/>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-8">
                     <div class="part-txt">
-                        <div class="heading">
+                        <div class="heading" style={{textAlign:"center"}}>
                             <h5>{aboutUs && aboutUs.title}</h5>
                         
                         </div>
-                        <p>{stripHtmlTags(aboutUs.description)}</p>                        <a href="about.html" class="def-btn">Read More</a>
+                        <p>{extractFirstParagraph(aboutUs.description)}</p>           
+                        <a href="/aboutus" class="def-btn">Read More</a>
                         <div class="boxes-2">
                             <div class="single-box">
                                 <div class="img">
-                                    <img src="assets/images/signature.png" alt="signature" />
+                                <img src={aboutusicon} alt="signature" width="50px" height="60px"/>
                                 </div>
                                 <div class="txt">
-                                    <h3>Jhon Martin</h3>
-                                    <span>Chairnan & founder</span>
+                                    <h3>AIMAN SANGAM was started on </h3>
+                                    <span>18th of Rabiul Awwal 1401 (23rd Jan, 1981)</span>
                                 </div>
                             </div>
-                            <div class="devider"></div>
-                            <div class="single-box">
-                                <div class="txt">
-                                    <h3>123-456-7890</h3>
-                                    <span>Call to ask any question</span>
-                                </div>
-                            </div>
+                          
+                         
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-   
-    <div class="partner partner-2">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-9 col-lg-9">
-                    <div class="heading heading-2">
-                        <h5>Our Partner</h5>
-                        <h2>Processed Payments 252,854 Customers<br/> 1.5M Users and Growing</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg">
-                <div class="brand-slider owl-carousel">
-                    <div class="single-img">
-                        <img src="assets/images/brand-1.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-2.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-3.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-4.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-5.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-6.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-3.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-4.png" alt="logo" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  
-   
+    </div>   
+     
     <div class="project">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-6">
                     <div class="heading heading-2">
-                        <h5>RECENT PROJECTS</h5>
-                        <h2>Our Best Recent Projects</h2>
+                        <h5>RESOURCES</h5>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12">
-                    <div class="all-projects">
-                        <div class="project-slider owl-carousel">
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-1.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
+            <div className="row">
+                <div className="col-xl-12 col-lg-12">
+                    <div className="all-projects">
+                        <div className="project-slider owl-carousel">
+                            {Array.isArray(homeResources) && homeResources.map((item, index) => (
+                                <div key={item.content_id} className="single-box">
+                                    <div className="part-img">
+                                        <img
+                                            src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                                            alt={`Resources ${item.content_id}`}
+                                            style={{ width: '380px', height: '225px' }} // Set width to 100%
+                                        />        
+                                    </div>
+                                    <div className="part-txt">
+                                        <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
+                                        <div className="title">
+                                            <h3>{item.title}</h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-2.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-3.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-4.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-5.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-6.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-7.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
+                                        ))}
                         </div>
                     </div>
                 </div>
@@ -716,15 +616,13 @@ getBanners();
         </div>
     </div>
    
-    <div class="cta-2">
+    <div class="cta-2"style={{ backgroundImage: `url(${getTouch})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-8">
                     <div class="part-txt">
-                        <h2>Let’s Start Working Together</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in by injected humour, or randomised words which don't look even slightly believable. If you are going</p>
-                        <a href="contact.html" class="def-btn def-btn-2">Get Started for Free</a>
-                    </div>
+                        <h2>Let’s Start with Free Membership</h2>
+                        <Link to="/Membership" className="def-btn def-btn-2">Get Started for Free</Link>                    </div>
                 </div>
             </div>
         </div>
@@ -736,17 +634,20 @@ getBanners();
         <div class="container">
             <div class="bg">
                 <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="col-xl-8 col-lg-8 col-md-8">
                         <div class="part-txt">
-                            <h5>Get Started Instantly!</h5>
-                            <h2>Request a Call Back Now</h2>
+                           
+                            <h2 style={{fontSize:"50px", marginLeft:"80px"}}>Get in Touch</h2>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class=" col-lg-2">
                         <div class="form">
                             <form>
-                                <input type="email" placeholder="Your email address here" required />
-                                <button>Request Now</button>
+                            <Link to="/contact-page">
+                            <button style={{marginLeft:"8px"}}>Request</button>
+
+</Link>
+
                             </form>
                         </div>
                     </div>
