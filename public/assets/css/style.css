@@ -2523,15 +2523,18 @@ span {
 }
 
 .footer {
-  padding-top: 115px;
-  background: url(../images/footer-bg.jpg) center center no-repeat;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  /* background: url(../images/footer-bg.jpg) center center no-repeat; */
+   background: black;
   background-size: cover;
 }
 .footer.footer-inner {
   padding: 0;
 }
 .footer .main-footer {
-  padding: 120px 0;
+  /* padding: 120px 0; */
+  padding: 10px 0;
 }
 .footer .main-footer h3 {
   font-size: 20px;
@@ -2553,11 +2556,15 @@ span {
   border-radius: 1px;
 }
 .footer .main-footer .about-txt p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 26px;
   color: #fff;
   margin-top: -7px;
   margin-bottom: 31px;
+  white-space: normal; /* Allow text to wrap */
+    display: inline-block; /* Display as block element */
+    max-height: 52PX; /* Limit height to two lines */
+    overflow: hidden; /* Hide overflow text */
 }
 .footer .main-footer .about-txt ul {
   padding: 0;
@@ -16659,6 +16666,15 @@ span {
 .media-body {
   padding-left: 15px;
 }
+
+.image-container {
+    position: relative;
+    width: 100px; /* Adjust width as needed */
+    height: 69px; /* Adjust height as needed */
+    float: left;
+    margin-right: 10px;
+}
+
 
 
 
