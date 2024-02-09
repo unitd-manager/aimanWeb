@@ -1,100 +1,60 @@
-import React, { useState,useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import api from "../constants/api";
+import bannerImage from '../../src/assets/banner/home.jpg';
 import ReactHtmlParser from "react-html-parser";
-// import imageBase from "../../../constants/image.js";
 
-export default function PastofficeBearers(props) {
+export default function PastOfficeBearers() {
+  const [pastOfficeBearers, setPastOfficeBearers] = useState([]);
 
-  const [news1, setNews1] = useState([]);
+  useEffect(() => {
+    getPastOfficeBearers();
+  }, []);
 
-
-//   const getArticlenews = () => {
-//   api.post("/getBlogTitle", { title: formated }).then((res) => {
-//     setBlogs(res.data.data);
-//   });
-// };
-
-const {title}=useParams();
-
-useEffect(() => {
-    const getNewsById = () => {
-        var formated = title.split("-").join(" ");
-        api.post("section/getMostPopularnews", { title: formated }).then((res) => {
-          setNews1(res.data.data);
-        });
-      };
-
-  getNewsById();
-}, [title]); 
-
-
- 
-
+  const getPastOfficeBearers = () => {
+    api
+      .get("/content/getPastOfficeBearers")
+      .then((res) => {
+        setPastOfficeBearers(res.data.data);
+      })
+      .catch(() => {});
+  };
 
   return (
     <>
-      
-
-      <div class="breadcrumb portfolio-breadcrumb">
+      <div class="breadcrumb portfolio-breadcrumb" style={{ backgroundImage: `url(${bannerImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-3">
               <div class="part-txt">
-                <h1>Article</h1>
+                <h1>AIMAN PAST OFFICE BEARERS</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>Article</li>
+                  <li>AIMAN PAST OFFICE BEARERS</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="blog-inner">
-        <div class="container">
-          <div class="row justify-content-center">
-            {news1.map((data, index) => (
-              <div key={index} class="col-xl-8 col-lg-4 col-md-4">
-                <div class="blog-details">
-                <div class="title">
-                  <h2>{data.title}</h2>
-                  <ul>
-                    <li>
-                      <span>
-                        <i class="flaticon-user"></i>
-                      </span>
-                      {data.modified_by}
-                    </li>
-                    {/* <li>
-                      <span>
-                        <i class="flaticon-clock"></i>
-                      </span>
-                      {getFormattedDate(data.content_date)}
-                    </li> */}
-                  </ul>
-                </div>
-                <div class="main-img">
-                  <img
-                    src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
-                    className="img-fluid card-img-top"
-                    alt="post-thumb"
-                  />
-                </div>
-                <div class="main-txt">
-                  <p>{ReactHtmlParser(data.description)}</p>
-                </div>
 
-               
-              </div>
-            </div>
-           
-                ))}
-          </div>
+      <div className="container mt-5">
+        <div className="row">
+          {pastOfficeBearers &&
+            pastOfficeBearers.map((data, index) => (
+              <div key={index} className="row mb-5">
+                <div className="col-lg-12">
+                  
+                  <div className="text-left">
+                    <p className="description">
+                      {ReactHtmlParser(data.description)}
+                    </p>
+                  </div>
+                </div>
+                              </div>
+            ))}
         </div>
       </div>
-
     </>
   );
 }
