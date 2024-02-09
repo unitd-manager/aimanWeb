@@ -118,8 +118,9 @@ function App() {
           {/* Add other routes as needed */}
           <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
+        
     
-        <div class="footer">
+        {/* <div class="footer">
         <div class="container">
             <div class="main-footer">
                 <div class="row justify-content-between">
@@ -195,8 +196,8 @@ function App() {
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> */}
+    {/* </div> */}
    
       </HashRouter>
   );
