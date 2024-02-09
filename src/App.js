@@ -6,6 +6,7 @@ import Articles from './pages/Articles';
 // import Home from "../src/screens/pages/home/Home";
 import BlogDetails from './pages/BlogDetails';
 import AimaanBaithulMal from './pages/Aiman BaithulMal';
+import AimaanTeam from './pages/Aiman Team';
 import ArticlesPage from './pages/ArticlesPage';
 import Gallery from './pages/Gallery';
 import NavMenu from '../src/components/NavMenu'
@@ -17,6 +18,9 @@ import Religious from './pages/Religious';
 import NewArticles from './pages/NewArticles';
 import Membership from './pages/Membership';
 import QuranPlayer from './pages/QuranPlayer';
+import logo from "../src/assets/banner/aimanlogo.png";
+import AboutUs from './pages/About Us';
+import Footer from './components/Footer';
 import { useEffect, useState } from 'react';
 import api from './constants/api';
 
@@ -82,10 +86,10 @@ function App() {
                     <i class="flaticon-menu-button-of-three-horizontal-lines"></i>
                   </button>
                 </div>
-                <div class="col-xl-1 col-lg-1 col-4">
+                <div class="col-xl-2 col-lg-2 " style={{marginLeft:"-75px"}}>
                   <div class="logo">
                     <a href="/">
-                      <img src="assets/images/United Logo.png" alt="LOGO" />
+                    <img src={logo} alt="signature" width="800px" height="30px"/>
                     </a>
                   </div>
                 </div>
@@ -107,6 +111,7 @@ function App() {
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/Articles/:title" element={<ArticlesPage />} />
           <Route path="/NewArticles/:title" element={<NewArticles />} />
+          <Route path="/About Us" element={<AboutUs />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Membership" element={<Membership />} />
           <Route path="/QuranPlayer" element={<QuranPlayer />} />
@@ -114,6 +119,7 @@ function App() {
           <Route path="/Events" element={<Events />} />
           <Route path="/NewsEdit/:id" element={<NewsEdit />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
+          <Route path="/Aiman Team" element={<AimaanTeam />} />
           <Route path="/services/:title" element={<Religious />} />
           {/* Add other routes as needed */}
           <Route path="/blog/:id" element={<BlogDetails />} />
@@ -198,6 +204,9 @@ function App() {
             </div>
         </div> */}
     {/* </div> */}
+        <Footer />
+    
+       
    
       </HashRouter>
   );

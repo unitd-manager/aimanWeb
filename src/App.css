@@ -123,3 +123,8 @@
   padding-top: 35px;
   padding-bottom: 40px;
 }
+
+.image-container {
+  display: flex; /* Ensures images are displayed in a row */
+}
+
