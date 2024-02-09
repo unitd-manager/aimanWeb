@@ -3071,9 +3071,9 @@ span {
 .team .single-box .part-txt {
   position: absolute;
   bottom: 20px;
-  left: 20px;
-  right: 20px;
-  height: 68px;
+  /* left: 20px;
+  right: 20px; */
+  height: 268px;
   text-align: center;
   background: #0D0925;
   border-radius: 10px;
@@ -3081,6 +3081,7 @@ span {
   transition: all 0.4s ease-in;
   overflow: hidden;
   z-index: 2;
+  padding: 0 30px;
 }
 .team .single-box .part-txt .txt {
   height: 100%;
@@ -3094,7 +3095,7 @@ span {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 120px 10px 0;
+  /* padding: 120px 10px 0; */
   -webkit-transition: all 0.4s ease-in;
   transition: all 0.4s ease-in;
 }
@@ -3159,9 +3160,9 @@ span {
   height: 100%;
   background: rgba(13, 9, 37, 0.85);
 }
-.team .single-box:hover .part-txt .txt {
+/* .team .single-box:hover .part-txt .txt {
   padding: 0 30px;
-}
+} */
 
 .fun-fact .bg {
   border: 5px solid #fff;

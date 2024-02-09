@@ -83,7 +83,7 @@ export default function Events() {
                     <img
                       src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
                       alt={data.alt}
-                      width="300px"
+                      width="380px"
                       height="250px"
                     />
                     <div class="tags"> </div>
@@ -96,13 +96,14 @@ export default function Events() {
                           <span>
                             <i class="flaticon-user"></i>
                           </span>
-                          {data.modified_by}
+                          Admin
                         </li>
                         <li>
                           <span>
                             <i class="flaticon-clock"></i>
                           </span>
-                          {data.creation_date}
+                          {data.content_date.split(' ')[0]}
+
                         </li>
                         
                       </ul>

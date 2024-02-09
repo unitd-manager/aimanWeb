@@ -1,20 +1,84 @@
 import React, { useEffect,useState } from 'react';
-
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link} from 'react-router-dom';
-import bannerImage from '../../src/assets/banner/home.jpg';
+// import bannerImage from '../../src/assets/banner/home.jpg';
+import aboutusicon from "../../src/assets/banner/abudhabimosque.jpg";
+import getTouch from "../../src/assets/banner/gettouch.jpg";
 import api from '../constants/api';
-import HeroSliderTwo from '../components/HeroSliderTwo';
 
 const Home = () => {
     // const [banners, setBanners] = useState([]);
     const [blogItems, setBlogItems] = useState([]);
     const [Events, setEvents] = useState([]);
     const [videoUrls, setVideoUrls] = useState([]);
-console.log("fdgdfgd",videoUrls)
+    const [aboutUs, setAboutus] = useState([]);
+    const [team, setTeam] = useState([]);
+    const [homeServices, setHomeServices] = useState([]);
+    const [homeResources, setHomeResources] = useState([]);
+    const [banners, setBanner] = useState([]);
+
     // Function to fetch video URLs from the API
+    const stripHtmlTags = (htmlString) => {
+        const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+        return doc.body.textContent || '';
+      };
+     
+
+      const extractFirstParagraph = (html) => {
+        const strippedContent = stripHtmlTags(html);
+        const paragraphs = strippedContent.split('\n');
+        if (paragraphs.length > 0) {
+            return paragraphs[0]; // Return the first paragraph
+        } else {
+            return ''; // Return empty string if there are no paragraphs
+        }
+    };
+
+
+
+      const getBanners = () => {
+        api.get("/content/getBanners")
+          .then((res) => {
+            setBanner(res.data.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching about us data:", error);
+          });
+      };
+
+
+      const getTeam = () => {
+        api
+            .get("/content/getAimanTeam")
+            .then((res) => {
+                setTeam(res.data.data);
+              
+            })
+            .catch(() => { });
+    };
+
+    const getHomeServices = () => {
+      api
+          .get("/content/getAimanHomeServices")
+          .then((res) => {
+              setHomeServices(res.data.data);
+            
+          })
+          .catch(() => { });
+     };
+
+     const getHomeResources = () => {
+      api
+          .get("/content/getAimanHomeResources")
+          .then((res) => {
+              setHomeResources(res.data.data);
+            
+          })
+          .catch(() => { });
+     };
+
     const getVideoUrls = () => {
       api
         .post('/media/getVideoUrls')
@@ -29,27 +93,7 @@ console.log("fdgdfgd",videoUrls)
 
 
     
-// const sliderSettings = {
-//     dots: true,
-//     infinite: true,
-//     speed: 500,
-//     slidesToShow: 1,
-//     slidesToScroll: 1,
-//     autoplay: true,
-//     autoplaySpeed: 2000, // Adjust the speed as needed
-//   };
- // const { id } = useParams();
-   // Get Product data By product id
-// const getBannerImages = () => {
-// api
-//   .post('/media/getMediaFileName')
-//   .then((res) => {
-//     setBanners(res.data.data);
-//   })
-//   .catch(() => {
-//     // message('Product Data Not Found', 'info');
-//   });
-// };
+
 const getblogItems = () => {
     api
       .post('/media/getNewsFileName')
@@ -72,7 +116,16 @@ const getblogItems = () => {
           .catch(() => {});
       };
 
-
+      const getAboutUs = () => {
+        // var formated = title.split("-").join(" ");
+        api
+          .get("/content/getAboutUs")
+          .then((res) => {
+            setAboutus(res.data.data[0]);
+            //setCurrentData(res.data.data);
+          })
+          .catch(() => {});
+      };
     const settings = {
         dots: false,
         infinite: true,
@@ -96,12 +149,97 @@ const getblogItems = () => {
         ],
       };
 
+      const bannersettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1, // Display three slides at a time
+        slidesToScroll: 1, // Scroll one slide at a time
+        autoplay: true,
+        responsive: [
+          {
+            breakpoint: 1140,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+            },
+          },
+        ],
+      };
+
+      // const PrevArrow = (props) => {
+      //   const { className, style, onClick } = props;
+      //   return (
+      //     <div
+      //       className={className}
+      //       style={{ ...style, display: "block", background: "black" }}
+      //       onClick={onClick}
+      //     >
+      //       Previous
+      //     </div>
+      //   );
+      // };
+      
+      // const NextArrow = (props) => {
+      //   const { className, style, onClick } = props;
+      //   return (
+      //     <div
+      //       className={className}
+      //       style={{ ...style, display: "block", background: "black" }}
+      //       onClick={onClick}
+      //     >
+      //       Next
+      //     </div>
+      //   );
+      // };
+      
+
+      const settingsteam = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4, // Display one slide at a time
+        slidesToScroll: 1, // Scroll one slide at a time
+  //       prevArrow: <PrevArrow />, // You need to define PrevArrow and NextArrow components
+  // nextArrow: <NextArrow />, // You need to define PrevArrow and NextArrow components
+        autoplay: true,
+        responsive: [
+            {
+                breakpoint: 1140,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+          
+        ],
+    };
+
+
 useEffect(() => {
 // getBannerImages();
 getblogItems();
 getVideoUrls(); 
 getEvents();
+getAboutUs();
+getTeam();
+getHomeServices();
+getHomeResources();
+getBanners();
+
 }, []);
+
+
   return (
     
     <div>
@@ -110,20 +248,26 @@ getEvents();
         <div class="loader"><img src="assets/images/spinner.gif" alt="imagess" /></div>
     </div>
      */}
-     <div class="breadcrumb portfolio-breadcrumb" style={{ backgroundImage: `url(${bannerImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-3 col-lg-3">
-                    <div class="part-txt">
-                        <h1>Home</h1>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
+<Slider {...bannersettings}>
+  {Array.isArray(banners) && banners.map((item, index) => (
+    <div key={item.content_id} className="single-blog">
+      <div className="part-img">
+        <img
+          src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+          alt={`News ${item.content_id}`}
+          style={{ width: '100%', height: '400px', objectFit: 'cover' }}
+        />
+        
+      </div>
+      <div className="part-txt">
+      
+        {/* Check if item.description is not null before accessing its properties */}
+      
+      </div>
     </div>
-   
-<HeroSliderTwo />
+  ))}
+</Slider>
+
 
  {/* Video Gallery Panel */}
  {/* <div className="video-gallery">
@@ -154,7 +298,7 @@ getEvents();
 <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6">
                 <div class="heading">
-                    <h5>News</h5>
+                    <h2>News</h2>
                     
                 </div>
             </div>
@@ -177,13 +321,13 @@ getEvents();
               <span>
                 <i className="flaticon-user"></i>
               </span>
-              By {item.created_by}
+              Admin
             </li>
             <li>
               <span>
                 <i className="flaticon-clock"></i>
               </span>
-              {item.content_date}
+              {item.content_date.split(' ')[0]}
             </li>
             {/* <li>
               <span>
@@ -196,7 +340,7 @@ getEvents();
         {/* Check if item.description is not null before accessing its properties */}
         {item.description !== null && (
           <>
-            <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
+            <h3 dangerouslySetInnerHTML={{ __html: `${item.title.slice(0, 50).replace(/<p.*?>/g, '')}...` }}></h3>
             <Link
               to={`/NewsEdit/${item.content_id}`}
             >
@@ -212,7 +356,14 @@ getEvents();
 </div>
 
 <div className="blog-2">
-  <h2>Events</h2>
+<div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6">
+                <div class="heading">
+                    <h2>Events</h2>
+                    
+                </div>
+            </div>
+        </div>
   <div className="container">
     <Slider {...settings}>
       {Array.isArray(Events) && Events.map((item, index) => (
@@ -221,7 +372,7 @@ getEvents();
             <img
               src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
               alt={`Events ${item.content_id}`}
-              style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
+              style={{ width: '380px', height: '225px' }} // Adjust the width and height values as needed
             />
             <div className="tags">
               {/* <span>{item.title}</span> */}
@@ -234,13 +385,13 @@ getEvents();
                   <span>
                     <i className="flaticon-user"></i>
                   </span>
-                  By {item.created_by}
+                  Admin
                 </li>
                 <li>
                   <span>
                     <i className="flaticon-clock"></i>
                   </span>
-                  {item.content_date}
+                  {item.content_date.split(' ')[0]}
                 </li>
                 {/* <li>
                   <span>
@@ -253,7 +404,7 @@ getEvents();
             {/* Check if item.description is not null before accessing its properties */}
             {item.description !== null && (
               <>
-                <h3 dangerouslySetInnerHTML={{ __html: `${item.description.slice(0, 20).replace(/<p.*?>/g, '')}...` }}></h3>
+                <h3 dangerouslySetInnerHTML={{ __html: `${item.title.slice(0, 50).replace(/<p.*?>/g, '')}...` }}></h3>
                 <Link
                   to={`/EventsEdit/${item.content_id}`}
                 >
@@ -272,6 +423,7 @@ getEvents();
     <div class="feature">
         <div class="container">
             <div class="row justify-content-center">
+            {Array.isArray(homeServices) && homeServices.map((item, index) => (
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single-box">
                         <div class="part-icon">
@@ -280,37 +432,12 @@ getEvents();
                             </span>
                         </div>
                         <div class="part-txt">
-                            <h3>Simplicity And Choice</h3>
-                            <p>There are many varations of passages of as Lorem Ipsum available but the majorit have suffered alteration in some form</p>
+                            <h3>{item.title}</h3>
+                            <p>{stripHtmlTags(item.description)}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single-box">
-                        <div class="part-icon">
-                            <span>
-                                <i class="flaticon-gear"></i>
-                            </span>
-                        </div>
-                        <div class="part-txt">
-                            <h3>Worry Free Experience</h3>
-                            <p>There are many varations of passages of as Lorem Ipsum available but the majorit have suffered alteration in some form</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single-box">
-                        <div class="part-icon">
-                            <span>
-                                <i class="flaticon-bar-chart"></i>
-                            </span>
-                        </div>
-                        <div class="part-txt">
-                            <h3>Performance Scale</h3>
-                            <p>There are many varations of passages of as Lorem Ipsum available but the majorit have suffered alteration in some form</p>
-                        </div>
-                    </div>
-                </div>
+              ))}
             </div>
         </div>
     </div>
@@ -322,328 +449,66 @@ getEvents();
             <div class="row align-items-center justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-8">
                     <div class="part-img">
-                        <img src="assets/images/about-img.png" alt="imagess" />
+                        <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${aboutUs.file_name}`}alt="imagess" width="600px" height="550px"/>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-8">
                     <div class="part-txt">
-                        <div class="heading">
-                            <h5>About Us</h5>
-                            <h2>We Believe That Quality Of Services Matters</h2>
+                        <div class="heading" style={{textAlign:"center"}}>
+                            <h5>{aboutUs && aboutUs.title}</h5>
+                        
                         </div>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majorit have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of as lorem Ipsum, you need to be sure there</p>
-                        <a href="about.html" class="def-btn">Read More</a>
+                        <p>{extractFirstParagraph(aboutUs.description)}</p>           
+                        <a href="/aboutus" class="def-btn">Read More</a>
                         <div class="boxes-2">
                             <div class="single-box">
                                 <div class="img">
-                                    <img src="assets/images/signature.png" alt="signature" />
+                                <img src={aboutusicon} alt="signature" width="50px" height="60px"/>
                                 </div>
                                 <div class="txt">
-                                    <h3>Jhon Martin</h3>
-                                    <span>Chairnan & founder</span>
+                                    <h3>AIMAN SANGAM was started on </h3>
+                                    <span>18th of Rabiul Awwal 1401 (23rd Jan, 1981)</span>
                                 </div>
                             </div>
-                            <div class="devider"></div>
-                            <div class="single-box">
-                                <div class="txt">
-                                    <h3>123-456-7890</h3>
-                                    <span>Call to ask any question</span>
-                                </div>
-                            </div>
+                          
+                         
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-   
-    <div class="partner partner-2">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-9 col-lg-9">
-                    <div class="heading heading-2">
-                        <h5>Our Partner</h5>
-                        <h2>Processed Payments 252,854 Customers<br/> 1.5M Users and Growing</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg">
-                <div class="brand-slider owl-carousel">
-                    <div class="single-img">
-                        <img src="assets/images/brand-1.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-2.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-3.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-4.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-5.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-6.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-3.png" alt="logo" />
-                    </div>
-                    <div class="single-img">
-                        <img src="assets/images/brand-4.png" alt="logo" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="faq">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-4 col-lg-5">
-                    <div class="heading">
-                        <h5>REPEATED QUESTIONS</h5>
-                        <h2>Frequently Questions</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-xl-12 col-lg-12 col-md-9">
-                    <div class="part-txt">
-                        <div id="accordion">
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0">
-                                                <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    What are the business advisory company?
-                                                    <span><i class="flaticon-arrow-down-sign-to-navigate"></i></span>
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingTwo">
-                                            <h5 class="mb-0">
-                                                <button class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                    Research is What Makes Business Plan?
-                                                    <span><i class="flaticon-arrow-down-sign-to-navigate"></i></span>
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingThree">
-                                            <h5 class="mb-0">
-                                                <button class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    How to achieving Small Business Success?
-                                                    <span><i class="flaticon-arrow-down-sign-to-navigate"></i></span>
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingFour">
-                                            <h5 class="mb-0">
-                                                <button class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                                    Why Business Planning is Important?
-                                                    <span><i class="flaticon-arrow-down-sign-to-navigate"></i></span>
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="card">
-                                        <div class="card-header" id="headingFive">
-                                            <h5 class="mb-0">
-                                                <button class="collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                                    Can I reprint or distribute Our publications?
-                                                    <span><i class="flaticon-arrow-down-sign-to-navigate"></i></span>
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingSix">
-                                            <h5 class="mb-0">
-                                                <button class="collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                                    What are Prysm’s main publications?
-                                                    <span><i class="flaticon-arrow-down-sign-to-navigate"></i></span>
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingSeven">
-                                            <h5 class="mb-0">
-                                                <button class="collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                                    How to do  permission republish an article?
-                                                    <span><i class="flaticon-arrow-down-sign-to-navigate"></i></span>
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingEight">
-                                            <h5 class="mb-0">
-                                                <button class="collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                                                    What goes into a business plan?
-                                                    <span><i class="flaticon-arrow-down-sign-to-navigate"></i></span>
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
+    </div>   
+     
     <div class="project">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-6">
                     <div class="heading heading-2">
-                        <h5>RECENT PROJECTS</h5>
-                        <h2>Our Best Recent Projects</h2>
+                        <h5>RESOURCES</h5>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12">
-                    <div class="all-projects">
-                        <div class="project-slider owl-carousel">
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-1.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
+            <div className="row">
+                <div className="col-xl-12 col-lg-12">
+                    <div className="all-projects">
+                        <div className="project-slider owl-carousel">
+                            {Array.isArray(homeResources) && homeResources.map((item, index) => (
+                                <div key={item.content_id} className="single-box">
+                                    <div className="part-img">
+                                        <img
+                                            src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                                            alt={`Resources ${item.content_id}`}
+                                            style={{ width: '380px', height: '225px' }} // Set width to 100%
+                                        />        
+                                    </div>
+                                    <div className="part-txt">
+                                        <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
+                                        <div className="title">
+                                            <h3>{item.title}</h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-2.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-3.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-4.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-5.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-6.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-box">
-                                <div class="part-img">
-                                    <img src="assets/images/project-7.jpg" alt="imagess" />
-                                </div>
-                                <div class="part-txt">
-                                    <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
-                                    <div class="title">
-                                        <h3>Business Agreement</h3>
-                                        <p>Considering of the agreement</p>
-                                    </div>
-                                </div>
-                            </div>
+                                        ))}
                         </div>
                     </div>
                 </div>
@@ -651,108 +516,41 @@ getEvents();
         </div>
     </div>
   
-    <div class="team">
-        <div class="container">
+<div class="team">
+     <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-5">
                     <div class="heading">
                         <h5>OUR Team</h5>
-                        <h2>Our Creative Team Member</h2>
+                       
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
-                    <div class="single-box">
-                        <div class="part-img">
-                            <img src="assets/images/team-1.jpg" alt="imagess" />
-                        </div>
-                        <div class="part-txt">
-                            <div class="txt">
-                                <div class="title">
-                                    <a href="team-details.html">Sandra Willson</a>
-                                    <span>Chief Operating Officer</span>
-                                </div>
-                                <p>There are many variations of passages of Lorem Ipsum as ailable, but the majority</p>
-                                <div class="social">
-                                    <a href="/" class="fb"><i class="flaticon-facebook"></i></a>
-                                    <a href="/" class="tw"><i class="flaticon-twitter"></i></a>
-                                    <a href="/" class="ld"><i class="flaticon-linkedin"></i></a>
-                                    <a href="/" class="ggl"><i class="flaticon-google-plus-logo"></i></a>
+        <div class="justify-content-center">
+              <Slider {...settingsteam}>
+                  {Array.isArray(team) && team.map((item, index) => (
+                    <div key={item.content_id} class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-box">
+                            <div class="part-img">
+                                <img src="assets/images/team-1.jpg" alt="imagess" />
+                            </div>
+                            <div class="part-txt">
+                                <div class="txt">
+                                    <div class="title">
+                                        <a href="team-details.html">{item.title}</a>
+                                      
+                                    </div>
+                                    <p>{stripHtmlTags(item.description)}</p>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
-                    <div class="single-box">
-                        <div class="part-img">
-                            <img src="assets/images/team-2.jpg" alt="imagess" />
-                        </div>
-                        <div class="part-txt">
-                            <div class="txt">
-                                <div class="title">
-                                    <a href="team-details.html">Steve Parkar</a>
-                                    <span>Graphic Designer</span>
-                                </div>
-                                <p>There are many variations of passages of Lorem Ipsum as ailable, but the majority</p>
-                                <div class="social">
-                                    <a href="/" class="fb"><i class="flaticon-facebook"></i></a>
-                                    <a href="/" class="tw"><i class="flaticon-twitter"></i></a>
-                                    <a href="/" class="ld"><i class="flaticon-linkedin"></i></a>
-                                    <a href="/" class="ggl"><i class="flaticon-google-plus-logo"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
-                    <div class="single-box">
-                        <div class="part-img">
-                            <img src="assets/images/team-3.jpg" alt="imagess" />
-                        </div>
-                        <div class="part-txt">
-                            <div class="txt">
-                                <div class="title">
-                                    <a href="team-details.html">Vanessa Lucky</a>
-                                    <span>HTML Developer</span>
-                                </div>
-                                <p>There are many variations of passages of Lorem Ipsum as ailable, but the majority</p>
-                                <div class="social">
-                                    <a href="/" class="fb"><i class="flaticon-facebook"></i></a>
-                                    <a href="/" class="tw"><i class="flaticon-twitter"></i></a>
-                                    <a href="/" class="ld"><i class="flaticon-linkedin"></i></a>
-                                    <a href="/" class="ggl"><i class="flaticon-google-plus-logo"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
-                    <div class="single-box">
-                        <div class="part-img">
-                            <img src="assets/images/team-4.jpg" alt="imagess" />
-                        </div>
-                        <div class="part-txt">
-                            <div class="txt">
-                                <div class="title">
-                                    <a href="team-details.html">Miller Wilson</a>
-                                    <span>Chief brand officer</span>
-                                </div>
-                                <p>There are many variations of passages of Lorem Ipsum as ailable, but the majority</p>
-                                <div class="social">
-                                    <a href="/" class="fb"><i class="flaticon-facebook"></i></a>
-                                    <a href="/" class="tw"><i class="flaticon-twitter"></i></a>
-                                    <a href="/" class="ld"><i class="flaticon-linkedin"></i></a>
-                                    <a href="/" class="ggl"><i class="flaticon-google-plus-logo"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                ))}
+            </Slider>
         </div>
     </div>
+</div>
    
     <div class="fun-fact">
         <div class="container">
@@ -818,15 +616,13 @@ getEvents();
         </div>
     </div>
    
-    <div class="cta-2">
+    <div class="cta-2"style={{ backgroundImage: `url(${getTouch})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-8">
                     <div class="part-txt">
-                        <h2>Let’s Start Working Together</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in by injected humour, or randomised words which don't look even slightly believable. If you are going</p>
-                        <a href="contact.html" class="def-btn def-btn-2">Get Started for Free</a>
-                    </div>
+                        <h2>Let’s Start with Free Membership</h2>
+                        <Link to="/Membership" className="def-btn def-btn-2">Get Started for Free</Link>                    </div>
                 </div>
             </div>
         </div>
@@ -838,17 +634,20 @@ getEvents();
         <div class="container">
             <div class="bg">
                 <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="col-xl-8 col-lg-8 col-md-8">
                         <div class="part-txt">
-                            <h5>Get Started Instantly!</h5>
-                            <h2>Request a Call Back Now</h2>
+                           
+                            <h2 style={{fontSize:"50px", marginLeft:"80px"}}>Get in Touch</h2>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class=" col-lg-2">
                         <div class="form">
                             <form>
-                                <input type="email" placeholder="Your email address here" required />
-                                <button>Request Now</button>
+                            <Link to="/contact-page">
+                            <button style={{marginLeft:"8px"}}>Request</button>
+
+</Link>
+
                             </form>
                         </div>
                     </div>

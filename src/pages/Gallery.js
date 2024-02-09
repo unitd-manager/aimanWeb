@@ -151,9 +151,12 @@ const Home = () => {
                                 <div class="part-img">
                                     <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${image.file_name}`} 
                                      alt={image.alt}
-                                     width="300px" 
-                                     height="250px"
                                      onClick={() => handleImageClick(image)}
+                                     style={{
+                                      width: '380px',
+                                      height: '200px',
+                                      objectFit: 'cover', // or 'contain', or any other value based on your preference
+                                  }}
                                      />
                                    
                                 </div>

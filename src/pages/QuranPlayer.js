@@ -4,7 +4,13 @@ import bannerImage from "../../src/assets/banner/audioGallery.jpg";
 
 const Home = () => {
   const [audioData, setAudioData] = useState([]);
+  const [audiodes, setAudioDes] = useState([]);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+  const stripHtmlTags = (htmlString) => {
+    const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+    return doc.body.textContent || '';
+  };
+ 
 
   const getAudio = () => {
     api
@@ -14,8 +20,17 @@ const Home = () => {
       })
       .catch(() => {});
   };
+  const getAudioDes = () => {
+    api
+      .get("/content/getAudioGallerydes")
+      .then((res) => {
+        setAudioDes(res.data.data);
+      })
+      .catch(() => {});
+  };
   useEffect(() => {
     getAudio();
+    getAudioDes();
   }, []);
 
   const handleAudioPlay = (index) => {
@@ -65,7 +80,10 @@ const Home = () => {
           <div class="row justify-content-center">
             <div class="col-xl-4 col-lg-4">
             <div class="heading" style={{ textAlign: "left", marginLeft:"-400px"}}>
-    <h1>Quran Player</h1>
+            <h1 style={{paddingBottom:"40px"}}>Quran Player</h1>
+            {audiodes.map((audiode, index) => (
+   
+   <p style={{ marginBottom: '10px', marginTop:"10px" }}>{stripHtmlTags(audiode.description)}</p>          ))}
 </div>
             </div>
           </div>
