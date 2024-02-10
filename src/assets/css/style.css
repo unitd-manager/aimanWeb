@@ -126,6 +126,7 @@ span {
   .container {
     min-width: 1200px;
   }
+  
 }
 .preloader {
   position: fixed;
@@ -793,7 +794,7 @@ span {
 }
 .header-2 .bottom-header .bg .navbar .navbar-nav .nav-item.dropdown .dropdown-menu {
   display: block;
-  margin-top: -30px;
+  /* margin-top: -30px; */
   border: 0;
   border-radius: 0;
   padding: 0;
@@ -6775,6 +6776,7 @@ span {
     font-size: 14px;
     padding: 14px 20px 12px;
   }
+
 
   .header-2 {
     background: #fff;

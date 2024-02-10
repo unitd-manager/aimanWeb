@@ -9,6 +9,7 @@ function Navbar() {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
   useEffect(() => {
+    // Fetch sections, categories, and subcategories
     api.get('/section/getSectionMenu')
       .then((res) => {
         setSections(res.data.data);
@@ -25,7 +26,7 @@ function Navbar() {
         console.error("Error fetching categories:", error);
       });
 
-    api.get('/subcategory/getSubCategories')
+    api.get('/subcategory/getSubCategory')
       .then((res) => {
         setSubCategories(res.data.data);
       })
@@ -34,16 +35,19 @@ function Navbar() {
       });
   }, []);
 
-  const handleCategoryClick = (categoryId) => {
-    setSelectedCategoryId(categoryId);
-  };
-
+  // Function to filter categories for a specific section
   const getCategoriesForSection = (sectionId) => {
     return categories.filter(category => category.section_id === sectionId);
   };
 
+  // Function to filter subcategories for a specific category
   const getSubCategoriesForCategory = (categoryId) => {
     return subCategories.filter(subcategory => subcategory.category_id === categoryId);
+  };
+
+  // Handle category click event
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategoryId(categoryId);
   };
 
   return (
@@ -51,27 +55,35 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav m-rauto">
+            {/* Map over sections array to generate navbar items */}
             {sections.map(section => (
               <li className="nav-item dropdown" key={section.section_id}>
+                {/* Replace anchor tag with Link */}
                 <Link to={`/${section.section_title}`} className="nav-link">
                   {section.section_title}
                 </Link>
+                {/* Filter categories for current section */}
                 {getCategoriesForSection(section.section_id).length > 0 && (
                   <ul className="dropdown-menu" aria-labelledby={`${section.section_id}Dropdown`}>
                     {getCategoriesForSection(section.section_id).map(category => (
                       <li key={category.category_id}>
-                        <div className="category">
-                          <button className="dropdown-item" onClick={() => handleCategoryClick(category.category_id)}>{category.category_title}</button>
-                          {selectedCategoryId === category.category_id && (
-                            <ul className="dropdown-menu sub-dropdown-menu">
-                              {getSubCategoriesForCategory(category.category_id).map(subcategory => (
-                                <li key={subcategory.sub_category_id}>
-                                  <Link to={`/${section.section_title}/${category.category_title}/${subcategory.sub_category_title}`} className="dropdown-item">{subcategory.sub_category_title}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
+                        {/* Handle category click */}
+                        <Link to={`/${section.section_title}/${category.category_title}`} className="dropdown-item" onClick={() => handleCategoryClick(category.category_id)}>
+                          {category.category_title}
+                        </Link>
+                        {/* Render subcategories if category is selected */}
+                        {selectedCategoryId === category.category_id && (
+                          <ul className="dropdown-submenu">
+                            {getSubCategoriesForCategory(category.category_id).map(subcategory => (
+                              <li key={subcategory.sub_category_id}>
+                                {/* Render subcategory links */}
+                                <Link to={`/${section.section_title}/${category.category_title}/${subcategory.sub_category_title}`} className="dropdown-item">
+                                  {subcategory.sub_category_title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -81,21 +93,6 @@ function Navbar() {
           </ul>
         </div>
       </nav>
-      <style>
-        {`
-          .sub-dropdown-menu {
-            position: absolute;
-            top: 0;
-            left: 100%;
-            z-index: 1000; /* Adjust the z-index as needed */
-            background-color: #fff; /* Adjust the background color as needed */
-            border: 1px solid #ccc; /* Adjust the border style as needed */
-            padding: 0.5rem;
-            min-width: 350px; /* Adjust the width as needed */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adjust the box shadow as needed */
-          }
-        `}
-      </style>
     </div>
   );
 }
