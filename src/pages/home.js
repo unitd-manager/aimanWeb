@@ -627,10 +627,11 @@ getBanners();
             </div>
         </div>
     </div>
+    <br></br>
   
    
   
-    <div class="call-back">
+    {/* <div class="call-back">
         <div class="container">
             <div class="bg">
                 <div class="row align-items-center">
@@ -654,7 +655,7 @@ getBanners();
                 </div>
             </div>
         </div>
-    </div>
+    </div> */}
   </div>
     </div>
   );
