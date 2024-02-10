@@ -518,27 +518,27 @@ getBanners();
                     <Slider {...settingsAimaan}>
 
                     {Array.isArray(homeResources) && homeResources.map((item, index) => (
-
-                        <div className="project-slider owl-carousel">
-                                <div key={item.content_id} className="single-box">
-                                    <div className="part-img">
-                                        <img
-                                            src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
-                                            alt={`Resources ${item.content_id}`}
-                                            style={{ width: '380px', height: '225px' }} // Set width to 100%
-                                        />        
-                                    </div>
-                                    <div className="part-txt1">
-                                        {/* <a href="/"><i class="flaticon-link"></i></a> */}
-                                        <div className="title">
-                                            <h3>{item.title}</h3>
-                                        </div>
-                                    </div>
+                        <div className="project-slider owl-carousel" key={item.content_id}>
+                          <a href="/#/RESOURCES"> {/* Wrap the entire content inside the <a> tag */}
+                            <div className="single-box">
+                              <div className="part-img">
+                                <img
+                                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                                  alt={`Resources ${item.content_id}`}
+                                  style={{ width: '380px', height: '225px' }} // Set width to 100%
+                                />        
+                              </div>
+                              <div className="part-txt1">
+                                <i className="flaticon-link"></i> {/* You can move this outside if needed */}
+                                <div className="title">
+                                  <h3>{item.title}</h3>
                                 </div>
-                                     
+                              </div>
+                            </div>
+                          </a>
                         </div>
-                      
-                           ))}
+                      ))}
+
                            </Slider>
                     </div>
                 </div>
