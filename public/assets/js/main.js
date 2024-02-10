@@ -151,7 +151,7 @@
         
         // ========== project slider for home page two ===========
         $('.project-slider').owlCarousel({
-            loop: true,
+            loop: false,
             smartSpeed: 1000,
             margin: 0,
             autoplay: true,

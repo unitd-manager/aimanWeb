@@ -205,8 +205,6 @@ const getblogItems = () => {
         speed: 500,
         slidesToShow: 4, // Display one slide at a time
         slidesToScroll: 1, // Scroll one slide at a time
-  //       prevArrow: <PrevArrow />, // You need to define PrevArrow and NextArrow components
-  // nextArrow: <NextArrow />, // You need to define PrevArrow and NextArrow components
         autoplay: true,
         responsive: [
             {
@@ -224,6 +222,32 @@ const getblogItems = () => {
           
         ],
     };
+
+
+    
+    const settingsAimaan = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3, // Display four slides at a time
+      slidesToScroll: 1, // Scroll one slide at a time
+      autoplay: true,
+      responsive: [
+        {
+          breakpoint: 1140,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
+    };
+    
 
 
 useEffect(() => {
@@ -491,8 +515,11 @@ getBanners();
             <div className="row">
                 <div className="col-xl-12 col-lg-12">
                     <div className="all-projects">
+                    <Slider {...settingsAimaan}>
+
+                    {Array.isArray(homeResources) && homeResources.map((item, index) => (
+
                         <div className="project-slider owl-carousel">
-                            {Array.isArray(homeResources) && homeResources.map((item, index) => (
                                 <div key={item.content_id} className="single-box">
                                     <div className="part-img">
                                         <img
@@ -501,15 +528,18 @@ getBanners();
                                             style={{ width: '380px', height: '225px' }} // Set width to 100%
                                         />        
                                     </div>
-                                    <div className="part-txt">
-                                        <a href="portfolio-details.html"><i class="flaticon-link"></i></a>
+                                    <div className="part-txt1">
+                                        {/* <a href="/"><i class="flaticon-link"></i></a> */}
                                         <div className="title">
                                             <h3>{item.title}</h3>
                                         </div>
                                     </div>
                                 </div>
-                                        ))}
+                                     
                         </div>
+                      
+                           ))}
+                           </Slider>
                     </div>
                 </div>
             </div>
