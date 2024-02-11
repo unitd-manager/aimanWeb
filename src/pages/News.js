@@ -51,6 +51,16 @@ export default function News() {
 //     return new Intl.DateTimeFormat("en-US", options).format(date);
 //   };
 
+const formatDate = (dateString) => {
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+};
+
   return (
     <>
      
@@ -102,7 +112,7 @@ export default function News() {
                           <span>
                             <i class="flaticon-clock"></i>
                           </span>
-                          {data.content_date.split(' ')[0]}
+                          {formatDate(data.content_date)}
 
                         </li>
                         

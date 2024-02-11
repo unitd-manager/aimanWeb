@@ -35,7 +35,16 @@ const Home = () => {
             return ''; // Return empty string if there are no paragraphs
         }
     };
-
+    const formatDate = (dateString) => {
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      const date = new Date(dateString);
+      return new Intl.DateTimeFormat("en-US", options).format(date);
+    };
+    
 
 
       const getBanners = () => {
@@ -351,7 +360,7 @@ getBanners();
               <span>
                 <i className="flaticon-clock"></i>
               </span>
-              {item.content_date.split(' ')[0]}
+               {formatDate(item.content_date)}
             </li>
             {/* <li>
               <span>
@@ -415,7 +424,7 @@ getBanners();
                   <span>
                     <i className="flaticon-clock"></i>
                   </span>
-                  {item.content_date.split(' ')[0]}
+                   {formatDate(item.content_date)}
                 </li>
                 {/* <li>
                   <span>
