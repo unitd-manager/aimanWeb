@@ -237,7 +237,7 @@ export default function Footer() {
                         </Link>
                     </p>
                 </a>
-                <p style={{ margin: 0, color: '#585657' }}>{formatDate(item.creation_date)}</p>
+                <p style={{ margin: 0, }}>{formatDate(item.creation_date)}</p>
             </div>
         </div>
     </div>
@@ -272,7 +272,7 @@ export default function Footer() {
                         </Link>
                     </p>
                 </a>
-                <p style={{ margin: 0, color: '#585657',}}><span>{formatDate(item.creation_date)}</span></p>
+                <p style={{ margin: 0,}}><span>{formatDate(item.creation_date)}</span></p>
             </div>
         </div>
     </div>
@@ -287,33 +287,34 @@ export default function Footer() {
                             style={{ color: 'white', transition: 'color 0.3s', fontSize:'13px' }}
                             onMouseEnter={(e) => e.target.style.color = 'blue'}
                             onMouseLeave={(e) => e.target.style.color = 'white'}
-                             to={`/Events`} onClick={scrollToTop}>நிகழ்வுகள் <span style={{ marginLeft: '150px', color: 'white', 
-                             fontSize:'13px' }}>
-                                {ContentTypeCount.events_count}</span>
+                             to={`/Events`} onClick={scrollToTop}>நிகழ்வுகள் <span>
+                              {/* style={{ marginLeft: '150px', color: 'white', 
+                             fontSize:'13px' }} */}
+                                ({ContentTypeCount.events_count})</span>
                             </Link><br></br><br></br>
                             <Link 
                             style={{ color: 'white', transition: 'color 0.3s', fontSize:'13px' }}
                             onMouseEnter={(e) => e.target.style.color = 'blue'}
                             onMouseLeave={(e) => e.target.style.color = 'white'} 
-                            to={`/News`} onClick={scrollToTop} >செய்திகள் <span style={{ marginLeft: '150px', color: 'white', 
-                            fontSize:'13px' }}>
-                                {ContentTypeCount.news_count}</span>
+                            to={`/News`} onClick={scrollToTop} >செய்திகள் <span>
+                               {/* style={{ marginLeft: '150px', color: 'white', 
+                            fontSize:'13px' }}> */}
+                                ({ContentTypeCount.news_count})</span>
                             </Link><br></br><br></br>
                             <Link 
                             style={{ color: 'white', transition: 'color 0.3s', fontSize:'13px' }}
                             onMouseEnter={(e) => e.target.style.color = 'blue'}
                             onMouseLeave={(e) => e.target.style.color = 'white'}
                             to={`/Articles`} onClick={scrollToTop} >கட்டுரைகள்
-                            <span style={{ marginLeft: '140px', color: 'white', fontSize:'13px' }}>
-                                {ContentTypeCount.article_count}</span>
+                            {/* <span style={{ marginLeft: '140px', color: 'white', fontSize:'13px' }}> */}
+                                <span>({ContentTypeCount.article_count})</span>
                             </Link><br></br><br></br>
                             <Link 
                             style={{ color: 'white', transition: 'color 0.3s', fontSize:'13px' }}
                             onMouseEnter={(e) => e.target.style.color = 'blue'}
                             onMouseLeave={(e) => e.target.style.color = 'white'}
-                            to={`/Resources`} onClick={scrollToTop}>வளங்கள் <span style={{ marginLeft: '160px', color: 'white', 
-                            fontSize:'13px' }}>
-                                {ContentTypeCount.resource_count}</span>
+                            to={`/Resources`} onClick={scrollToTop}>வளங்கள் <span>
+                               ({ContentTypeCount.resource_count})</span>
                             </Link><br></br><br></br>
                             {/* <Link 
                             style={{ color: 'white', transition: 'color 0.3s', fontSize:'14px'}}
