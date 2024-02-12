@@ -11,6 +11,20 @@ export default function Footer() {
   const [ContentTypeCount, setContentTypeCount] = useState([]);
   const [blogItems, setBlogItems] = useState([]);
   const [Events, setEvents] = useState([]);
+  // Function to scroll the page to the top
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const formatDate = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-US", options).format(date);
+  };
 
   const getblogItems = () => {
     api
@@ -223,7 +237,7 @@ export default function Footer() {
                         </Link>
                     </p>
                 </a>
-                <p style={{ margin: 0 }}>{item.creation_date} {item.created_by}</p>
+                <p style={{ margin: 0, color: '#585657' }}>{formatDate(item.creation_date)}</p>
             </div>
         </div>
     </div>
@@ -258,7 +272,7 @@ export default function Footer() {
                         </Link>
                     </p>
                 </a>
-                <p style={{ margin: 0 }}>{item.creation_date} {item.created_by}</p>
+                <p style={{ margin: 0, color: '#585657',}}><span>{formatDate(item.creation_date)}</span></p>
             </div>
         </div>
     </div>
@@ -270,32 +284,35 @@ export default function Footer() {
                         <div class="link">
                             <h3 >POPULAR CATEGORY</h3>
                             <Link 
-                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'14px' }}
+                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'13px' }}
                             onMouseEnter={(e) => e.target.style.color = 'blue'}
                             onMouseLeave={(e) => e.target.style.color = 'white'}
-                             to={`/Events`}>நிகழ்வுகள் <span style={{ marginLeft: '150px', color: 'white', fontSize:'14px' }}>
+                             to={`/Events`} onClick={scrollToTop}>நிகழ்வுகள் <span style={{ marginLeft: '150px', color: 'white', 
+                             fontSize:'13px' }}>
                                 {ContentTypeCount.events_count}</span>
                             </Link><br></br><br></br>
                             <Link 
-                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'14px' }}
+                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'13px' }}
                             onMouseEnter={(e) => e.target.style.color = 'blue'}
                             onMouseLeave={(e) => e.target.style.color = 'white'} 
-                            to={`/News`}>செய்திகள் <span style={{ marginLeft: '150px', color: 'white', fontSize:'14px' }}>
+                            to={`/News`} onClick={scrollToTop} >செய்திகள் <span style={{ marginLeft: '150px', color: 'white', 
+                            fontSize:'13px' }}>
                                 {ContentTypeCount.news_count}</span>
                             </Link><br></br><br></br>
                             <Link 
-                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'14px' }}
+                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'13px' }}
                             onMouseEnter={(e) => e.target.style.color = 'blue'}
                             onMouseLeave={(e) => e.target.style.color = 'white'}
-                            to={`/Articles`}>கட்டுரைகள்
-                            <span style={{ marginLeft: '140px', color: 'white', fontSize:'14px' }}>
+                            to={`/Articles`} onClick={scrollToTop} >கட்டுரைகள்
+                            <span style={{ marginLeft: '140px', color: 'white', fontSize:'13px' }}>
                                 {ContentTypeCount.article_count}</span>
                             </Link><br></br><br></br>
                             <Link 
-                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'14px' }}
+                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'13px' }}
                             onMouseEnter={(e) => e.target.style.color = 'blue'}
                             onMouseLeave={(e) => e.target.style.color = 'white'}
-                            to={`/Resources`}>வளங்கள் <span style={{ marginLeft: '160px', color: 'white', fontSize:'14px' }}>
+                            to={`/Resources`} onClick={scrollToTop}>வளங்கள் <span style={{ marginLeft: '160px', color: 'white', 
+                            fontSize:'13px' }}>
                                 {ContentTypeCount.resource_count}</span>
                             </Link><br></br><br></br>
                             {/* <Link 
