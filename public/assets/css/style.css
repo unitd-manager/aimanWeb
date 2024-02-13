@@ -2523,8 +2523,8 @@ span {
 }
 
 .footer {
-  padding-top: 50px;
-  padding-bottom: 30px;
+  padding-top: 60px;
+  padding-bottom: 0px;
   /* background: url(../images/footer-bg.jpg) center center no-repeat; */
    background: black;
   background-size: cover;
@@ -2534,7 +2534,7 @@ span {
 }
 .footer .main-footer {
   /* padding: 120px 0; */
-  padding: 10px 0;
+  padding: 40px 20px;
 }
 .footer .main-footer h3 {
   font-size: 20px;
@@ -2658,43 +2658,34 @@ span {
           box-shadow: 0px 5px 5px 0px rgba(51, 51, 51, 0.3);
 }
 .footer .copyright {
-  background: #201947;
+  background-color:   #000009;
+  padding-top: -50px;
 }
 .footer .copyright p {
-  font-size: 16px;
+  font-size: 12px;
   line-height: 100%;
   color: #fff;
-  padding: 29px 0 27px;
+  padding: 9px 0 9px;
   margin-bottom: 0;
 }
 .footer .copyright .link {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  height: 120%;
+  margin-left:140px;
+  
 }
 .footer .copyright .link a {
-  font-size: 16px;
-  line-height: 100%;
+  font-size: 12px;
+  line-height: 10%;
   color: #fff;
-  padding: 0 15px;
-  position: relative;
+  padding:  15px;
+  
+
 }
 .footer .copyright .link a:after {
   content: "";
-  position: absolute;
+ 
   top: 0;
-  right: -0.5px;
+  right: 2.5px;
   width: 1px;
   height: 100%;
   background: #fff;
