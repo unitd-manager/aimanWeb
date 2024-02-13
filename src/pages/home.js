@@ -670,9 +670,9 @@ getBanners();
   
    
   
-    {/* <div class="call-back">
+    <div class="call-back">
         <div class="container">
-            <div class="bg">
+            <div class="bg" style={{marginBottom:"-30px"}}>
                 <div class="row align-items-center">
                     <div class="col-xl-8 col-lg-8 col-md-8">
                         <div class="part-txt">
@@ -694,7 +694,7 @@ getBanners();
                 </div>
             </div>
         </div>
-    </div> */}
+    </div>
   </div>
     </div>
   );
