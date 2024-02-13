@@ -488,7 +488,7 @@ getBanners();
                 <div class="col-xl-6 col-lg-6 col-md-8">
                     <div class="part-txt">
                         <div class="heading" style={{textAlign:"center"}}>
-                            <h5>{aboutUs && aboutUs.title}</h5>
+                            <h2>{aboutUs && aboutUs.title}</h2>
                         
                         </div>
                         <p>{extractFirstParagraph(aboutUs.description)}</p>           
