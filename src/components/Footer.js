@@ -65,6 +65,11 @@ export default function Footer() {
     getEvents();
   }, []);
 
+  const getFormatedText = (title) => {
+    var formatted = title.toLowerCase();
+    return formatted.split(" ").join("-");
+  };
+
   useEffect(() => {
     api
       .get("contact/getCompanyName")
@@ -410,19 +415,19 @@ export default function Footer() {
         </div>
 
         {/* ... (existing code) */}
-        <div class="copyright" >
+        <div class="copyright">
           <div class="container">
             <div class="row">
               <div class="col-xl-6 col-lg-6">
                 <p>
                   &copy; Aiman Sangam. Designed by{" "}
                   <a
-                  href="https://unitdweb.unitdtechnologies.com"
-                  style={{ color: '#3399FF', textDecoration: 'none' }}
-                  target="_blank"  // Opens the link in a new tab
-                  rel="noopener noreferrer"  // Recommended for security reasons
-                >
-                  {companyname && companyname.CompanyName}
+                    href="https://unitdweb.unitdtechnologies.com"
+                    style={{ color: "#3399FF", textDecoration: "none" }}
+                    target="_blank" // Opens the link in a new tab
+                    rel="noopener noreferrer" // Recommended for security reasons
+                  >
+                    {companyname && companyname.CompanyName}
                   </a>
                 </p>
               </div>
@@ -431,7 +436,9 @@ export default function Footer() {
                   {menus.map((data, index) => (
                     <Link
                       key={index}
-                      to={`/${data.section_title.toLowerCase()}`}
+                      to={`/${getFormatedText(
+                        data.section_title
+                      ).toLowerCase()}`}
                     >
                       {data.section_title}
                     </Link>
