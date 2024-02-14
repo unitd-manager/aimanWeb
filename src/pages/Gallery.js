@@ -146,7 +146,7 @@ const Home = () => {
             <div class="container">
                 <div class="row">
                     {gallery.map((image, index) => (
-                        <div key={index} class="col-xl-4 col-lg-4 col-sm-6">
+                        <div key={index} class="col-xl-4 col-lg-4 col-sm-6" style={{paddingBottom:"35px"}}>
                             <div class="single-box">
                                 <div class="part-img">
                                     <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${image.file_name}`} 

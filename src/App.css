@@ -127,4 +127,9 @@
 .image-container {
   display: flex; /* Ensures images are displayed in a row */
 }
+.placeholder-bold {
+  color: 	#000000;
+  font-weight: bold;
+
+}
 
