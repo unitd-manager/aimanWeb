@@ -422,7 +422,7 @@ export default function Footer() {
                 <p>
                   &copy; Aiman Sangam. Designed by{" "}
                   <a
-                    href="https://unitdweb.unitdtechnologies.com"
+                    href="http://www.unitdtechnologies.com/"
                     style={{ color: "#3399FF", textDecoration: "none" }}
                     target="_blank" // Opens the link in a new tab
                     rel="noopener noreferrer" // Recommended for security reasons
