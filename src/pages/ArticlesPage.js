@@ -120,7 +120,7 @@ export default function ArticlesPage(props) {
               <div class="blog-details">
                 <div key={data.id} class="blog-details">
                   <div class="title">
-                    <h2>{data.title}</h2>
+                    <h3>{data.title}</h3>
                     <ul>
                       <li>
                         <span>
@@ -143,9 +143,11 @@ export default function ArticlesPage(props) {
                       alt="post-thumb"
                     />
                   </div>
-                  <div class="main-txt">
-                    <p>{ReactHtmlParser(data.description)}</p>
-                  </div>
+                  <div className="text-left">
+                  <p className="description" style={{ fontSize:"14px"}} >
+                    {ReactHtmlParser(data.description)}
+                  </p>
+                </div>
 
                   {/* <div class="other-option">
                       <div class="share">

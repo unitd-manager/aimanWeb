@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import {  useParams } from 'react-router-dom';
+import ReactHtmlParser from "react-html-parser";
 
 import api from "../constants/api";
 // import NavMenu from '../components/NavMenu'
@@ -88,13 +89,17 @@ export default function News() {
                     <div className="row justify-content-center">
                         {News.map((image, index) => (
                             <div key={index} className="col-xl-12 col-lg-12 col-md-12">
-                                <div className="part-img" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                                <div className="part-img">
                                     <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${image.file_name}`} alt={image.alt}  width="600px"
                       height="550px" />
                                 </div><br/>
-                                <h3 style={{paddingBottom:"15px", fontSize:"25px", textAlign:"center"}}>{image.title}</h3>
+                                <h3>{image.title}</h3><br/>
                                 <div className="col-xl-12 col-lg-12 col-md-12">
-                                    <div className="part-txt" dangerouslySetInnerHTML={{ __html: image.description }} />
+                                <div className="text-left">
+                  <p className="description" style={{ fontSize:"14px"}} >
+                    {ReactHtmlParser(image.description)}
+                  </p>
+                </div>
                                 </div>
                             </div>
                         ))}

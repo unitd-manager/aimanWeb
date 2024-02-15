@@ -7,6 +7,7 @@ import api from '../constants/api';
 
 const ServiceSubCategory = () => {   
     const { id } = useParams();
+    console.log("Subcategory ID:", id);
 
     const [subContent, setSubContent] = useState([]);
 

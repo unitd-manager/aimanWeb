@@ -67,13 +67,15 @@ function App() {
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-sm-4 d-flex justify-content-sm-end justify-content-center">
-                        <div class="top-right">
-                            <a href="https://www.facebook.com/profile.php?id=100085667005902" class="fb"><i class="flaticon-facebook"></i></a>
-                            <a href="https://twitter.com/PenaKural" class="tw"><i class="flaticon-twitter"></i></a>
-                            <a href="#" class="ld"><i class="flaticon-linkedin"></i></a>
-                            <a href="https://www.youtube.com/channel/UCl-FlAugZVHLXwJLWZ4C0TA" class="yt"><i class="flaticon-youtube"></i></a>
-                        </div>
-                    </div>
+    <div class="top-right">
+        <a href="https://www.facebook.com/profile.php?id=100085667005902" class="fb" style={{ marginRight: '10px' }}><i class="flaticon-facebook"></i></a>
+        <a href="https://twitter.com/PenaKural" class="tw" style={{ marginRight: '10px' }}><i class="flaticon-twitter"></i></a>
+        <a href="#" class="ld" style={{ marginRight: '10px' }}><i class="flaticon-linkedin"></i></a>
+        <a href="https://www.youtube.com/channel/UCl-FlAugZVHLXwJLWZ4C0TA" class="yt" style={{ marginRight: '10px' }}><i class="flaticon-youtube"></i></a>
+    </div>
+</div>
+
+
               </div>
             </div>
           </div>
@@ -120,7 +122,7 @@ function App() {
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/Articles/:title" element={<ArticlesPage />} />
           <Route path="/NewArticles/:title" element={<NewArticles />} />
-          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/About-Us" element={<AboutUs />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Membership" element={<Membership />} />
           <Route path="/QuranPlayer" element={<QuranPlayer />} />
@@ -128,10 +130,10 @@ function App() {
           <Route path="/Events" element={<Events />} />
           <Route path="/NewsEdit/:id" element={<NewsEdit />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
-          <Route path="/AimanTeam" element={<AimaanTeam />} />
+          <Route path="/Aiman-Team" element={<AimaanTeam />} />
           <Route path="/services/:title" element={<Religious />} />
           <Route path="/services/:id/:id" element={<ServiceSubCategory />} />
-          <Route path="/AimanPastOfficeBearers" element={<PastOfficeBearers />} />
+          <Route path="/Aiman-Past-Office-Bearers" element={<PastOfficeBearers />} />
           {/* Add other routes as needed */}
           <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
