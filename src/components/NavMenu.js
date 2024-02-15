@@ -8,6 +8,8 @@ function Navbar() {
   const [subCategories, setSubCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedSection, setSelectedSection] = useState(null); // Add state for selected section
+  const [sectiones, setSectiones] = useState([]);
+
 
   useEffect(() => {
     // Fetch sections, categories, and subcategories
@@ -19,7 +21,16 @@ function Navbar() {
         console.error("Error fetching sections:", error);
       });
 
-    api.get('/category/getCategories')
+
+      api.get('/section/getSectionMenu')
+      .then((res) => {
+        setSectiones(res.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+      });
+
+    api.get('/category/getCategories',{section_id:sectiones&&sectiones.section_id})
       .then((res) => {
         setCategories(res.data.data);
       })
@@ -27,7 +38,7 @@ function Navbar() {
         console.error("Error fetching categories:", error);
       });
 
-    api.get('/subcategory/getSubCategory')
+    api.get('/subcategory/getSubCategory',{section_id:categories&&categories.section_id})
       .then((res) => {
         setSubCategories(res.data.data);
       })
