@@ -66,7 +66,14 @@ function App() {
                     </ul>
                   </div>
                 </div>
-               
+                <div class="col-xl-3 col-lg-3 col-sm-4 d-flex justify-content-sm-end justify-content-center">
+                        <div class="top-right">
+                            <a href="https://www.facebook.com/profile.php?id=100085667005902" class="fb"><i class="flaticon-facebook"></i></a>
+                            <a href="https://twitter.com/PenaKural" class="tw"><i class="flaticon-twitter"></i></a>
+                            <a href="#" class="ld"><i class="flaticon-linkedin"></i></a>
+                            <a href="https://www.youtube.com/channel/UCl-FlAugZVHLXwJLWZ4C0TA" class="yt"><i class="flaticon-youtube"></i></a>
+                        </div>
+                    </div>
               </div>
             </div>
           </div>
@@ -91,7 +98,7 @@ function App() {
                 <div class="col-xl-12 col-lg-12 col-12 d-flex align-items-center">
                   <div class="logo">
                     <a href="/">
-                    <img src={logo} alt="signature" width="800px" height="30px" style={{paddingLeft:"300px"}}/>
+                    <img src={logo} alt="signature" width="750px" height="65px" style={{paddingLeft:"300px"}}/>
                     </a>
                   </div>
                 </div>
@@ -113,7 +120,7 @@ function App() {
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/Articles/:title" element={<ArticlesPage />} />
           <Route path="/NewArticles/:title" element={<NewArticles />} />
-          <Route path="/About Us" element={<AboutUs />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Membership" element={<Membership />} />
           <Route path="/QuranPlayer" element={<QuranPlayer />} />
@@ -121,10 +128,10 @@ function App() {
           <Route path="/Events" element={<Events />} />
           <Route path="/NewsEdit/:id" element={<NewsEdit />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
-          <Route path="/Aiman Team" element={<AimaanTeam />} />
+          <Route path="/AimanTeam" element={<AimaanTeam />} />
           <Route path="/services/:title" element={<Religious />} />
           <Route path="/services/:title/:title" element={<ServiceSubCategory />} />
-          <Route path="/PastOfficeBearers" element={<PastOfficeBearers />} />
+          <Route path="/AimanPastOfficeBearers" element={<PastOfficeBearers />} />
           {/* Add other routes as needed */}
           <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>

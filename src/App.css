@@ -132,4 +132,12 @@
   font-weight: bold;
 
 }
+.active {
+ 
+color: yellow;
+}
+
+.navbar-nav .nav-link.active {
+  color: #e8a220 !important;
+}
 
