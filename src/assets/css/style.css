@@ -5840,11 +5840,11 @@ span {
 .contact .boxes .single-box .part-txt span {
   font-size: 16px;
   line-height: 31px;
-  color: #4b4b46;
+  color: #201947;
 }
 .contact .form {
   padding: 120px 0;
-  background: #0D0925;
+  
   border-radius: 10px;
 }
 .contact .form input {
@@ -5854,8 +5854,9 @@ span {
   border: 1px solid #362E65;
   border-radius: 5px;
   margin-bottom: 30px;
-  background: #120D2E;
-  color: #fff;
+  
+  outline-color: #120D2E;
+  
   font-size: 14px;
 }
 .contact .form input::-webkit-input-placeholder {
@@ -5880,8 +5881,8 @@ span {
   border: 1px solid #362E65;
   border-radius: 5px;
   margin-bottom: 30px;
-  background: #120D2E;
-  color: #fff;
+  outline-color: #120D2E;
+ background-color: #fff;
   font-size: 14px;
 }
 .contact .form textarea::-webkit-input-placeholder {

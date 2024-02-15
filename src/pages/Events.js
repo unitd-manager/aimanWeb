@@ -8,7 +8,7 @@ export default function Events() {
   const [Events, setEvents] = useState([]);
 
   //    const [filterSortType, setFilterSortType] = useState('');
-  //      const [filterSortValue, setFilterSortValue] = useState('');
+  //    const [filterSortValue, setFilterSortValue] = useState('');
   //   const [searchQuery, setSearchQuery] = useState("");
   //   const [sortType, setSortType] = useState("");
   //   const [sortValue, setSortValue] = useState("");
