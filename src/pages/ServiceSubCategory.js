@@ -1,91 +1,69 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import api from "../constants/api";
-import { Link } from "react-router-dom";
-import NavMenu from "../components/NavMenu";
-import ReactHtmlParser from "react-html-parser";
-// import imageBase from "../../../constants/image.js";
+import AOS from "aos";
+import "aos/dist/aos.css";
+//import NavMenu from '../components/NavMenu'
+import api from '../constants/api';
 
-export default function ServiceSubCategory(props) {
+const ServiceSubCategory = () => {   
+    const { id } = useParams();
 
-  const [details, setDetails] = useState([]);
+    const [subContent, setSubContent] = useState([]);
 
+    useEffect(() => {
+        const getSubContent = () => {
+            //var formated = sub_category_id.split("-").join(" ");
 
-//   const getArticlenews = () => {
-//   api.post("/getBlogTitle", { title: formated }).then((res) => {
-//     setBlogs(res.data.data);
-//   });
-// };
+            api
+                .post("/content/getSubCategoryContent",{ sub_category_id: id })
+                .then((res) => {
+                  setSubContent(res.data.data);
+                    AOS.init(); // Move AOS.init() inside the promise chain to ensure it's called after data is fetched
+                })
+                .catch(() => { });
+        };
 
-const {title}=useParams();
+        getSubContent();   
+    }, [id]);
 
-useEffect(() => {
-    const getDetailsById = () => {
-        var formated = title.split("-").join(" ");
-        api.post("content/getSubContent", { title: formated }).then((res) => {
-            setDetails(res.data.data);
-        });
-      };
-
-      getDetailsById();
-}, [title]); 
-
-
+    return (
+        <div>
  
-
-
-  return (
-    <>
-      
-
-      <div class="breadcrumb portfolio-breadcrumb">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-xl-3 col-lg-3">
-              <div class="part-txt">
-                <h1>Services</h1>
-                <ul>
-                  <li>Home</li>
-                  <li>-</li>
-                  <li>Services</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="blog-inner">
-        <div class="container">
-          <div class="row justify-content-center">
-            {details.map((data, index) => (
-              <div key={index} class="col-xl-8 col-lg-4 col-md-4">
-                <div class="blog-details">
-                <div class="title">
-                  <h2>{data.sub_category_title}</h2>
-                  <ul>
-                    
-                    {/* <li>
-                      <span>
-                        <i class="flaticon-clock"></i>
-                      </span>
-                      {getFormattedDate(data.content_date)}
-                    </li> */}
-                  </ul>
+            <div className="breadcrumb service-breadcrumb">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-xl-3 col-lg-3">
+                            <div className="part-txt">
+                                <h1>Services</h1>
+                                <ul>
+                                    <li>Home</li>
+                                    <li>-</li>
+                                    <li>Service Detail</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="main-txt">
-                  <p>{ReactHtmlParser(data.description)}</p>
-                </div>
-
-               
-              </div>
             </div>
-           
-                ))}
-          </div>
-        </div>
-      </div>
 
-    </>
-  );
+            <div className="feature-2">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        {subContent.map((data, index) => (
+                            <div key={index} className="col-xl-12 col-lg-12 col-md-12">
+                                <div className="part-img">
+                                <h2>{data.sub_category_title}</h2>
+                                </div>
+                                <div className="col-xl-12 col-lg-12 col-md-12">
+                                    <div className="part-txt" dangerouslySetInnerHTML={{ __html: data.description }} />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
+
+export default ServiceSubCategory;

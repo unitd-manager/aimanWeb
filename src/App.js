@@ -123,7 +123,7 @@ function App() {
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
           <Route path="/Aiman Team" element={<AimaanTeam />} />
           <Route path="/services/:title" element={<Religious />} />
-          <Route path="/services/:title/:title" element={<ServiceSubCategory />} />
+          <Route path="/services/:id/:id" element={<ServiceSubCategory />} />
           <Route path="/PastOfficeBearers" element={<PastOfficeBearers />} />
           {/* Add other routes as needed */}
           <Route path="/blog/:id" element={<BlogDetails />} />
