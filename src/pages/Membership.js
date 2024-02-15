@@ -107,9 +107,10 @@ const Home = () => {
     name="first_name"
     style={{
       backgroundColor: "#FFFFFF",
-      border: "1px solid white"
+      border: "1px solid white",
+      color: "#000000"
     }}
-    className="placeholder-bold"
+   
     onChange={(e) => {
       handleSectionForms(e);
     }}
@@ -122,10 +123,10 @@ const Home = () => {
                   type="text"
                   placeholder="Last Name"
                   style={{ backgroundColor: "#FFFFFF" ,
-                  border: "1px solid white"
+                  border: "1px solid white",
+                  color: "#000000"
                 }}
                   name="last_name"
-                  className="placeholder-bold"
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
@@ -138,8 +139,8 @@ const Home = () => {
                   type="text"
                   name="mobile"
                   style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white" }}
-                  className="placeholder-bold"
+                  border: "1px solid white",
+                  color: "#000000" }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
@@ -152,8 +153,8 @@ const Home = () => {
           type="text"
           name="birth_year"
           style={{ backgroundColor: "#FFFFFF",
-          border: "1px solid white" }}
-          className="placeholder-bold"
+          border: "1px solid white",
+          color: "#000000" }}
           onChange={handleSectionForms}
         />
         {validationError && (
@@ -167,22 +168,22 @@ const Home = () => {
                   type="text"
                   name="address"
                   style={{ backgroundColor: "#FFFFFF" ,
-                  border: "1px solid white"}}
-                  className="placeholder-bold"
+                  border: "1px solid white",
+                  color: "#000000"}}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
-              <label htmlFor="address2" style={{color:"#FFFFFF"}}>Native Place Dtails</label>
+              <label htmlFor="address2" style={{color:"#FFFFFF"}}>Native Place Details</label>
   <br />
                 <input
                   type="text"
                   name="address2"
                   style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white" }}
-                  className="placeholder-bold"
+                  border: "1px solid white",
+                  color: "#000000" }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
@@ -195,8 +196,8 @@ const Home = () => {
                   type="text"
                   name="qualification"
                   style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white" }}
-                  className="placeholder-bold"
+                  border: "1px solid white" ,
+                  color: "#000000"}}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
@@ -209,8 +210,10 @@ const Home = () => {
                   type="text"
                   name="position"
                   style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white" }}
-                  className="placeholder-bold"
+                  border: "1px solid white",
+                  color: "#000000"
+                 }}
+                  
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
@@ -224,8 +227,8 @@ const Home = () => {
                   name="from_year"
                  
                   style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white" }}
-                  className="placeholder-bold"
+                  border: "1px solid white",
+                  color: "#000000" }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}

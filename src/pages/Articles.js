@@ -92,13 +92,14 @@ export default function Articles() {
                             src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
                             alt={data.alt}
                             width="500px"
-                            height="200px"
+                            height="290px"
+                            
                           />
                           <div class="tags"> </div>
                         </div>
 
-                        <div class="part-txt">
-                          <div class="blog-info">
+                        <div class="part-txt"style={{backgroundColor:"#110d54"}}>
+                          <div class="blog-info" >
                             <ul>
                               <li>
                                 <span>
@@ -114,16 +115,19 @@ export default function Articles() {
                               </li>
                             </ul>
                           </div>
-                          <h3>{data.title}</h3>
+                          <h3 style={{color:"#FFFFFF"}}>{data.title}</h3>
                           <Link
                             to={getFormatedText(data.title)}
                             state={{ data: data }}
                             className="link"
+                            style={{ color: "#FFFFFF" }}
                           >
                             {" "}
                             Read More
                           </Link>
-                          <p className="description">
+
+                        
+                          <p className="description" style={{fontSize:"14px", paddingTop:"14px", color:"#FFFFFF"}}>
                             {data.description
                               .replace(/<[^>]*>?/gm, "")
                               .slice(0, 72)}

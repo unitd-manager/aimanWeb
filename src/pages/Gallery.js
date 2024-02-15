@@ -161,7 +161,7 @@ const Home = () => {
                                    
                                 </div>
                                 <div class="part-txt">
-                                    <a href="portfolio-details.html">{image.display_title}<span>{image.subtitle}</span></a>
+                                    <a href="portfolio-details.html"onClick={(e) => { e.preventDefault(); handleImageClick(image); }}>{image.display_title}</a>
                                 </div>
                             </div>
                         </div>
