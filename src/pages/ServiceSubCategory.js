@@ -1,14 +1,14 @@
 import React, { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from "../constants/api";
-// import { Link } from "react-router-dom";
-// import NavMenu from "../components/NavMenu";
+import { Link } from "react-router-dom";
+import NavMenu from "../components/NavMenu";
 import ReactHtmlParser from "react-html-parser";
 // import imageBase from "../../../constants/image.js";
 
-export default function ArticlesPage(props) {
+export default function ServiceSubCategory(props) {
 
-  const [news1, setNews1] = useState([]);
+  const [details, setDetails] = useState([]);
 
 
 //   const getArticlenews = () => {
@@ -20,14 +20,14 @@ export default function ArticlesPage(props) {
 const {title}=useParams();
 
 useEffect(() => {
-    const getNewsById = () => {
+    const getDetailsById = () => {
         var formated = title.split("-").join(" ");
-        api.post("section/getMostPopularnews", { title: formated }).then((res) => {
-          setNews1(res.data.data);
+        api.post("content/getSubContent", { title: formated }).then((res) => {
+            setDetails(res.data.data);
         });
       };
 
-  getNewsById();
+      getDetailsById();
 }, [title]); 
 
 
@@ -43,11 +43,11 @@ useEffect(() => {
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-3">
               <div class="part-txt">
-                <h1>Article</h1>
+                <h1>Services</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>Article</li>
+                  <li>Services</li>
                 </ul>
               </div>
             </div>
@@ -57,18 +57,13 @@ useEffect(() => {
       <div class="blog-inner">
         <div class="container">
           <div class="row justify-content-center">
-            {news1.map((data, index) => (
+            {details.map((data, index) => (
               <div key={index} class="col-xl-8 col-lg-4 col-md-4">
                 <div class="blog-details">
                 <div class="title">
-                  <h2>{data.title}</h2>
+                  <h2>{data.sub_category_title}</h2>
                   <ul>
-                    <li>
-                      <span>
-                        <i class="flaticon-user"></i>
-                      </span>
-                      {data.modified_by}
-                    </li>
+                    
                     {/* <li>
                       <span>
                         <i class="flaticon-clock"></i>
@@ -77,13 +72,7 @@ useEffect(() => {
                     </li> */}
                   </ul>
                 </div>
-                <div class="main-img">
-                  <img
-                    src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
-                    className="img-fluid card-img-top"
-                    alt="post-thumb"
-                  />
-                </div>
+                
                 <div class="main-txt">
                   <p>{ReactHtmlParser(data.description)}</p>
                 </div>

@@ -82,7 +82,10 @@ export default function ArticlesPage(props) {
 
   return (
     <>
-      <div class="breadcrumb portfolio-breadcrumb" style={{ backgroundImage: `url(${bannerImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div class="breadcrumb portfolio-breadcrumb" 
+      style={{backgroundImage: `url(${bannerImage})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center" }}>
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-3">
@@ -135,7 +138,7 @@ export default function ArticlesPage(props) {
                   </div>
                   <div class="main-img">
                     <img
-                      src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                       src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
                       className="img-fluid card-img-top"
                       alt="post-thumb"
                     />
@@ -170,7 +173,7 @@ export default function ArticlesPage(props) {
                       {/* <div class="img">
                         <a href="blog-details.html">
                           <img
-                            src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                            src={http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}}
                             alt="image"
                           ></img>
                         </a>
@@ -273,7 +276,7 @@ export default function ArticlesPage(props) {
                                 "en-US"
                               )}
                             </span>
-                            {/* <Link to={`/NewArticles/${data.content_id}`}>
+                            {/* <Link to={/NewArticles/${data.content_id}}>
                               {" "}
                               Read More
                             </Link> */}
@@ -298,7 +301,7 @@ export default function ArticlesPage(props) {
                             <div key={data.id} class="col-md-6 mb-4">
                               <div class="img">
                                 <img
-                                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                                 src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
                                   width="200px"
                                   height="60px"
                                   alt="post-thumb"

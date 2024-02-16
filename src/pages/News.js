@@ -51,6 +51,16 @@ export default function News() {
 //     return new Intl.DateTimeFormat("en-US", options).format(date);
 //   };
 
+const formatDate = (dateString) => {
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+};
+
   return (
     <>
      
@@ -83,7 +93,7 @@ export default function News() {
                     <img
                       src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
                       alt={data.alt}
-                      width="300px"
+                      width="380px"
                       height="250px"
                     />
                     <div class="tags"> </div>
@@ -96,13 +106,14 @@ export default function News() {
                           <span>
                             <i class="flaticon-user"></i>
                           </span>
-                          {data.modified_by}
+                          Admin
                         </li>
                         <li>
                           <span>
                             <i class="flaticon-clock"></i>
                           </span>
-                          {data.creation_date}
+                          {formatDate(data.content_date)}
+
                         </li>
                         
                       </ul>

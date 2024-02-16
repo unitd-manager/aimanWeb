@@ -100,21 +100,32 @@ const Home = () => {
         <form className="form" style={{ backgroundColor: "#183368" }}>
             <div className="row justify-content-center">
               <div className="col-xl-5 col-lg-5 col-md-6">
-                <input
-                  type="text"
-                  placeholder="First Name*"
-                  name="first_name"
-                  style={{ backgroundColor: "#182568" }}
-                  onChange={(e) => {
-                    handleSectionForms(e);
-                  }}
-                />
+              <label htmlFor="first_name" style={{color:"#FFFFFF"}}>First Name</label>
+  <br />
+  <input
+    type="text"
+    name="first_name"
+    style={{
+      backgroundColor: "#FFFFFF",
+      border: "1px solid white",
+      color: "#000000"
+    }}
+   
+    onChange={(e) => {
+      handleSectionForms(e);
+    }}
+  />
               </div>
               <div className="col-xl-5 col-lg-5 col-md-6">
+              <label htmlFor="last_name" style={{color:"#FFFFFF"}}>Last Name</label>
+  <br />
                 <input
                   type="text"
                   placeholder="Last Name"
-                  style={{ backgroundColor: "#182568" }}
+                  style={{ backgroundColor: "#FFFFFF" ,
+                  border: "1px solid white",
+                  color: "#000000"
+                }}
                   name="last_name"
                   onChange={(e) => {
                     handleSectionForms(e);
@@ -122,22 +133,28 @@ const Home = () => {
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
+              <label htmlFor="mobile" style={{color:"#FFFFFF"}}>UAE Mobile Number</label>
+  <br />
                 <input
                   type="text"
-                  placeholder="UAE Mobile Number"
                   name="mobile"
-                  style={{ backgroundColor: "#182568" }}
+                  style={{ backgroundColor: "#FFFFFF",
+                  border: "1px solid white",
+                  color: "#000000" }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
+              <label htmlFor="birth_year" style={{color:"#FFFFFF"}}>Year of birth</label>
+  <br />
               <input
           type="text"
-          placeholder="Year of birth"
           name="birth_year"
-          style={{ backgroundColor: "#182568" }}
+          style={{ backgroundColor: "#FFFFFF",
+          border: "1px solid white",
+          color: "#000000" }}
           onChange={handleSectionForms}
         />
         {validationError && (
@@ -145,55 +162,73 @@ const Home = () => {
         )}
               </div>
               <div className="col-xl-10 col-lg-10" style={{backgroundColor:"#183368"}}>
+              <label htmlFor="address" style={{color:"#FFFFFF"}}>Location in UAE</label>
+  <br />
                 <input
                   type="text"
-                  placeholder="Location in UAE"
                   name="address"
-                  style={{ backgroundColor: "#182568" }}
+                  style={{ backgroundColor: "#FFFFFF" ,
+                  border: "1px solid white",
+                  color: "#000000"}}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
+              <label htmlFor="address2" style={{color:"#FFFFFF"}}>Native Place Details</label>
+  <br />
                 <input
                   type="text"
-                  placeholder="Native Place Details"
                   name="address2"
-                  style={{ backgroundColor: "#182568" }}
+                  style={{ backgroundColor: "#FFFFFF",
+                  border: "1px solid white",
+                  color: "#000000" }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
+              <label htmlFor="qualification" style={{color:"#FFFFFF"}}>Qualification</label>
+  <br />
                 <input
                   type="text"
-                  placeholder="Qualification"
                   name="qualification"
-                  style={{ backgroundColor: "#182568" }}
+                  style={{ backgroundColor: "#FFFFFF",
+                  border: "1px solid white" ,
+                  color: "#000000"}}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
+              <label htmlFor="position" style={{color:"#FFFFFF"}}>Present profession / Job</label>
+  <br />
                 <input
                   type="text"
-                  placeholder="Present profession or Job"
                   name="position"
-                  style={{ backgroundColor: "#182568" }}
+                  style={{ backgroundColor: "#FFFFFF",
+                  border: "1px solid white",
+                  color: "#000000"
+                 }}
+                  
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div class="col-xl-10 col-lg-10">
+              <label htmlFor="from_year" style={{color:"#FFFFFF"}}>Since when you are in UAE</label>
+  <br />
                 <input
                   type="text"
                   name="from_year"
-                  placeholder="Since when you are in UAE"
-                  style={{ backgroundColor: "#182568" }}
+                 
+                  style={{ backgroundColor: "#FFFFFF",
+                  border: "1px solid white",
+                  color: "#000000" }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}

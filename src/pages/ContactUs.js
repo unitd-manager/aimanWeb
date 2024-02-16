@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Form, Card, FormGroup, Input, Button, CardBody } from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Input, Button } from 'reactstrap';
 import api from "../constants/api";
 
 const ContactUs = () => {
@@ -119,8 +119,7 @@ const ContactUs = () => {
               contactData.map(item => (
                     <div key={item.title}>
                       <h3>Email:</h3>
-                       <h4>{stripHtmlTags(item.description)}</h4>
-                                         </div>  ))
+                      <span>{stripHtmlTags(item.description)}</span>                     </div>  ))
                                            }
          </Row>
           <Form className="form mt-5" onSubmit={handleSubmit} >

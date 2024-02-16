@@ -1,36 +1,72 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import api from "../constants/api";
 
 function Navbar() {
-  // Define state to store section titles and categories
   const [sections, setSections] = useState([]);
-  const [subSections, setSubSections] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [selectedSection, setSelectedSection] = useState(null); // Add state for selected section
+  const [sectiones, setSectiones] = useState([]);
 
-  // Function to fetch sections and categories
+
   useEffect(() => {
-    // Fetch sections
+    // Fetch sections, categories, and subcategories
     api.get('/section/getSectionMenu')
       .then((res) => {
         setSections(res.data.data);
       })
-      .catch(() => {
-        // Handle error
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
       });
 
-    // Fetch categories
-    api.get('/category/getCategories')
+
+      api.get('/section/getSectionMenu')
       .then((res) => {
-        setSubSections(res.data.data);
+        setSectiones(res.data.data);
       })
-      .catch(() => {
-        // Handle error
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
       });
-  }, []); 
+
+    api.get('/category/getCategories',{section_id:sectiones&&sectiones.section_id})
+      .then((res) => {
+        setCategories(res.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+
+    api.get('/subcategory/getSubCategory',{section_id:categories&&categories.section_id})
+      .then((res) => {
+        setSubCategories(res.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching subcategories:", error);
+      });
+  }, []);
 
   // Function to filter categories for a specific section
   const getCategoriesForSection = (sectionId) => {
-    return subSections.filter(subsection => subsection.section_id === sectionId);
+    return categories.filter(category => category.section_id === sectionId);
+  };
+
+  // Function to filter subcategories for a specific category
+  const getSubCategoriesForCategory = (categoryId) => {
+    return subCategories.filter(subcategory => subcategory.category_id === categoryId);
+  };
+
+  // Handle section click event
+  const handleSectionClick = (sectionId) => {
+    console.log("Selected Section:", sectionId); // Log the selected section
+    setSelectedSection(sectionId);
+    setSelectedCategoryId(null); // Reset selected category
+  };
+
+  // Handle category click event
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategoryId(categoryId);
   };
 
   return (
@@ -42,16 +78,31 @@ function Navbar() {
             {sections.map(section => (
               <li className="nav-item dropdown" key={section.section_id}>
                 {/* Replace anchor tag with Link */}
-                <Link to={`/${section.section_title}`} className="nav-link">
+                <Link to={`/${section.section_title}`} className={`nav-link ${selectedSection === section.section_id ? 'active' : ''}`} onClick={() => handleSectionClick(section.section_id)}>
                   {section.section_title}
                 </Link>
                 {/* Filter categories for current section */}
                 {getCategoriesForSection(section.section_id).length > 0 && (
                   <ul className="dropdown-menu" aria-labelledby={`${section.section_id}Dropdown`}>
-                    {getCategoriesForSection(section.section_id).map(submenu => (
-                      <li key={submenu.category_id}>
-                        {/* Concatenate section name to category URL */}
-                        <Link to={`/${section.section_title}/${submenu.category_title}`} className="dropdown-item">{submenu.category_title}</Link>
+                    {getCategoriesForSection(section.section_id).map(category => (
+                      <li key={category.category_id}>
+                        {/* Handle category click */}
+                        <Link to={`/${section.section_title}/${category.category_title}`} className={`dropdown-item ${selectedCategoryId === category.category_id ? 'active' : ''}`} onClick={() => handleCategoryClick(category.category_id)}>
+                          {category.category_title}
+                        </Link>
+                        {/* Render subcategories if category is selected */}
+                        {selectedCategoryId === category.category_id && (
+                          <ul className="dropdown-submenu">
+                            {getSubCategoriesForCategory(category.category_id).map(subcategory => (
+                              <li key={subcategory.sub_category_id}>
+                                {/* Render subcategory links */}
+                                <Link to={`/${section.section_title}/${category.category_title}/${subcategory.sub_category_title}`} className="dropdown-item">
+                                  {subcategory.sub_category_title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </li>
                     ))}
                   </ul>
