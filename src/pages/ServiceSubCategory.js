@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import ReactHtmlParser from "react-html-parser";
+
 //import NavMenu from '../components/NavMenu'
 import api from '../constants/api';
 
 const ServiceSubCategory = () => {   
-    const { id } = useParams();
-    console.log("Subcategory ID:", id);
+    const { subCategoryId } = useParams([]);
+    // console.log("Category ID:", categoryId);
+    // console.log("Subcategory ID:", subCategoryId);
 
     const [subContent, setSubContent] = useState([]);
 
@@ -16,16 +19,17 @@ const ServiceSubCategory = () => {
             //var formated = sub_category_id.split("-").join(" ");
 
             api
-                .post("/content/getSubCategoryContent",{ sub_category_id: id })
+                .post("/content/getSubContent",{sub_category_id: subCategoryId})
                 .then((res) => {
                   setSubContent(res.data.data);
+                  console.log('subcontent',res.data.data)
                     AOS.init(); // Move AOS.init() inside the promise chain to ensure it's called after data is fetched
                 })
                 .catch(() => { });
         };
 
         getSubContent();   
-    }, [id]);
+    }, [subCategoryId]);
 
     return (
         <div>
@@ -53,11 +57,13 @@ const ServiceSubCategory = () => {
                         {subContent.map((data, index) => (
                             <div key={index} className="col-xl-12 col-lg-12 col-md-12">
                                 <div className="part-img">
-                                <h2>{data.sub_category_title}</h2>
+                                <h2>{data.title}</h2>
                                 </div>
-                                <div className="col-xl-12 col-lg-12 col-md-12">
-                                    <div className="part-txt" dangerouslySetInnerHTML={{ __html: data.description }} />
-                                </div>
+                                <div className="text-left">
+                  <p className="description" style={{ fontSize:"14px"}} >
+                    {ReactHtmlParser(data.description)}
+                  </p>
+                </div>
                             </div>
                         ))}
                     </div>
