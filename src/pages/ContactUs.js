@@ -11,50 +11,42 @@ const ContactUs = () => {
     message: ''
   });
   const stripHtmlTags = (htmlString) => {
-    const doc = new DOMParser().parseFromString(htmlString, 'text/html');
-    return doc.body.textContent || '';
-  };
-  const [contactData, setContactData] = useState(null); // To store fetched contact data
 
-  // Function to fetch contact by ID
+    const doc = new DOMParser().parseFromString(htmlString,'text/html');
+    return doc.body.textContent ||'';
+    
+    
+    }
+  const [email, setEmail] = useState([]);
   useEffect(() => {
+    // Fetch sections
+    api.get('/content/getEmail')
+      .then((res) => {
+        setEmail(res.data.data[0]);
+      })
+      .catch(() => {
+        // Handle error
+      });
 
-    const fetchContactById = () => {
-      api.get("/contact/getContactById") // Assuming this is the correct endpoint to get contact by ID
-        .then(response => {
-          console.log("Contact fetched successfully:", response.data);
-          setContactData(response.data.data); // Update contactData state with fetched data
-        })
-        .catch(error => {
-          console.error("Error fetching contact:", error);
-          // Handle error if needed
-        });
-    };
-
-    // Fetch contact by ID when the component mounts
-    fetchContactById();
+  
   }, []); // Empty dependency array ensures this effect runs only once when component mounts
 
-  const [addressData, setAddressData] = useState(null); // To store fetched contact data
+  const [addressData, setAddressData] = useState([]); // To store fetched contact data
 
-  // Function to fetch contact by ID
   useEffect(() => {
+    // Fetch sections
+    api.get('/content/getContact')
+      .then((res) => {
+        setAddressData(res.data.data[0]);
+      })
+      .catch(() => {
+        // Handle error
+      });
 
-    const fetchContact = () => {
-      api.get("/contact/getContact") // Assuming this is the correct endpoint to get contact by ID
-        .then(response => {
-          console.log("Contact fetched successfully:", response.data);
-          setAddressData(response.data.data); // Update contactData state with fetched data
-        })
-        .catch(error => {
-          console.error("Error fetching contact:", error);
-          // Handle error if needed
-        });
-    };
-
-    // Fetch contact by ID when the component mounts
-    fetchContact();
+  
   }, []); // Empty dependency array ensures this effect runs only once when component mounts
+
+// Empty dependency array ensures this effect runs only once when component mounts
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -106,32 +98,29 @@ const ContactUs = () => {
       <div className="contact">
         <Container>
           <Row className='ml-5'>
-          <h2>Contact Details</h2></Row>
-       <Row className='ml-5'>   {addressData &&
-            addressData.map(item => (
-                    <div key={item.title}>
-                      <h3>Address:</h3>
-                       <h4>{stripHtmlTags(item.description)}</h4>
-                                         </div>  ))
-                                           }</Row>
-         
-       <Row className='ml-5'>     {contactData &&
-              contactData.map(item => (
-                    <div key={item.title}>
-                      <h3>Email:</h3>
-                      <span>{stripHtmlTags(item.description)}</span>                     </div>  ))
-                                           }
-         </Row>
+            <h2>Contact Details</h2></Row>
+          <Row className='ml-5'>   
+        
+          <div>
+                <span>{stripHtmlTags(addressData.description)}</span>
+                </div>
+          </Row>
+
+          <Row className='ml-5'>
+                <div>
+                <span>{stripHtmlTags(email.description)}</span>
+                </div>
+          </Row>
           <Form className="form mt-5" onSubmit={handleSubmit} >
             <Row className="justify-content-center  pt-0">
-           
+
               <Col xl="5" lg="5" md="6" >
                 <FormGroup textcolor='dark'>
-                  <Input type="text" 
-                  name="first_name"
-                   placeholder="First Name*" 
-                   value={formData && formData.first_name} 
-                  onChange={handleChange} required />
+                  <Input type="text"
+                    name="first_name"
+                    placeholder="First Name*"
+                    value={formData && formData.first_name}
+                    onChange={handleChange} required />
                 </FormGroup>
               </Col>
               <Col xl="5" lg="5" md="6">
