@@ -25,6 +25,7 @@ import PastOfficeBearers from './pages/PastOfficeBearers';
 import { useEffect, useState } from 'react';
 import api from './constants/api';
 import ServiceSubCategory from './pages/ServiceSubCategory';
+import ContactUs from './pages/ContactUs';
 
 
 function App() {
@@ -128,6 +129,7 @@ function App() {
           <Route path="/QuranPlayer" element={<QuranPlayer />} />
           <Route path="/News" element={<News />} />
           <Route path="/Events" element={<Events />} />
+          <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/NewsEdit/:id" element={<NewsEdit />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
           <Route path="/Aiman-Team" element={<AimaanTeam />} />
