@@ -2,14 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, FormGroup, Input, Button } from 'reactstrap';
 import api from "../constants/api";
 
+
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
     email: '',
+    phone: '',
     notes: '',
-    message: ''
+    comments: ''
   });
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const applyChanges = () => {};
   const stripHtmlTags = (htmlString) => {
 
     const doc = new DOMParser().parseFromString(htmlString,'text/html');
@@ -47,19 +54,57 @@ const ContactUs = () => {
   }, []); // Empty dependency array ensures this effect runs only once when component mounts
 
 // Empty dependency array ensures this effect runs only once when component mounts
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+let name, value;
+ 
+  const handleChange = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setFormData({ ...formData, [name]: value });
+    console.log({ [name]: value });
+    // lname = e.target.lname
+    // email = e.target.email
+    // message = e.target.message
+  };
+  
+  const sendMail = () => {
+    if (window.confirm(" Are you sure do you want to send Mail\n")) {
+      const to = email.email;
+      const text = formData.comments;
+      const subject = formData.notes;
+      const dynamic_template_data = {
+        first_name: formData.first_name,
+        email: formData.email,
+        phone: formData.phone,
+        comments: formData.comments,
+      };
+      api
+        .post("/contact/sendenquiryemail", {
+          to,
+          text,
+          subject,
+          dynamic_template_data,
+        })
+        .then(() => {
+          // alert("Email has sent successfully", {
+          //   appearance: "success",
+          //   autoDismiss: true,
+          // });
+        })
+        .catch((err) => {
+          // alert("Unable to send Email", {
+          //   appearance: "error",
+          //   autoDismiss: true,
+          // });
+        });
+    } else {
+      applyChanges();
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     // Make an HTTP POST request to the API endpoint with the form data
-    api.post("/contact/insertContact", formData)
+    api.post("/contact/insertEnquiry", formData)
       .then(response => {
         console.log("Contact inserted successfully:", response.data);
         // Optionally, you can reset the form after successful submission
@@ -67,15 +112,18 @@ const ContactUs = () => {
           first_name: '',
           last_name: '',
           email: '',
+          phone: '',
           notes: '',
-          message: ''
+          comments: ''
         });
+        sendMail();
       })
       .catch(error => {
         console.error("Error inserting contact:", error);
         // Handle error if needed
       });
   };
+
 
   return (
     <div>
@@ -135,12 +183,17 @@ const ContactUs = () => {
               </Col>
               <Col xl="10" lg="10">
                 <FormGroup>
+                  <Input type="text" name="phone" placeholder="Mobile" value={formData && formData.phone} onChange={handleChange} required />
+                </FormGroup>
+              </Col>
+              <Col xl="10" lg="10">
+                <FormGroup>
                   <Input type="text" name="notes" placeholder="Subject*" value={formData && formData.notes} onChange={handleChange} required />
                 </FormGroup>
               </Col>
               <Col xl="10" lg="10">
                 <FormGroup>
-                  <Input type="textarea" name="message" placeholder="Message" value={formData && formData.message} onChange={handleChange} required />
+                  <Input type="textarea" name="comments" placeholder="Message" value={formData && formData.comments} onChange={handleChange} required />
                 </FormGroup>
                 <Button className="def-btn def-btn-2">Send Message</Button>
               </Col>
