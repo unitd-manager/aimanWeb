@@ -8,7 +8,7 @@ import { Button } from "reactstrap";
 const Home = () => {
   const [membershipForms, setMemberShipForms] = useState({
     first_name: "",
-    birth_year: ""
+    birth_year: "",
   });
 
   const [validationError, setValidationError] = useState("");
@@ -31,30 +31,30 @@ const Home = () => {
   };
   const insertMembership = () => {
     if (validateForm()) {
-    if (membershipForms.first_name.trim() !== "") {
-      // Check if first_name is not empty
-      api
-        .post("/contact/insertContact", membershipForms)
-        .then((response) => {
-          console.log("Membership inserted successfully:", response.data);
+      if (membershipForms.first_name.trim() !== "") {
+        // Check if first_name is not empty
+        api
+          .post("/contact/insertContact", membershipForms)
+          .then((response) => {
+            console.log("Membership inserted successfully:", response.data);
 
-          // Clear form fields after successful submission if needed
-          setMemberShipForms({});
-          // Show success message
-          showMessage("Form submitted successfully!", "success");
-          // Reload the page after 3 seconds
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
-        })
-        .catch((error) => {
-          console.error("Error inserting membership:", error);
-        });
-    } else {
-      // Show error message for required fields
-      showMessage("Please fill all required fields", "error");
+            // Clear form fields after successful submission if needed
+            setMemberShipForms({});
+            // Show success message
+            showMessage("Form submitted successfully!", "success");
+            // Reload the page after 3 seconds
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
+          })
+          .catch((error) => {
+            console.error("Error inserting membership:", error);
+          });
+      } else {
+        // Show error message for required fields
+        showMessage("Please fill all required fields", "error");
+      }
     }
-  }
   };
   const showMessage = (message, type) => {
     const alertBox = document.createElement("div");
@@ -69,8 +69,6 @@ const Home = () => {
   };
   return (
     <div>
-     
-
       <div
         class="breadcrumb portfolio-breadcrumb"
         style={{
@@ -97,35 +95,39 @@ const Home = () => {
 
       <div className="contact">
         <div className="container">
-        <form className="form" style={{ backgroundColor: "#183368" }}>
+          <form className="form" style={{ backgroundColor: "#183368" }}>
             <div className="row justify-content-center">
               <div className="col-xl-5 col-lg-5 col-md-6">
-              <label htmlFor="first_name" style={{color:"#FFFFFF"}}>First Name</label>
-  <br />
-  <input
-    type="text"
-    name="first_name"
-    style={{
-      backgroundColor: "#FFFFFF",
-      border: "1px solid white",
-      color: "#000000"
-    }}
-   
-    onChange={(e) => {
-      handleSectionForms(e);
-    }}
-  />
+                <label htmlFor="first_name" style={{ color: "#FFFFFF" }}>
+                  First Name
+                </label>
+                <br />
+                <input
+                  type="text"
+                  name="first_name"
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
+                  onChange={(e) => {
+                    handleSectionForms(e);
+                  }}
+                />
               </div>
               <div className="col-xl-5 col-lg-5 col-md-6">
-              <label htmlFor="last_name" style={{color:"#FFFFFF"}}>Last Name</label>
-  <br />
+                <label htmlFor="last_name" style={{ color: "#FFFFFF" }}>
+                  Last Name
+                </label>
+                <br />
                 <input
                   type="text"
                   placeholder="Last Name"
-                  style={{ backgroundColor: "#FFFFFF" ,
-                  border: "1px solid white",
-                  color: "#000000"
-                }}
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
                   name="last_name"
                   onChange={(e) => {
                     handleSectionForms(e);
@@ -133,102 +135,130 @@ const Home = () => {
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
-              <label htmlFor="mobile" style={{color:"#FFFFFF"}}>UAE Mobile Number</label>
-  <br />
+                <label htmlFor="mobile" style={{ color: "#FFFFFF" }}>
+                  UAE Mobile Number
+                </label>
+                <br />
                 <input
                   type="text"
                   name="mobile"
-                  style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white",
-                  color: "#000000" }}
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
-              <label htmlFor="birth_year" style={{color:"#FFFFFF"}}>Year of birth</label>
-  <br />
-              <input
-          type="text"
-          name="birth_year"
-          style={{ backgroundColor: "#FFFFFF",
-          border: "1px solid white",
-          color: "#000000" }}
-          onChange={handleSectionForms}
-        />
-        {validationError && (
-          <p style={{ color: "red" }}>{validationError}</p>
-        )}
+                <label htmlFor="birth_year" style={{ color: "#FFFFFF" }}>
+                  Year of birth
+                </label>
+                <br />
+                <input
+                  type="text"
+                  name="birth_year"
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
+                  onChange={handleSectionForms}
+                />
+                {validationError && (
+                  <p style={{ color: "red" }}>{validationError}</p>
+                )}
               </div>
-              <div className="col-xl-10 col-lg-10" style={{backgroundColor:"#183368"}}>
-              <label htmlFor="address" style={{color:"#FFFFFF"}}>Location in UAE</label>
-  <br />
+              <div
+                className="col-xl-10 col-lg-10"
+                style={{ backgroundColor: "#183368" }}
+              >
+                <label htmlFor="address" style={{ color: "#FFFFFF" }}>
+                  Location in UAE
+                </label>
+                <br />
                 <input
                   type="text"
                   name="address"
-                  style={{ backgroundColor: "#FFFFFF" ,
-                  border: "1px solid white",
-                  color: "#000000"}}
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
-              <label htmlFor="address2" style={{color:"#FFFFFF"}}>Native Place Details</label>
-  <br />
+                <label htmlFor="address2" style={{ color: "#FFFFFF" }}>
+                  Native Place Details
+                </label>
+                <br />
                 <input
                   type="text"
                   name="address2"
-                  style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white",
-                  color: "#000000" }}
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
-              <label htmlFor="qualification" style={{color:"#FFFFFF"}}>Qualification</label>
-  <br />
+                <label htmlFor="qualification" style={{ color: "#FFFFFF" }}>
+                  Qualification
+                </label>
+                <br />
                 <input
                   type="text"
                   name="qualification"
-                  style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white" ,
-                  color: "#000000"}}
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
-              <label htmlFor="position" style={{color:"#FFFFFF"}}>Present profession / Job</label>
-  <br />
+                <label htmlFor="position" style={{ color: "#FFFFFF" }}>
+                  Present profession / Job
+                </label>
+                <br />
                 <input
                   type="text"
                   name="position"
-                  style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white",
-                  color: "#000000"
-                 }}
-                  
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
                 />
               </div>
               <div class="col-xl-10 col-lg-10">
-              <label htmlFor="from_year" style={{color:"#FFFFFF"}}>Since when you are in UAE</label>
-  <br />
+                <label htmlFor="from_year" style={{ color: "#FFFFFF" }}>
+                  Since when you are in UAE
+                </label>
+                <br />
                 <input
                   type="text"
                   name="from_year"
-                 
-                  style={{ backgroundColor: "#FFFFFF",
-                  border: "1px solid white",
-                  color: "#000000" }}
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
                   onChange={(e) => {
                     handleSectionForms(e);
                   }}
@@ -268,7 +298,7 @@ const Home = () => {
                     insertMembership();
                   }}
                   type="button"
-                  style={{textAlign:"center", marginLeft:"500px"}}
+                  style={{ textAlign: "center", marginLeft: "500px" }}
                 >
                   Submit
                 </Button>

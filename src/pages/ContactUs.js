@@ -25,6 +25,14 @@ const ContactUs = () => {
     
     }
   const [email, setEmail] = useState([]);
+  const [mailId, setmailId] = useState("");
+
+  const getEnquiryEmail = () => {
+    api.get("/setting/getEnquiryMailId")
+    .then((res) => {
+      setmailId(res.data.data[0]);
+    });
+  };
   useEffect(() => {
     // Fetch sections
     api.get('/content/getEmail')
@@ -68,7 +76,7 @@ let name, value;
   
   const sendMail = () => {
     if (window.confirm(" Are you sure do you want to send Mail\n")) {
-      const to = email.email;
+      const to = mailId.email;
       const text = formData.comments;
       const subject = formData.notes;
       const dynamic_template_data = {
@@ -124,7 +132,11 @@ let name, value;
       });
   };
 
+  useEffect(() => {
+  
+    getEnquiryEmail();
 
+  }, []);
   return (
     <div>
       <div className="breadcrumb service-breadcrumb">
@@ -159,43 +171,100 @@ let name, value;
                 <span>{stripHtmlTags(email.description)}</span>
                 </div>
           </Row>
-          <Form className="form mt-5" onSubmit={handleSubmit} >
+          <Form className="form mt-5" onSubmit={handleSubmit} style={{ backgroundColor: "#183368" }}>
             <Row className="justify-content-center  pt-0">
 
               <Col xl="5" lg="5" md="6" >
+              <label htmlFor="first_name" style={{ color: "#FFFFFF" }}>
+              First Name
+                </label>
                 <FormGroup textcolor='dark'>
                   <Input type="text"
                     name="first_name"
-                    placeholder="First Name*"
+                    style={{
+                      backgroundColor: "#FFFFFF",
+                      border: "1px solid white",
+                      color: "#000000",
+                    }}
                     value={formData && formData.first_name}
                     onChange={handleChange} required />
                 </FormGroup>
               </Col>
               <Col xl="5" lg="5" md="6">
+              <label htmlFor="last_name" style={{ color: "#FFFFFF" }}>
+              Last Name
+                </label>
                 <FormGroup>
-                  <Input type="text" name="last_name" placeholder="Last Name*" value={formData && formData.last_name} onChange={handleChange} required />
+                  <Input type="text" name="last_name"
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
+                   value={formData && formData.last_name} 
+                   onChange={handleChange} required />
                 </FormGroup>
               </Col>
               <Col xl="10" lg="10">
+              <label htmlFor="email" style={{ color: "#FFFFFF" }}>
+              Email
+                </label>
                 <FormGroup>
-                  <Input type="email" name="email" placeholder="Email*" value={formData && formData.email} onChange={handleChange} required />
+                  <Input type="email" name="email"
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }} 
+                   value={formData && formData.email} 
+                   onChange={handleChange} required />
                 </FormGroup>
               </Col>
               <Col xl="10" lg="10">
+              <label htmlFor="phone" style={{ color: "#FFFFFF" }}>
+               Phone
+                </label>
                 <FormGroup>
-                  <Input type="text" name="phone" placeholder="Mobile" value={formData && formData.phone} onChange={handleChange} required />
+                  <Input type="text" name="phone" 
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
+                   value={formData && formData.phone} 
+                   onChange={handleChange} required />
                 </FormGroup>
               </Col>
               <Col xl="10" lg="10">
+              <label htmlFor="notes" style={{ color: "#FFFFFF" }}>
+              Subject
+                </label>
                 <FormGroup>
-                  <Input type="text" name="notes" placeholder="Subject*" value={formData && formData.notes} onChange={handleChange} required />
+                  <Input type="text" name="notes" 
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
+                  value={formData && formData.notes} 
+                  onChange={handleChange} required />
                 </FormGroup>
               </Col>
               <Col xl="10" lg="10">
+              <label htmlFor="comments" style={{ color: "#FFFFFF" }}>
+              Message
+                </label>
                 <FormGroup>
-                  <Input type="textarea" name="comments" placeholder="Message" value={formData && formData.comments} onChange={handleChange} required />
+                  <Input type="textarea" name="comments" 
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
+                   value={formData && formData.comments} 
+                   onChange={handleChange} required />
                 </FormGroup>
-                <Button className="def-btn def-btn-2">Send Message</Button>
+                <Button className="def-btn def-btn-2" style={{marginLeft:"380px"}}>Send Message</Button>
               </Col>
             </Row>
           </Form>

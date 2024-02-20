@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import HomeResources from "../../src/assets/banner/homeResource.jpg";
 // import bannerImage from '../../src/assets/banner/home.jpg';
 import aboutusicon from "../../src/assets/banner/abudhabimosque.jpg";
 import getTouch from "../../src/assets/banner/gettouch.jpg";
@@ -506,8 +507,15 @@ const Home = () => {
           </div>
         </div>
 
-        <div class="project">
-          <div class="container">
+        <div class="project"
+         style={{
+          backgroundImage: `url(${HomeResources})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        
+        }}
+        >
+          <div class="container" >
             <div class="row justify-content-center">
               <div class="col-xl-5 col-lg-6">
                 <div class="heading heading-2">
@@ -555,81 +563,85 @@ const Home = () => {
         </div>
 
        
-        <div class="fun-fact">
+        <div class="fun-fact" style={{paddingTop:"100px"}}>
           <div class="container">
             <div class="bg">
               <div class="row no-gutters justify-content-lg-between justify-content-center">
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                  <div class="single-box">
+                <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-multiple-users-silhouette"></i>
                       </span>
                     </div>
-                    <div class="part-txt">
+                    <div class="part-txt" style={{paddingBottom:"20px"}}>
                       <h2>
-                        <span class="odometer" data-count="3800">
+                        <span class="odometer" data-count="10000">
                           0
                         </span>
                         +
                       </h2>
-                      <p>Happy Customer</p>
+                      <p style={{fontSize:"15px"}}>People Benefited</p>
                     </div>
                   </div>
+               
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                  <div class="single-box">
+                <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-project"></i>
                       </span>
                     </div>
-                    <div class="part-txt">
+                    <div class="part-txt" style={{paddingBottom:"20px"}}>
                       <h2>
-                        <span class="odometer" data-count="1832">
+                        <span class="odometer" data-count="3000">
                           0
                         </span>
                         +
                       </h2>
-                      <p>Project Completed</p>
+                      <p style={{fontSize:"15px"}}>Team Members</p>
                     </div>
                   </div>
+                 
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                  <div class="single-box">
+                <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-multiple-users-silhouette"></i>
                       </span>
                     </div>
-                    <div class="part-txt">
+                    <div class="part-txt" style={{paddingBottom:"20px"}}>
                       <h2>
-                        <span class="odometer" data-count="864">
+                        <span class="odometer" data-count="1000">
                           0
                         </span>
                         +
                       </h2>
-                      <p>Team Members</p>
+                      <p style={{fontSize:"15px"}}>Events Conducted</p>
                     </div>
                   </div>
+               
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                  <div class="single-box">
+                <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-hot-coffee-rounded-cup-on-a-plate-from-side-view"></i>
                       </span>
                     </div>
-                    <div class="part-txt">
+                    <div class="part-txt" style={{paddingBottom:"20px"}}>
                       <h2>
-                        <span class="odometer" data-count="9812">
+                        <span class="odometer" data-count="100">
                           0
                         </span>
                         +
                       </h2>
-                      <p>Cup Of Coffee</p>
+                      <p style={{fontSize:"15px"}}>Services Provided</p>
                     </div>
                   </div>
+                 
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
                   <div class="single-box">
@@ -638,14 +650,14 @@ const Home = () => {
                         <i class="flaticon-trophy"></i>
                       </span>
                     </div>
-                    <div class="part-txt">
+                    <div class="part-txt" style={{paddingBottom:"20px"}}>
                       <h2>
-                        <span class="odometer" data-count="758">
+                        <span class="odometer" data-count="500">
                           0
                         </span>
                         +
                       </h2>
-                      <p>Winning Awards</p>
+                      <p style={{fontSize:"15px"}}>Awards Received</p>
                     </div>
                   </div>
                 </div>
