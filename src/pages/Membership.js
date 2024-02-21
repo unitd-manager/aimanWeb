@@ -14,7 +14,7 @@ const Home = () => {
   const [mailId, setmailId] = useState("");
   const [validationError, setValidationError] = useState("");
   const getEnquiryEmail = () => {
-    api.get("/setting/getEnquiryMailId")
+    api.get("/setting/getMembershipMailId")
     .then((res) => {
       setmailId(res.data.data[0]);
     });
