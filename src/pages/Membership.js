@@ -4,15 +4,21 @@ import MemberImage from "../../src/assets/banner/membership.jpg";
 import { useState } from "react";
 import api from "../constants/api";
 import { Button } from "reactstrap";
+import { useEffect } from "react";
 
 const Home = () => {
   const [membershipForms, setMemberShipForms] = useState({
     first_name: "",
     birth_year: "",
   });
-
+  const [mailId, setmailId] = useState("");
   const [validationError, setValidationError] = useState("");
-
+  const getEnquiryEmail = () => {
+    api.get("/setting/getEnquiryMailId")
+    .then((res) => {
+      setmailId(res.data.data[0]);
+    });
+  };
   const handleSectionForms = (e) => {
     setMemberShipForms({ ...membershipForms, [e.target.name]: e.target.value });
   };
@@ -56,6 +62,58 @@ const Home = () => {
       }
     }
   };
+  const sendMail = () => {
+    if (window.confirm(" Are you sure do you want to send Mail\n")) {
+   
+    {
+  
+      const to = membershipForms.email;
+       const dynamic_template_data = {
+        first_name: membershipForms.first_name,
+        mobile: membershipForms.mobile,
+        address: membershipForms.address,
+     
+      };
+      api
+        .post("/contact/sendMembershipUseremail", {
+          to,
+          dynamic_template_data,
+        })
+        .then(() => {
+      
+        })
+        .catch((err) => {
+     
+        });
+   
+  };
+
+    {
+  
+      const to = mailId.email;
+       const dynamic_template_data = {
+        first_name: membershipForms.first_name,
+        mobile: membershipForms.mobile,
+        address: membershipForms.address,
+     
+      };
+      api
+        .post("/contact/sendMembershipemail", {
+          to,
+          dynamic_template_data,
+        })
+        .then(() => {
+      
+        })
+        .catch((err) => {
+     
+        });
+   
+  };
+} else {
+ 
+}
+}
   const showMessage = (message, type) => {
     const alertBox = document.createElement("div");
     alertBox.className =
@@ -67,6 +125,12 @@ const Home = () => {
       alertBox.remove();
     }, 3000);
   };
+
+  useEffect(() => {
+  
+    getEnquiryEmail();
+
+  }, []);
   return (
     <div>
       <div
@@ -152,6 +216,26 @@ const Home = () => {
                   }}
                 />
               </div>
+
+              <div className="col-xl-10 col-lg-10">
+                <label htmlFor="email" style={{ color: "#FFFFFF" }}>
+                  Email
+                </label>
+                <br />
+                <input
+                  type="text"
+                  name="email"
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid white",
+                    color: "#000000",
+                  }}
+                  onChange={(e) => {
+                    handleSectionForms(e);
+                  }}
+                />
+              </div>
+
               <div className="col-xl-10 col-lg-10">
                 <label htmlFor="birth_year" style={{ color: "#FFFFFF" }}>
                   Year of birth
@@ -296,6 +380,7 @@ const Home = () => {
                   className="def-btn def-btn-2"
                   onClick={() => {
                     insertMembership();
+                    sendMail();
                   }}
                   type="button"
                   style={{ textAlign: "center", marginLeft: "500px" }}

@@ -13,7 +13,6 @@ const Home = () => {
   // const [banners, setBanners] = useState([]);
   const [blogItems, setBlogItems] = useState([]);
   const [Events, setEvents] = useState([]);
-  const [videoUrls, setVideoUrls] = useState([]);
   const [aboutUs, setAboutus] = useState([]);
   const [team, setTeam] = useState([]);
   const [homeServices, setHomeServices] = useState([]);
@@ -81,18 +80,6 @@ const Home = () => {
         setHomeResources(res.data.data);
       })
       .catch(() => {});
-  };
-
-  const getVideoUrls = () => {
-    api
-      .post("/media/getVideoUrls")
-      .then((res) => {
-        setVideoUrls(res.data.data);
-        console.log("edit Line Item", res.data.data);
-      })
-      .catch(() => {
-        // Handle error
-      });
   };
 
   const getblogItems = () => {
@@ -248,7 +235,6 @@ const Home = () => {
   useEffect(() => {
     // getBannerImages();
     getblogItems();
-    getVideoUrls();
     getEvents();
     getAboutUs();
     getTeam();
@@ -576,7 +562,7 @@ const Home = () => {
                     </div>
                     <div class="part-txt" style={{paddingBottom:"20px"}}>
                       <h2>
-                        <span class="odometer" data-count="10000">
+                        <span class="odometer" data-count="500">
                           0
                         </span>
                         +
@@ -595,7 +581,7 @@ const Home = () => {
                     </div>
                     <div class="part-txt" style={{paddingBottom:"20px"}}>
                       <h2>
-                        <span class="odometer" data-count="3000">
+                        <span class="odometer" data-count="100">
                           0
                         </span>
                         +
@@ -614,7 +600,7 @@ const Home = () => {
                     </div>
                     <div class="part-txt" style={{paddingBottom:"20px"}}>
                       <h2>
-                        <span class="odometer" data-count="1000">
+                        <span class="odometer" data-count="50">
                           0
                         </span>
                         +
@@ -652,7 +638,7 @@ const Home = () => {
                     </div>
                     <div class="part-txt" style={{paddingBottom:"20px"}}>
                       <h2>
-                        <span class="odometer" data-count="500">
+                        <span class="odometer" data-count="10">
                           0
                         </span>
                         +
