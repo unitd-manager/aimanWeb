@@ -98,18 +98,17 @@ const Home = () => {
                         <div class="card-header" id="headingOne">
                           <div className="audio-gallery">
                             {audioData.map((audio, index) => (
-                              <div key={index} >
+                              <div key={index}>
                                 <p>{audio.display_title}</p>
                                 <audio
                                   id={`audio-${index}`}
                                   controls
                                   onPlay={() => handleAudioPlay(index)}
-                                  //style={{marginTop:"-30px"}}
-                                  style={{width:'100%',height:'60px'}}
+                                  style={{marginTop:"-30px"}}
                                 >
                                   <source
                                     src={`http://43.228.126.245/aimaanAPI/storage/uploads/${audio.file_name}`}
-                                     type="audio/mp3"
+                                    type="audio/mp3"
                                   />
                                   Your browser does not support the audio
                                   element.
