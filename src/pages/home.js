@@ -9,6 +9,7 @@ import aboutusicon from "../../src/assets/banner/abudhabimosque.jpg";
 import getTouch from "../../src/assets/banner/gettouch.jpg";
 import api from "../constants/api";
 
+
 const Home = () => {
   // const [banners, setBanners] = useState([]);
   const [blogItems, setBlogItems] = useState([]);
@@ -255,7 +256,8 @@ const Home = () => {
             <div key={item.content_id} className="single-blog">
               <div className="part-img">
                 <img
-                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                   src={`https://aimaanweb.unitdtechnologies.com:3011/storage/uploads/${item.file_name}`}
+                 
                   alt={`News ${item.content_id}`}
                   style={{ width: "100%", height: "400px", objectFit: "cover" }}
                 />
@@ -274,7 +276,8 @@ const Home = () => {
             <div class="col-xl-6 col-lg-6 col-md-8">
               <div class="part-img">
                 <img
-                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${aboutUs.file_name}`}
+                  src={`https://aimaanweb.unitdtechnologies.com/storage/uploads/${aboutUs.file_name}`}
+                  // src={`${imageBase}${aboutUs.file_name}`}
                   alt="imagess"
                   width="600px"
                   height="550px"

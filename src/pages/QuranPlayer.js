@@ -112,7 +112,7 @@ const Home = () => {
             </audio>
           </div>
         ))}
-      </div>
+npm start      </div>
     </div>
   );
 };
