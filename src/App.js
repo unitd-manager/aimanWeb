@@ -51,28 +51,28 @@ function App() {
   }, []); 
   return (
     <HashRouter>
-    <div class="header-2">
-        <div class="top-header">
-          <div class="container">
-            <div class="bg">
-              <div class="row justify-content-between align-items-center">
-                <div class="col-xl-6 col-lg-6 col-md-7">
-                  <div class="top-left">
+    <div className="header-2">
+        <div className="top-header">
+          <div className="container">
+            <div className="bg">
+              <div className="row justify-content-between align-items-center">
+                <div className="col-xl-6 col-lg-6 col-md-7">
+                  <div className="top-left">
                     <ul>
                       <li>
-                        <i class="flaticon-message"></i>
+                        <i className="flaticon-message"></i>
                         <span>{stripHtmlTags(email.description)}</span>
                       </li>
                      
                     </ul>
                   </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-sm-4 d-flex justify-content-sm-end justify-content-center">
-    <div class="top-right">
-        <a href="https://www.facebook.com/profile.php?id=100085667005902" class="fb" style={{ marginRight: '10px' }}><i class="flaticon-facebook"></i></a>
-        <a href="https://twitter.com/PenaKural" class="tw" style={{ marginRight: '10px' }}><i class="flaticon-twitter"></i></a>
-        <a href="#" class="ld" style={{ marginRight: '10px' }}><i class="flaticon-linkedin"></i></a>
-        <a href="https://www.youtube.com/channel/UCl-FlAugZVHLXwJLWZ4C0TA" class="yt" style={{ marginRight: '10px' }}><i class="flaticon-youtube"></i></a>
+                <div className="col-xl-3 col-lg-3 col-sm-4 d-flex justify-content-sm-end justify-content-center">
+    <div className="top-right">
+        <a href="https://www.facebook.com/profile.php?id=100085667005902" className="fb" style={{ marginRight: '10px' }}><i className="flaticon-facebook"></i></a>
+        <a href="https://twitter.com/PenaKural" className="tw" style={{ marginRight: '10px' }}><i className="flaticon-twitter"></i></a>
+        <a href="/#" className="ld" style={{ marginRight: '10px' }}><i className="flaticon-linkedin"></i></a>
+        <a href="https://www.youtube.com/channel/UCl-FlAugZVHLXwJLWZ4C0TA" className="yt" style={{ marginRight: '10px' }}><i className="flaticon-youtube"></i></a>
     </div>
 </div>
 
@@ -81,13 +81,13 @@ function App() {
             </div>
           </div>
         </div>
-        <div class="bottom-header">
-          <div class="container">
-            <div class="bg">
-              <div class="row align-items-center">
-                <div class="d-xl-none d-lg-none d-flex col-4">
+        <div className="bottom-header">
+          <div className="container">
+            <div className="bg">
+              <div className="row align-items-center">
+                <div className="d-xl-none d-lg-none d-flex col-4">
                   <button
-                    class="navbar-toggler"
+                    className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarSupportedContent"
@@ -95,11 +95,11 @@ function App() {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                   >
-                    <i class="flaticon-menu-button-of-three-horizontal-lines"></i>
+                    <i className="flaticon-menu-button-of-three-horizontal-lines"></i>
                   </button>
                 </div>
-                <div class="col-xl-12 col-lg-12 col-12 d-flex align-items-center">
-                  <div class="logo">
+                <div className="col-xl-12 col-lg-12 col-12 d-flex align-items-center">
+                  <div className="logo">
                     <a href="/">
                     <img src={logo} alt="signature" width="750px" height="65px" style={{paddingLeft:"300px"}}/>
                     </a>
