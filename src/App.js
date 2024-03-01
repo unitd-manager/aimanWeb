@@ -139,7 +139,7 @@ function App() {
 
          
 
-          <Route path="/services/:title/:title" element={<ServiceSubCategory />} />
+          
           <Route path="/AimanPastOfficeBearers" element={<PastOfficeBearers />} />
           <Route path="/services/:id/:id" element={<ServiceSubCategory />} />
           <Route path="/Aiman-Past-Office-Bearers" element={<PastOfficeBearers />} />
