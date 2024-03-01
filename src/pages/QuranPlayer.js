@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import api from "../constants/api";
 import bannerImage from "../../src/assets/banner/audioGallery.jpg";
+//import AudioPlayer from "react-audio-player";
 
 const Home = () => {
   const [audioData, setAudioData] = useState([]);
   const [audiodes, setAudioDes] = useState([]);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
   const stripHtmlTags = (htmlString) => {
-    const doc = new DOMParser().parseFromString(htmlString, 'text/html');
-    return doc.body.textContent || '';
+    console.log("html string---", audiodes);
+    const doc = new DOMParser().parseFromString(htmlString, "text/html");
+    console.log("doc here---", doc.body.textContent);
+    return doc.body.textContent || "";
   };
- 
 
   const getAudio = () => {
     api
@@ -46,20 +48,18 @@ const Home = () => {
 
   return (
     <div>
-     
-
       <div
-        class="breadcrumb portfolio-breadcrumb"
+        className="breadcrumb portfolio-breadcrumb"
         style={{
           backgroundImage: `url(${bannerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-xl-3 col-lg-3">
-              <div class="part-txt">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-3 col-lg-3">
+              <div className="part-txt">
                 <h1>Quran Player</h1>
                 <ul>
                   <li>Home</li>
@@ -74,57 +74,44 @@ const Home = () => {
       <div>
         <br />
       </div>
-
-      <div class="faq faq-2">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-xl-4 col-lg-4">
-            <div class="heading" style={{ textAlign: "left", marginLeft:"-400px"}}>
-            <h1 style={{paddingBottom:"40px"}}>Quran Player</h1>
-            {audiodes.map((audiode, index) => (
-   
-   <p style={{ marginBottom: '10px', marginTop:"10px" }}>{stripHtmlTags(audiode.description)}</p>          ))}
-</div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-xl-12 col-lg-12">
-              <div class="part-txt">
-                <div id="accordion">
-                  <div class="row justify-content-center faq-inner-2">
-                    <div class="col-xl-12 col-lg-12">
-                      <div class="card">
-                        <div class="card-header" id="headingOne">
-                          <div className="audio-gallery">
-                            {audioData.map((audio, index) => (
-                              <div key={index}>
-                                <p>{audio.display_title}</p>
-                                <audio
-                                  id={`audio-${index}`}
-                                  controls
-                                  onPlay={() => handleAudioPlay(index)}
-                                  style={{marginTop:"-30px"}}
-                                >
-                                  <source
-                                    src={`http://43.228.126.245/aimaanAPI/storage/uploads/${audio.file_name}`}
-                                    type="audio/mp3"
-                                  />
-                                  Your browser does not support the audio
-                                  element.
-                                </audio>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+      <div className="faq faq-2">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-4 col-lg-4">
+              <div
+                className="heading"
+                style={{ textAlign: "left", marginLeft: "-400px" }}
+              >
+                <h1 style={{ paddingBottom: "40px" }}>Quran Player</h1>
+                {audiodes.map((audiode, index) => (
+                  <div key={index}>
+                    <p style={{ marginBottom: "10px", marginTop: "10px" }}>
+                      {stripHtmlTags(audiode.description)}
+                    </p>{" "}
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
+        {audioData.map((audio, index) => (
+          <div key={index} style={{ display:'flex',flexDirection:'column' ,alignItems:'center',justifyContent:'center'}}>
+            <p  style={{ marginTop: "10px",marginBottom: "10px" }}>{audio.display_title}</p>
+
+            <audio
+              id={`audio-${index}`}
+              controls
+              onPlay={() => handleAudioPlay(index)}
+              style={{ marginTop: "-5px" }}
+            >
+              <source
+                src={`http://43.228.126.245/aimaanAPI/storage/uploads/${audio.file_name}`}
+                type="audio/mp3"
+              />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        ))}
       </div>
     </div>
   );

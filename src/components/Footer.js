@@ -94,122 +94,7 @@ export default function Footer() {
 
   return (
     <>
-      {/* <div class="footer"> */}
-      {/* <div class="container">
-          <div class="main-footer">
-            <div class="row justify-content-between">
-              <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="about-txt">
-                  <h3>About Us Company</h3>
-                  <p>
-                    There are many variations of passage of Lorem Ipsum
-                    available, but the maj ority have suffered alteration
-                  </p>
-                  <ul>
-                    <li>
-                      <span>
-                        <i class="flaticon-pin"></i>
-                      </span>
-                      Demo Address #8901 Marmora Road Chi Minh City, Vietnam
-                    </li>
-                    <li>
-                      <span>
-                        <i class="flaticon-phone-call"></i>
-                      </span>
-                      0800-123456 (24/7 Support Line)
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-xl-2 col-lg-2 col-sm-6">
-                <div class="link">
-                  <h3>Our Services</h3>
-                  <ul>
-                    <li>
-                      <a href="service-details.html">Business</a>
-                    </li>
-                    <li>
-                      <a href="service-details.html">Marketing</a>
-                    </li>
-                    <li>
-                      <a href="service-details.html">Management</a>
-                    </li>
-                    <li>
-                      <a href="service-details.html">Accounting</a>
-                    </li>
-                    <li>
-                      <a href="service-details.html">Training</a>
-                    </li>
-                    <li>
-                      <a href="service-details.html">Consultation</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-xl-2 col-lg-2 col-sm-6">
-                <div class="link">
-                  <h3>Useful Links</h3>
-                  <ul>
-                    <li>
-                      <a href="blog-l-bar.html">Blog</a>
-                    </li>
-                    <li>
-                      <a href="/">Client Area</a>
-                    </li>
-                    <li>
-                      <a href="/">Support</a>
-                    </li>
-                    <li>
-                      <a href="faq.html">FAQ's</a>
-                    </li>
-                    <li>
-                      <a href="/">Newsletter</a>
-                    </li>
-                    <li>
-                      <a href="/">Events</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="newsletter">
-                  <h3>Newsletter</h3>
-                  <p>
-                    Subscribe our newsletter to get our latest update all blog &
-                    news
-                  </p>
-                  <form>
-                    <input
-                      type="email"
-                      placeholder="Your Email Address"
-                      required
-                    />
-                    <button>
-                      <i class="flaticon-send"></i>
-                    </button>
-                  </form>
-                  <div class="social">
-                    <a href="/" class="fb">
-                      <i class="flaticon-facebook"></i>
-                    </a>
-                    <a href="/" class="tw">
-                      <i class="flaticon-twitter"></i>
-                    </a>
-                    <a href="/" class="ggl">
-                      <i class="flaticon-google-plus-logo"></i>
-                    </a>
-                    <a href="/" class="ld">
-                      <i class="flaticon-linkedin"></i>
-                    </a>
-                    <a href="/" class="yt">
-                      <i class="flaticon-youtube"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
+   
       <div class="footer">
         <div class="container">
           <div class="main-footer">
@@ -230,10 +115,7 @@ export default function Footer() {
                               marginRight: "10px",
                             }} // Adjust the width and height values as needed
                           />
-                          {/* <div>
-                <p style={{ margin: 0 }}>{item.title}</p>
-                <p style={{ margin: 0 }}>{item.creation_date} {item.created_by}</p>
-            </div> */}
+                         
                           <div>
                             <a
                               href={`/${item.content_id}`}
@@ -283,10 +165,7 @@ export default function Footer() {
                               marginRight: "10px",
                             }} // Adjust the width and height values as needed
                           />
-                          {/* <div>
-                <p style={{ margin: 0 }}>{item.title}</p>
-                <p style={{ margin: 0 }}>{item.creation_date} {item.created_by}</p>
-            </div> */}
+                         
                           <div>
                             <a
                               href={`/${item.content_id}`}
@@ -337,8 +216,7 @@ export default function Footer() {
                   >
                     நிகழ்வுகள்{" "}
                     <span>
-                      {/* style={{ marginLeft: '150px', color: 'white', 
-                             fontSize:'13px' }} */}
+                   
                       ({ContentTypeCount.events_count})
                     </span>
                   </Link>
@@ -396,18 +274,7 @@ export default function Footer() {
                   </Link>
                   <br></br>
                   <br></br>
-                  {/* <Link 
-                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'14px'}}
-                            onMouseEnter={(e) => e.target.style.color = 'blue'}
-                            onMouseLeave={(e) => e.target.style.color = 'white'}
-                            to={`/Events`}>வரலாற்று கலைப்பொருட்கள் <span style={{ marginLeft: '10px', color: 'white', fontSize:'14px' }}>{32}</span>
-                            </Link><br></br><br></br>
-                            <Link 
-                            style={{ color: 'white', transition: 'color 0.3s', fontSize:'14px' }}
-                            onMouseEnter={(e) => e.target.style.color = 'blue'}
-                            onMouseLeave={(e) => e.target.style.color = 'white'}
-                            to={`/Video`}>video<span style={{ marginLeft: '200px', color: 'white', fontSize:'14px' }}>{32}</span>
-                            </Link> */}
+                 
                 </div>
               </div>
             </div>

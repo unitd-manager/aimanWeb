@@ -16619,3 +16619,9 @@ span {
     height: 250px;
   }
 }
+.navbar-nav .nav-link.active {
+  color: yellow !important;
+}
+.active {
+  color: yellow !important;
+}

@@ -13,6 +13,17 @@
   }
 }
 
+@media only screen and (max-width: 768px) {
+  /* CSS rules for smaller screens (e.g., mobile devices) */
+  .logo img {
+    width: 200px; /* Adjust the logo size for smaller screens */
+    height: auto;
+  }
+  .top-left, .top-right {
+    display: none; /* Hide the top-left and top-right elements on smaller screens */
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -69,6 +69,7 @@ function Navbar() {
     setSelectedCategoryId(categoryId);
   };
 
+  
   return (
     <div className="col-xl-11 col-lg-10 next">
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -96,7 +97,7 @@ function Navbar() {
                             {getSubCategoriesForCategory(category.category_id).map(subcategory => (
                               <li key={subcategory.sub_category_id}>
                                 {/* Render subcategory links */}
-                                <Link to={`/${section.section_title}/${category.category_title}/${subcategory.sub_category_title}`} className="dropdown-item">
+                                <Link to={`/${section.section_title}/${category.category_title}/${subcategory.sub_category_id}`} className="dropdown-item">
                                   {subcategory.sub_category_title}
                                 </Link>
                               </li>
