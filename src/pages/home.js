@@ -8,6 +8,7 @@ import HomeResources from "../../src/assets/banner/homeResource.jpg";
 import aboutusicon from "../../src/assets/banner/abudhabimosque.jpg";
 import getTouch from "../../src/assets/banner/gettouch.jpg";
 import api from "../constants/api";
+import imageBase from "../constants/imageBase";
 
 const Home = () => {
   // const [banners, setBanners] = useState([]);
