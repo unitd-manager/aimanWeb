@@ -255,7 +255,7 @@ const Home = () => {
             <div key={item.content_id} className="single-blog">
               <div className="part-img">
                 <img
-                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                  src={`https://192.64.114.83/aimaanAPI/storage/uploads/${item.file_name}`}
                   alt={`News ${item.content_id}`}
                   style={{ width: "100%", height: "400px", objectFit: "cover" }}
                 />
@@ -274,7 +274,7 @@ const Home = () => {
             <div class="col-xl-6 col-lg-6 col-md-8">
               <div class="part-img">
                 <img
-                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${aboutUs.file_name}`}
+                  src={`https://192.64.114.83/aimaanAPI/storage/uploads/${aboutUs.file_name}`}
                   alt="imagess"
                   width="600px"
                   height="550px"
@@ -375,7 +375,7 @@ const Home = () => {
                   <div key={item.content_id} className="single-blog">
                     <div className="part-img">
                       <img
-                        src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.news_image}`}
+                        src={`https://192.64.114.83/aimaanAPI/storage/uploads/${item.news_image}`}
                         alt={`News ${item.content_id}`}
                         style={{ width: "380px", height: "225px" }} // Set width to 100%
                       />
@@ -440,7 +440,7 @@ const Home = () => {
                   <div key={item.content_id} className="single-blog">
                     <div className="part-img">
                       <img
-                        src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                        src={`https://192.64.114.83/aimaanAPI/storage/uploads/${item.file_name}`}
                         alt={`Events ${item.content_id}`}
                         style={{ width: "380px", height: "225px" }} // Adjust the width and height values as needed
                       />
@@ -493,15 +493,15 @@ const Home = () => {
           </div>
         </div>
 
-        <div class="project"
-         style={{
-          backgroundImage: `url(${HomeResources})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        
-        }}
+        <div
+          class="project"
+          style={{
+            backgroundImage: `url(${HomeResources})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          <div class="container" >
+          <div class="container">
             <div class="row justify-content-center">
               <div class="col-xl-5 col-lg-6">
                 <div class="heading heading-2">
@@ -525,7 +525,7 @@ const Home = () => {
                             <div className="single-box">
                               <div className="part-img">
                                 <img
-                                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                                  src={`https://192.64.114.83/aimaanAPI/storage/uploads/${item.file_name}`}
                                   alt={`Resources ${item.content_id}`}
                                   style={{ width: "380px", height: "225px" }} // Set width to 100%
                                 />
@@ -534,7 +534,9 @@ const Home = () => {
                                 <i className="flaticon-link"></i>{" "}
                                 {/* You can move this outside if needed */}
                                 <div className="title">
-                                  <h3 style={{fontSize:"15px"}}>{item.title}</h3>
+                                  <h3 style={{ fontSize: "15px" }}>
+                                    {item.title}
+                                  </h3>
                                 </div>
                               </div>
                             </div>
@@ -548,86 +550,81 @@ const Home = () => {
           </div>
         </div>
 
-       
-        <div class="fun-fact" style={{paddingTop:"100px"}}>
+        <div class="fun-fact" style={{ paddingTop: "100px" }}>
           <div class="container">
             <div class="bg">
               <div class="row no-gutters justify-content-lg-between justify-content-center">
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                <div class="single-box">
+                  <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-multiple-users-silhouette"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="500">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>People Benefited</p>
+                      <p style={{ fontSize: "15px" }}>People Benefited</p>
                     </div>
                   </div>
-               
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                <div class="single-box">
+                  <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-project"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="100">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>Team Members</p>
+                      <p style={{ fontSize: "15px" }}>Team Members</p>
                     </div>
                   </div>
-                 
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                <div class="single-box">
+                  <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-multiple-users-silhouette"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="50">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>Events Conducted</p>
+                      <p style={{ fontSize: "15px" }}>Events Conducted</p>
                     </div>
                   </div>
-               
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                <div class="single-box">
+                  <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-hot-coffee-rounded-cup-on-a-plate-from-side-view"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="100">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>Services Provided</p>
+                      <p style={{ fontSize: "15px" }}>Services Provided</p>
                     </div>
                   </div>
-                 
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
                   <div class="single-box">
@@ -636,14 +633,14 @@ const Home = () => {
                         <i class="flaticon-trophy"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="10">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>Awards Received</p>
+                      <p style={{ fontSize: "15px" }}>Awards Received</p>
                     </div>
                   </div>
                 </div>

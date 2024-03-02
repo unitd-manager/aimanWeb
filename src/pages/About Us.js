@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
-import bannerImage from '../../src/assets/banner/home.jpg';
+import bannerImage from "../../src/assets/banner/home.jpg";
 import ReactHtmlParser from "react-html-parser";
 
 export default function AboutUs() {
@@ -21,7 +21,14 @@ export default function AboutUs() {
 
   return (
     <>
-      <div class="breadcrumb portfolio-breadcrumb" style={{ backgroundImage: `url(${bannerImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div
+        class="breadcrumb portfolio-breadcrumb"
+        style={{
+          backgroundImage: `url(${bannerImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-3">
@@ -56,7 +63,7 @@ export default function AboutUs() {
                 </div>
                 <div className="col-lg-5">
                   <img
-                    src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                    src={`https://192.64.114.83/aimaanAPI/storage/uploads/${data.file_name}`}
                     className="img-fluid"
                     alt="post-thumb"
                   />

@@ -54,7 +54,6 @@
   width: 40%; /* Adjust as needed */
 }
 
-
 .slider-animated-2-left {
   opacity: 0;
   transform: translateX(-100%);
@@ -128,9 +127,8 @@
   display: flex; /* Ensures images are displayed in a row */
 }
 .placeholder-bold {
-  color: 	#000000;
+  color: #000000;
   font-weight: bold;
-
 }
 
 .header-2 .top-header .top-right {
@@ -152,7 +150,7 @@
 }
 .header-2 .top-header .top-right a:hover {
   -webkit-box-shadow: 0px 5px 5px 0px rgba(51, 51, 51, 0.3);
-          box-shadow: 0px 5px 5px 0px rgba(51, 51, 51, 0.3);
+  box-shadow: 0px 5px 5px 0px rgba(51, 51, 51, 0.3);
 }
 .header-2 .top-header .top-right {
   padding-top: 5px;
