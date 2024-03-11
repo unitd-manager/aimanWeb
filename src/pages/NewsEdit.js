@@ -90,7 +90,7 @@ export default function News() {
                         {News.map((image, index) => (
                             <div key={index} className="col-xl-12 col-lg-12 col-md-12">
                                 <div className="part-img">
-                                    <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${image.file_name}`} alt={image.alt}  width="600px"
+                                    <img src={`https://192.64.114.83/storage/uploads/${image.file_name}`} alt={image.alt}  width="600px"
                       height="550px" />
                                 </div><br/>
                                 <h3>{image.title}</h3><br/>

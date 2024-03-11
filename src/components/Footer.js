@@ -107,7 +107,7 @@ export default function Footer() {
                       <div key={index}>
                         <div style={{ display: "flex", alignItems: "center" }}>
                           <img
-                            src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.news_image}`}
+                            src={`https://192.64.114.83/storage/uploads/${item.news_image}`}
                             alt={`News ${item.content_id}`}
                             style={{
                               width: "100px",
@@ -157,7 +157,7 @@ export default function Footer() {
                       <div key={index}>
                         <div style={{ display: "flex", alignItems: "center" }}>
                           <img
-                            src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                            src={`https://192.64.114.83/storage/uploads/${item.file_name}`}
                             alt={`News ${item.content_id}`}
                             style={{
                               width: "100px",

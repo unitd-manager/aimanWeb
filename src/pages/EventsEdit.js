@@ -90,7 +90,7 @@ export default function Events() {
                         {Events.map((image, index) => (
                             <div key={index} className="col-xl-12 col-lg-12 col-md-12">
                                 <div className="part-img"style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                                    <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${image.file_name}`} alt={image.alt}  width="600px"
+                                    <img src={`https://192.64.114.83/storage/uploads/${image.file_name}`} alt={image.alt}  width="600px"
                       height="550px" />
                                 </div><br/>
                                 <h3 style={{paddingBottom:"15px", fontSize:"20px", textAlign:"center"}}>{image.title}</h3><br/>

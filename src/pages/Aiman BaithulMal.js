@@ -88,7 +88,7 @@ export default function Article() {
                 </p> */}
 
                 <img
-                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                  src={`https://192.64.114.83/storage/uploads/${data.file_name}`}
                   
                   class1="text-center" 
                   class="col-xl-8 col-lg-8 col-sm-6"

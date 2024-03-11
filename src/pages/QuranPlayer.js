@@ -105,7 +105,7 @@ const Home = () => {
               style={{ marginTop: "-5px" }}
             >
               <source
-                src={`http://43.228.126.245/aimaanAPI/storage/uploads/${audio.file_name}`}
+                src={`https://192.64.114.83/storage/uploads/${audio.file_name}`}
                 type="audio/mp3"
               />
               Your browser does not support the audio element.

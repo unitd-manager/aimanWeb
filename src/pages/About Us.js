@@ -56,7 +56,7 @@ export default function AboutUs() {
                 </div>
                 <div className="col-lg-5">
                   <img
-                    src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                    src={`https://192.64.114.83/storage/uploads/${data.file_name}`}
                     className="img-fluid"
                     alt="post-thumb"
                   />

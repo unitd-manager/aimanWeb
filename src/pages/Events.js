@@ -91,7 +91,7 @@ const formatDate = (dateString) => {
                 <div class="single-blog">
                   <div class="part-img">
                     <img
-                      src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                      src={`https://192.64.114.83/storage/uploads/${data.file_name}`}
                       alt={data.alt}
                       width="380px"
                       height="250px"

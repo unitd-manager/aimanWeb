@@ -8,7 +8,7 @@ import HomeResources from "../../src/assets/banner/homeResource.jpg";
 import aboutusicon from "../../src/assets/banner/abudhabimosque.jpg";
 import getTouch from "../../src/assets/banner/gettouch.jpg";
 import api from "../constants/api";
-import imageBase from "../constants/imageBase";
+//import imageBase from "../constants/imageBase";
 
 const Home = () => {
   // const [banners, setBanners] = useState([]);
@@ -46,13 +46,29 @@ const Home = () => {
   };
 
   const getBanners = () => {
-    api
-      .get("/content/getBanners")
+    // First API call to get banners
+    api.get("/content/getBanners")
       .then((res) => {
         setBanner(res.data.data);
+  
+        // Extract content_id from the response
+        const contentIds = res.data.data.map(item => item.content_id);
+  
+        // Second API call to get images based on content_id
+        contentIds.forEach(contentId => {
+          // Making a POST request with content_id in the request body
+          api.post("/file/getListOfFiles", { record_id: contentId })
+            .then((imageRes) => {
+              // Handle image response
+              console.log(`Images for content_id ${contentId}:`, imageRes.data);
+            })
+            .catch((imageError) => {
+              console.error(`Error fetching images for content_id ${contentId}:`, imageError);
+            });
+        });
       })
       .catch((error) => {
-        console.error("Error fetching about us data:", error);
+        console.error("Error fetching banners:", error);
       });
   };
 
@@ -250,25 +266,24 @@ const Home = () => {
         <div class="loader"><img src="assets/images/spinner.gif" alt="imagess" /></div>
     </div>
      */}
-      <Slider {...bannersettings}>
-        {Array.isArray(banners) &&
-          banners.map((item, index) => (
-            <div key={item.content_id} className="single-blog">
-              <div className="part-img">
-                <img
-                  // src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
-                  src={`${imageBase}${item.file_name}`}
-                  alt={`News ${item.content_id}`}
-                  style={{ width: "100%", height: "400px", objectFit: "cover" }}
-                />
-              </div>
-              <div className="part-txt">
-                {/* Check if item.description is not null before accessing its properties */}
-              </div>
-            </div>
-          ))}
-      </Slider>
-
+ <Slider {...bannersettings}>
+  {Array.isArray(banners) &&
+    banners.map((item, index) => (
+      <div key={item.content_id} className="single-blog">
+        <div className="part-img">
+          {/* Fetch image using content_id */}
+          <img
+                src={`https://192.64.114.83/storage/uploads/${item.file_name}`}             
+                alt={`News ${item.content_id}`}
+    style={{ width: "100%", height: "400px", objectFit: "cover" }}
+  />
+        </div>
+        <div className="part-txt">
+          {/* Check if item.description is not null before accessing its properties */}
+        </div>
+      </div>
+    ))}
+</Slider>;
       {/* About Us Part */}
       <div class="about about-2">
         <div class="container">
@@ -276,9 +291,8 @@ const Home = () => {
             <div class="col-xl-6 col-lg-6 col-md-8">
               <div class="part-img">
                 <img
-                  // src={`https://aimaanweb.unitdtechnologies.com:3012/storage/uploads/${aboutUs.file_name}`}
-                  src={`${imageBase}${aboutUs.file_name}`}
-                  alt="imagess"
+                src={`https://192.64.114.83/storage/uploads/${aboutUs.file_name}`}             
+                  alt="images"
                   width="600px"
                   height="550px"
                 />
@@ -378,7 +392,7 @@ const Home = () => {
                   <div key={item.content_id} className="single-blog">
                     <div className="part-img">
                       <img
-                        src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.news_image}`}
+                        src={`https://192.64.114.83/storage/uploads/${item.news_image}`}
                         alt={`News ${item.content_id}`}
                         style={{ width: "380px", height: "225px" }} // Set width to 100%
                       />
@@ -443,7 +457,7 @@ const Home = () => {
                   <div key={item.content_id} className="single-blog">
                     <div className="part-img">
                       <img
-                        src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                        src={`https://192.64.114.83/storage/uploads/${item.file_name}`}
                         alt={`Events ${item.content_id}`}
                         style={{ width: "380px", height: "225px" }} // Adjust the width and height values as needed
                       />
@@ -528,7 +542,7 @@ const Home = () => {
                             <div className="single-box">
                               <div className="part-img">
                                 <img
-                                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                                  src={`https://192.64.114.83/storage/uploads/${item.file_name}`}
                                   alt={`Resources ${item.content_id}`}
                                   style={{ width: "380px", height: "225px" }} // Set width to 100%
                                 />

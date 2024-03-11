@@ -149,15 +149,16 @@ const Home = () => {
                         <div key={index} class="col-xl-4 col-lg-4 col-sm-6" style={{paddingBottom:"35px"}}>
                             <div class="single-box">
                                 <div class="part-img">
-                                    <img src={`http://43.228.126.245/aimaanAPI/storage/uploads/${image.file_name}`} 
-                                     alt={image.alt}
-                                     onClick={() => handleImageClick(image)}
-                                     style={{
-                                      width: '380px',
-                                      height: '200px',
-                                      objectFit: 'cover', // or 'contain', or any other value based on your preference
-                                  }}
-                                     />
+                                <img 
+        src={`https://192.64.114.83/storage/uploads/${image.file_name}`} 
+        alt={image.alt}
+        onClick={() => handleImageClick(image)}
+        style={{
+            width: '380px',
+            height: '200px',
+            objectFit: 'cover', // or 'contain', or any other value based on your preference
+        }}
+    />
                                    
                                 </div>
                                 <div class="part-txt">
@@ -169,7 +170,7 @@ const Home = () => {
                      <ImageModal
                 isOpen={isModalOpen}
                 toggle={handleCloseModal}
-                imageSrc={selectedImage ? `http://43.228.126.245/aimaanAPI/storage/uploads/${selectedImage.file_name}` : ''}
+                imageSrc={selectedImage ? `https://192.64.114.83/storage/uploads/${selectedImage.file_name}` : ''}
                 alt={selectedImage ? selectedImage.alt : ''}
             />
                 </div>

@@ -1,2 +1,2 @@
-const imageBase = 'https://aimaanweb.unitdtechnologies.com:3011/storage/uploads/'
+const imageBase = 'https://192.64.114.83/storage/uploads/'
 export default imageBase

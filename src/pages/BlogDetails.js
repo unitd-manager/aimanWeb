@@ -46,7 +46,7 @@ const BlogDetails = () => {
         </Col>
         <Col md="5">
         <img
-    src={`http://43.228.126.245/EMS-API/storage/uploads/${users && users.news_image}`}
+    src={`https://192.64.114.83/storage/uploads/${users && users.news_image}`}
     alt={`News ${users && users.content_id}`}
     style={{ width: '370px', height: '285px'  }} // Adjust the width and height values as needed
   />

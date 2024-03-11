@@ -61,7 +61,7 @@ const EventSlider = () => {
                   >
                     <div className="part-img" style={{ width: '30%', float: 'left' }}>
                       <img
-                        src={`http://43.228.126.245/EMS-API/storage/uploads/${event.file_name}`}
+                        src={`https://192.64.114.83/storage/uploads/${event.file_name}`}
                         alt={`Event`}
                         width="280px"          
                         height="270px"     

@@ -17,7 +17,7 @@ const HeroSliderTwoSingle = ({ data, sliderClassName, banners }) => {
       <div
         className="background-image"
         style={{
-          backgroundImage: `url(http://43.228.126.245/EMS-API/storage/uploads/${banners.file_name})`,
+          backgroundImage: `url(https://192.64.114.83/storage/uploads/${banners.file_name})`,
           backgroundSize: 'cover',
           backgroundPosition: 'left', // Adjust as needed
           flex: '1',

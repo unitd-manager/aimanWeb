@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-baseURL: 'https://aimaanweb.unitdtechnologies.com:3012',
+baseURL: 'https://aimanapi.unitdtechnologies.com:2004',
 
 });
 
