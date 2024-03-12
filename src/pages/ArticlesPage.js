@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import { useLocation, useParams } from "react-router-dom";
 import api from "../constants/api";
 import { Link } from "react-router-dom";
-import bannerImage from '../../src/assets/banner/home.jpg';
+import bannerImage from "../../src/assets/banner/home.jpg";
 //import NavMenu from "../components/NavMenu";
 import ReactHtmlParser from "react-html-parser";
 // import imageBase from "../../../constants/image.js";
@@ -82,10 +82,14 @@ export default function ArticlesPage(props) {
 
   return (
     <>
-      <div class="breadcrumb portfolio-breadcrumb" 
-      style={{backgroundImage: `url(${bannerImage})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center" }}>
+      <div
+        class="breadcrumb portfolio-breadcrumb"
+        style={{
+          backgroundImage: `url(${bannerImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-3">
@@ -138,16 +142,16 @@ export default function ArticlesPage(props) {
                   </div>
                   <div class="main-img">
                     <img
-                       src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                      src={`https://192.64.114.83/aimaanAPI/storage/uploads/${data.file_name}`}
                       className="img-fluid card-img-top"
                       alt="post-thumb"
                     />
                   </div>
                   <div className="text-left">
-                  <p className="description" style={{ fontSize:"14px"}} >
-                    {ReactHtmlParser(data.description)}
-                  </p>
-                </div>
+                    <p className="description" style={{ fontSize: "14px" }}>
+                      {ReactHtmlParser(data.description)}
+                    </p>
+                  </div>
 
                   {/* <div class="other-option">
                       <div class="share">
@@ -175,7 +179,7 @@ export default function ArticlesPage(props) {
                       {/* <div class="img">
                         <a href="blog-details.html">
                           <img
-                            src={http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}}
+                            src={https://192.64.114.83/aimaanAPI/storage/uploads/${data.file_name}}
                             alt="image"
                           ></img>
                         </a>
@@ -188,12 +192,12 @@ export default function ArticlesPage(props) {
                               getNextArticle().title
                             )}`}
                             className="link"
-                            style={{ fontSize: 'small' }}
+                            style={{ fontSize: "small" }}
                           >
                             {getNextArticle().title}
                           </Link>
                         )}
-                        <span style={{ color: 'blue' }}>Next Article &gt;</span>
+                        <span style={{ color: "blue" }}>Next Article &gt;</span>
                       </div>
                     </div>
                     <div class="single-nav next-blog">
@@ -204,17 +208,18 @@ export default function ArticlesPage(props) {
                               getPreviousArticle().title
                             )}`}
                             className="link"
-                            style={{ fontSize: 'small' }}
+                            style={{ fontSize: "small" }}
                           >
                             {getPreviousArticle().title}
-                            
                           </Link>
                         )}
                       </div>
                       <div class="txt">
-                        <span style={{ color: 'blue' }}>&lt; Previous Article</span>
+                        <span style={{ color: "blue" }}>
+                          &lt; Previous Article
+                        </span>
                       </div>
-{/* 
+                      {/* 
                       <div class="img">
                         <a href="blog-details.html">
                           <img
@@ -244,7 +249,7 @@ export default function ArticlesPage(props) {
 
                           <div class="img">
                             <img
-                              src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                              src={`https://192.64.114.83/aimaanAPI/storage/uploads/${data.file_name}`}
                               width="200px"
                               height="60px"
                               alt="post-thumb"
@@ -303,7 +308,7 @@ export default function ArticlesPage(props) {
                             <div key={data.id} class="col-md-6 mb-4">
                               <div class="img">
                                 <img
-                                 src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
+                                  src={`https://192.64.114.83/aimaanAPI/storage/uploads/${data.file_name}`}
                                   width="200px"
                                   height="60px"
                                   alt="post-thumb"
@@ -314,8 +319,9 @@ export default function ArticlesPage(props) {
                                   to={`/NewArticles/${data.title}`}
                                   className="link"
                                 >
-                                 <a href="#" style={{ fontSize: 'small' }}>{data.title.slice(0, 50)}</a>
-
+                                  <a href="#" style={{ fontSize: "small" }}>
+                                    {data.title.slice(0, 50)}
+                                  </a>
                                 </Link>
                               </div>
                             </div>

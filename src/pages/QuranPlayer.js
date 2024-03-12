@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import api from "../constants/api";
 import bannerImage from "../../src/assets/banner/audioGallery.jpg";
-//import AudioPlayer from "react-audio-player";
+import AudioPlayer from "react-audio-player";
 
 const Home = () => {
   const [audioData, setAudioData] = useState([]);
   const [audiodes, setAudioDes] = useState([]);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
   const stripHtmlTags = (htmlString) => {
-    console.log("html string---", audiodes);
     const doc = new DOMParser().parseFromString(htmlString, "text/html");
-    console.log("doc here---", doc.body.textContent);
     return doc.body.textContent || "";
   };
+ 
 
   const getAudio = () => {
     api
@@ -95,8 +94,8 @@ const Home = () => {
           </div>
         </div>
         {audioData.map((audio, index) => (
-          <div key={index} style={{ display:'flex',flexDirection:'column' ,alignItems:'center',justifyContent:'center'}}>
-            <p  style={{ marginTop: "10px",marginBottom: "10px" }}>{audio.display_title}</p>
+          <div key={index} style={{ marginLeft: "30px" }}>
+            <p>{audio.display_title}</p>
 
             <audio
               id={`audio-${index}`}
@@ -105,14 +104,14 @@ const Home = () => {
               style={{ marginTop: "-5px" }}
             >
               <source
-                src={`http://43.228.126.245/aimaanAPI/storage/uploads/${audio.file_name}`}
+                src={`https://192.64.114.83/aimaanAPI/storage/uploads/${audio.file_name}`}
                 type="audio/mp3"
               />
               Your browser does not support the audio element.
             </audio>
           </div>
         ))}
-npm start      </div>
+      </div>
     </div>
   );
 };

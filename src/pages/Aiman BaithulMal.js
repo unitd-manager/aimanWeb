@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
-import bannerImage from '../../src/assets/banner/home.jpg';
+import bannerImage from "../../src/assets/banner/home.jpg";
 import NavMenu from "../components/NavMenu";
 import ReactHtmlParser from "react-html-parser";
 //import moment from 'moment';
@@ -42,21 +42,26 @@ export default function Article() {
   //   return formatedd.split(" ").join("-");
   // };
 
-//   const getFormattedDate = (dateString) => {
-//     const options = {
-//       year: "numeric",
-//       month: "short",
-//       day: "numeric",
-//     };
-//     const date = new Date(dateString);
-//     return new Intl.DateTimeFormat("en-US", options).format(date);
-//   };
+  //   const getFormattedDate = (dateString) => {
+  //     const options = {
+  //       year: "numeric",
+  //       month: "short",
+  //       day: "numeric",
+  //     };
+  //     const date = new Date(dateString);
+  //     return new Intl.DateTimeFormat("en-US", options).format(date);
+  //   };
 
   return (
     <>
-    
-
-      <div class="breadcrumb portfolio-breadcrumb" style={{ backgroundImage: `url(${bannerImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div
+        class="breadcrumb portfolio-breadcrumb"
+        style={{
+          backgroundImage: `url(${bannerImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-3">
@@ -72,14 +77,13 @@ export default function Article() {
           </div>
         </div>
       </div>
-<br/><br/>
+      <br />
+      <br />
       <div class="container">
         <div class="row">
           {Articles &&
             Articles.map((data, index) => (
-              <div key={index} className="text-center" 
-              >
-                
+              <div key={index} className="text-center">
                 {/* <div class="col-lg-8 rounded-sm pr-5"> */}
                 {/* {data ? data.title : "Go to Home"} */}
                 {/* <h3 class="mb-3 text-dark">{data.title}</h3> */}
@@ -88,9 +92,8 @@ export default function Article() {
                 </p> */}
 
                 <img
-                  src={`http://43.228.126.245/aimaanAPI/storage/uploads/${data.file_name}`}
-                  
-                  class1="text-center" 
+                  src={`https://192.64.114.83/aimaanAPI/storage/uploads/${data.file_name}`}
+                  class1="text-center"
                   class="col-xl-8 col-lg-8 col-sm-6"
                   alt="post-thumb"
                 />
