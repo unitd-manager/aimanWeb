@@ -256,8 +256,8 @@ const Home = () => {
             <div key={item.content_id} className="single-blog">
               <div className="part-img">
                 <img
-                  // src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
-                  src={`${imageBase}${item.file_name}`}
+                  //src={`http://43.228.126.245/aimaanAPI/storage/uploads/${item.file_name}`}
+                  src={`/assets/storage/uploads/${item.file_name}`}
                   alt={`News ${item.content_id}`}
                   style={{ width: "100%", height: "400px", objectFit: "cover" }}
                 />
