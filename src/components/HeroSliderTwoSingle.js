@@ -3,8 +3,8 @@ import React from "react";
 
 const HeroSliderTwoSingle = ({ data, sliderClassName, banners }) => {
   const stripHtmlTags = (htmlString) => {
-    const doc = new DOMParser().parseFromString(htmlString, 'text/html');
-    return doc.body.textContent || '';
+    const doc = new DOMParser().parseFromString(htmlString, "text/html");
+    return doc.body.textContent || "";
   };
 
   return (
@@ -12,25 +12,30 @@ const HeroSliderTwoSingle = ({ data, sliderClassName, banners }) => {
       className={`single-slider single-slider-10 slider-height-8 ${
         sliderClassName ? sliderClassName : ""
       }`}
-      style={{ display: 'flex', position: 'relative', zIndex: 2, height: '300px' }}
+      style={{
+        display: "flex",
+        position: "relative",
+        zIndex: 2,
+        height: "300px",
+      }}
     >
       <div
         className="background-image"
         style={{
-          backgroundImage: `url(https://192.64.114.83/storage/uploads/${banners.file_name})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'left', // Adjust as needed
-          flex: '1',
-          height: '100%',
+          backgroundImage: `url(https://192.64.114.83/EMS-API/storage/uploads/${banners.file_name})`,
+          backgroundSize: "cover",
+          backgroundPosition: "left", // Adjust as needed
+          flex: "1",
+          height: "100%",
         }}
       ></div>
 
       <div
         className="container"
         style={{
-          flex: '1', // Adjust the flex value as needed
-          backgroundColor: '#001F3F', // Navy Blue background for content
-          padding: '20px', // Adjust as needed
+          flex: "1", // Adjust the flex value as needed
+          backgroundColor: "#001F3F", // Navy Blue background for content
+          padding: "20px", // Adjust as needed
         }}
       >
         <div className="row justify-content-between">

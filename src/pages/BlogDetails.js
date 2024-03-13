@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import {useNavigate,useParams } from "react-router-dom"
-import api from '../constants/api';
-import { Row, Col, Button,} from 'reactstrap';
-import { Card, CardTitle } from 'reactstrap';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import api from "../constants/api";
+import { Row, Col, Button } from "reactstrap";
+import { Card, CardTitle } from "reactstrap";
 
 const BlogDetails = () => {
   const [users, setUsers] = useState();
@@ -10,14 +10,12 @@ const BlogDetails = () => {
   const navigate = useNavigate();
   const handleBackToList = () => {
     // Redirect to the home page
-    navigate('/');
+    navigate("/");
     window.location.reload();
   };
 
   useEffect(() => {
-    api
-    .post('/media/getNewsDetail', { content_id: id })
-    .then((res) => {
+    api.post("/media/getNewsDetail", { content_id: id }).then((res) => {
       setUsers(res.data.data[0]);
     });
   }, [id]); // Include getContactLinked in the dependency array
@@ -27,16 +25,13 @@ const BlogDetails = () => {
       body
       className=""
       style={{
-        align: 'center'
+        align: "center",
       }}
     >
-      <CardTitle tag="h5">
-        News Details
-        
-      </CardTitle>
+      <CardTitle tag="h5">News Details</CardTitle>
       <Row>
         <Col md="7">
-        <Button color="primary" onClick={handleBackToList}>
+          <Button color="primary" onClick={handleBackToList}>
             Back to List
           </Button>
           <h3>{users && users.title}</h3>
@@ -45,15 +40,17 @@ const BlogDetails = () => {
           )}
         </Col>
         <Col md="5">
-        <img
-    src={`https://192.64.114.83/storage/uploads/${users && users.news_image}`}
-    alt={`News ${users && users.content_id}`}
-    style={{ width: '370px', height: '285px'  }} // Adjust the width and height values as needed
-  />
-   </Col>
+          <img
+            src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${
+              users && users.news_image
+            }`}
+            alt={`News ${users && users.content_id}`}
+            style={{ width: "370px", height: "285px" }} // Adjust the width and height values as needed
+          />
+        </Col>
       </Row>
-    </Card>  
+    </Card>
   );
-}
+};
 
 export default BlogDetails;

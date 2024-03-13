@@ -266,24 +266,24 @@ const Home = () => {
         <div class="loader"><img src="assets/images/spinner.gif" alt="imagess" /></div>
     </div>
      */}
- <Slider {...bannersettings}>
-  {Array.isArray(banners) &&
-    banners.map((item, index) => (
-      <div key={item.content_id} className="single-blog">
-        <div className="part-img">
-          {/* Fetch image using content_id */}
-          <img
-                src={`https://192.64.114.83/storage/uploads/${item.file_name}`}             
-                alt={`News ${item.content_id}`}
-    style={{ width: "100%", height: "400px", objectFit: "cover" }}
-  />
-        </div>
-        <div className="part-txt">
-          {/* Check if item.description is not null before accessing its properties */}
-        </div>
-      </div>
-    ))}
-</Slider>;
+      <Slider {...bannersettings}>
+        {Array.isArray(banners) &&
+          banners.map((item, index) => (
+            <div key={item.content_id} className="single-blog">
+              <div className="part-img">
+                <img
+                  src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
+                  alt={`News ${item.content_id}`}
+                  style={{ width: "100%", height: "400px", objectFit: "cover" }}
+                />
+              </div>
+              <div className="part-txt">
+                {/* Check if item.description is not null before accessing its properties */}
+              </div>
+            </div>
+          ))}
+      </Slider>
+
       {/* About Us Part */}
       <div class="about about-2">
         <div class="container">
@@ -291,8 +291,8 @@ const Home = () => {
             <div class="col-xl-6 col-lg-6 col-md-8">
               <div class="part-img">
                 <img
-                src={`https://192.64.114.83/storage/uploads/${aboutUs.file_name}`}             
-                  alt="images"
+                  src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${aboutUs.file_name}`}
+                  alt="imagess"
                   width="600px"
                   height="550px"
                 />
@@ -304,7 +304,7 @@ const Home = () => {
                   <h2>{aboutUs && aboutUs.title}</h2>
                 </div>
                 <p>{extractFirstParagraph(aboutUs.description)}</p>
-                <a href="/aboutus" class="def-btn">
+                <a href="/#/About-Us" class="def-btn">
                   Read More
                 </a>
                 <div class="boxes-2">
@@ -392,7 +392,7 @@ const Home = () => {
                   <div key={item.content_id} className="single-blog">
                     <div className="part-img">
                       <img
-                        src={`https://192.64.114.83/storage/uploads/${item.news_image}`}
+                        src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${item.news_image}`}
                         alt={`News ${item.content_id}`}
                         style={{ width: "380px", height: "225px" }} // Set width to 100%
                       />
@@ -457,7 +457,7 @@ const Home = () => {
                   <div key={item.content_id} className="single-blog">
                     <div className="part-img">
                       <img
-                        src={`https://192.64.114.83/storage/uploads/${item.file_name}`}
+                        src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
                         alt={`Events ${item.content_id}`}
                         style={{ width: "380px", height: "225px" }} // Adjust the width and height values as needed
                       />
@@ -510,15 +510,15 @@ const Home = () => {
           </div>
         </div>
 
-        <div class="project"
-         style={{
-          backgroundImage: `url(${HomeResources})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        
-        }}
+        <div
+          class="project"
+          style={{
+            backgroundImage: `url(${HomeResources})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          <div class="container" >
+          <div class="container">
             <div class="row justify-content-center">
               <div class="col-xl-5 col-lg-6">
                 <div class="heading heading-2">
@@ -542,7 +542,7 @@ const Home = () => {
                             <div className="single-box">
                               <div className="part-img">
                                 <img
-                                  src={`https://192.64.114.83/storage/uploads/${item.file_name}`}
+                                  src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
                                   alt={`Resources ${item.content_id}`}
                                   style={{ width: "380px", height: "225px" }} // Set width to 100%
                                 />
@@ -551,7 +551,9 @@ const Home = () => {
                                 <i className="flaticon-link"></i>{" "}
                                 {/* You can move this outside if needed */}
                                 <div className="title">
-                                  <h3 style={{fontSize:"15px"}}>{item.title}</h3>
+                                  <h3 style={{ fontSize: "15px" }}>
+                                    {item.title}
+                                  </h3>
                                 </div>
                               </div>
                             </div>
@@ -565,86 +567,81 @@ const Home = () => {
           </div>
         </div>
 
-       
-        <div class="fun-fact" style={{paddingTop:"100px"}}>
+        <div class="fun-fact" style={{ paddingTop: "100px" }}>
           <div class="container">
             <div class="bg">
               <div class="row no-gutters justify-content-lg-between justify-content-center">
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                <div class="single-box">
+                  <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-multiple-users-silhouette"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="500">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>People Benefited</p>
+                      <p style={{ fontSize: "15px" }}>People Benefited</p>
                     </div>
                   </div>
-               
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                <div class="single-box">
+                  <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-project"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="100">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>Team Members</p>
+                      <p style={{ fontSize: "15px" }}>Team Members</p>
                     </div>
                   </div>
-                 
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                <div class="single-box">
+                  <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-multiple-users-silhouette"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="50">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>Events Conducted</p>
+                      <p style={{ fontSize: "15px" }}>Events Conducted</p>
                     </div>
                   </div>
-               
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
-                <div class="single-box">
+                  <div class="single-box">
                     <div class="part-icon">
                       <span>
                         <i class="flaticon-hot-coffee-rounded-cup-on-a-plate-from-side-view"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="100">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>Services Provided</p>
+                      <p style={{ fontSize: "15px" }}>Services Provided</p>
                     </div>
                   </div>
-                 
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-4">
                   <div class="single-box">
@@ -653,14 +650,14 @@ const Home = () => {
                         <i class="flaticon-trophy"></i>
                       </span>
                     </div>
-                    <div class="part-txt" style={{paddingBottom:"20px"}}>
+                    <div class="part-txt" style={{ paddingBottom: "20px" }}>
                       <h2>
                         <span class="odometer" data-count="10">
                           0
                         </span>
                         +
                       </h2>
-                      <p style={{fontSize:"15px"}}>Awards Received</p>
+                      <p style={{ fontSize: "15px" }}>Awards Received</p>
                     </div>
                   </div>
                 </div>
@@ -741,7 +738,7 @@ const Home = () => {
                 <div class=" col-lg-3">
                   <div class="form">
                     <form>
-                      <Link to="/contact-page">
+                      <Link to="/contactus">
                         <button style={{ marginLeft: "32px" }}>
                           Contact Us
                         </button>

@@ -94,8 +94,7 @@ export default function Footer() {
 
   return (
     <>
-   
-      <div class="footer">
+      <div class="footer" style={{ overflow: "hidden" }}>
         <div class="container">
           <div class="main-footer">
             <div class="row justify-content-between">
@@ -107,7 +106,7 @@ export default function Footer() {
                       <div key={index}>
                         <div style={{ display: "flex", alignItems: "center" }}>
                           <img
-                            src={`https://192.64.114.83/storage/uploads/${item.news_image}`}
+                            src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${item.news_image}`}
                             alt={`News ${item.content_id}`}
                             style={{
                               width: "100px",
@@ -115,7 +114,7 @@ export default function Footer() {
                               marginRight: "10px",
                             }} // Adjust the width and height values as needed
                           />
-                         
+
                           <div>
                             <a
                               href={`/${item.content_id}`}
@@ -157,7 +156,7 @@ export default function Footer() {
                       <div key={index}>
                         <div style={{ display: "flex", alignItems: "center" }}>
                           <img
-                            src={`https://192.64.114.83/storage/uploads/${item.file_name}`}
+                            src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
                             alt={`News ${item.content_id}`}
                             style={{
                               width: "100px",
@@ -165,7 +164,7 @@ export default function Footer() {
                               marginRight: "10px",
                             }} // Adjust the width and height values as needed
                           />
-                         
+
                           <div>
                             <a
                               href={`/${item.content_id}`}
@@ -214,11 +213,7 @@ export default function Footer() {
                     to={`/Events`}
                     onClick={scrollToTop}
                   >
-                    நிகழ்வுகள்{" "}
-                    <span>
-                   
-                      ({ContentTypeCount.events_count})
-                    </span>
+                    நிகழ்வுகள் <span>({ContentTypeCount.events_count})</span>
                   </Link>
                   <br></br>
                   <br></br>
@@ -274,7 +269,6 @@ export default function Footer() {
                   </Link>
                   <br></br>
                   <br></br>
-                 
                 </div>
               </div>
             </div>

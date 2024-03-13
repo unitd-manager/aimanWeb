@@ -41,7 +41,6 @@ export default function Articles() {
     return formatedd.split(" ").join("-");
   };
 
-
   const formatDate = (dateString) => {
     const options = {
       year: "numeric",
@@ -89,17 +88,19 @@ export default function Articles() {
                       <div class="single-blog">
                         <div class="part-img">
                           <img
-                            src={`https://192.64.114.83/storage/uploads/${data.file_name}`}
+                            src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${data.file_name}`}
                             alt={data.alt}
                             width="500px"
                             height="290px"
-                            
                           />
                           <div class="tags"> </div>
                         </div>
 
-                        <div class="part-txt"style={{backgroundColor:"#110d54"}}>
-                          <div class="blog-info" >
+                        <div
+                          class="part-txt"
+                          style={{ backgroundColor: "#110d54" }}
+                        >
+                          <div class="blog-info">
                             <ul>
                               <li>
                                 <span>
@@ -115,7 +116,7 @@ export default function Articles() {
                               </li>
                             </ul>
                           </div>
-                          <h3 style={{color:"#FFFFFF"}}>{data.title}</h3>
+                          <h3 style={{ color: "#FFFFFF" }}>{data.title}</h3>
                           <Link
                             to={getFormatedText(data.title)}
                             state={{ data: data }}
@@ -126,8 +127,14 @@ export default function Articles() {
                             Read More
                           </Link>
 
-                        
-                          <p className="description" style={{fontSize:"14px", paddingTop:"14px", color:"#FFFFFF"}}>
+                          <p
+                            className="description"
+                            style={{
+                              fontSize: "14px",
+                              paddingTop: "14px",
+                              color: "#FFFFFF",
+                            }}
+                          >
                             {data.description
                               .replace(/<[^>]*>?/gm, "")
                               .slice(0, 72)}
@@ -143,7 +150,35 @@ export default function Articles() {
         </div>
       </div>
 
-     
+      {/* <div class="col-lg-4">
+                            <div class="rounded-sm shadow bg-white pb-4"> */}
+
+      {/* 
+                                <div class="widget">
+                                    <h4>Latest Article</h4>
+                                    <ul class="list-unstyled list-bordered">
+                                        {Articles && Articles.slice(0, 3).map(data => (
+                                            <li class="media border-bottom py-3"> */}
+      {/* <img src={`${imageBase}${data.file_name}`} class="rounded-sm mr-3" alt="post-thumb" /> */}
+      {/* <img src={`https://192.64.114.83/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" />  */}
+      {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
+      {/* <div class="media-body">
+
+                                                    <h6 class="mt-0"> <Link
+                                                        to={getFormatedText(data.title)}
+                                                        state={{ data: data }}
+                                                        className="text-dark">{data.title}</Link></h6>
+
+                                                </div>
+                                            </li>
+
+                                        ))}
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div> */}
     </>
   );
 }
